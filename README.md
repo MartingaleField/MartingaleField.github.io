@@ -1,6 +1,6 @@
 [Github](https://github.com/MartingaleField/MartingaleField.github.io) | [Webpage](https://martingalefield.github.io/)
     
-[badge_back_to_front]: https://img.shields.io/badge/--%3E-Back%20to%20Front-brightgreen.svg
+[badge_back_to_front]: https://img.shields.io/badge/Back%20To-TOC-green.svg
 
 
 # Table of Contents
