@@ -1,5 +1,6 @@
-[Github](https://github.com/MartingaleField/MartingaleField.github.io) | [Webpage](https://martingalefield.github.io/)
+[![Github][jump_to_github](https://github.com/MartingaleField/MartingaleField.github.io)] | [Webpage](https://martingalefield.github.io/)
     
+[jump_to_github]: https://img.shields.io/static/v1.svg?label=Jump%20to&message=Github&color=green&style=popout-square&logo=github
 [badge_back_to_front]: https://img.shields.io/badge/Back%20To-TOC-green.svg
 
 
