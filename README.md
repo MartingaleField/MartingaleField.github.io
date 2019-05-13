@@ -1046,7 +1046,7 @@ int hIndex(vector<int> &citations) {
     int n = citations.size();
     int left = 0, right = n - 1;
     while (left <= right) {
-        int mid = (left + right) >> 1;
+        int mid = left + ((right - left) >> 1);
         if (citations[mid] == n - mid)
             return n - mid;
         else if (citations[mid] < n - mid)
@@ -1056,6 +1056,22 @@ int hIndex(vector<int> &citations) {
     }
     return n - left;
 }
+```
+
+![Python3][python3]
+```python
+def hIndex(citations: List[int]) -> int:
+    n = len(citations)
+    left, right = 0, n - 1
+    while left <= right:
+        mid = left + ((right - left) >> 1)
+        if citations[mid] == n - mid:
+            return n - mid
+        elif citations[mid] < n - mid:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return n - left
 ```
 
 [![Back to Front][badge_back_to_front]](#table-of-contents)
