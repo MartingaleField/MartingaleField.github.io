@@ -95,8 +95,8 @@ def twoSum(nums: List[int], target: int) -> List[int]:
         else:
             return i, num_to_idx[gap]
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)\
----
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
 
 
 
@@ -141,10 +141,8 @@ def maxArea(self, height: List[int]) -> int:
             j -= 1
     return ans
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)\
----
+[![Back to Front][badge_back_to_front]](#table-of-contents)
 
-https://img.shields.io/badge/--%3E-Back%20to%20Front-brightgreen.svg
 
 
 ### [3Sum](https://leetcode.com/problems/3sum/)
