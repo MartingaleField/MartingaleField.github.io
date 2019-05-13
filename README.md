@@ -434,7 +434,7 @@ Given an unsorted integer array, find the smallest missing positive integer.
 
 Your algorithm should run in O(n) time and uses constant extra space.
 
-##### Example
+Example
 ```
 Input: [3,4,-1,1]
 Output: 2
@@ -472,7 +472,7 @@ Given a set of non-overlapping intervals, insert a new interval into the interva
 
 You may assume that the intervals were initially sorted according to their start times.
 
-##### Example
+Example
 ```
 Input: intervals = [[1,3],[6,9]], newInterval = [2,5]
 Output: [[1,5],[6,9]]
@@ -526,13 +526,13 @@ Given an array of size `n`, find the majority element. The majority element is t
 
 You may assume that the array is non-empty and the majority element always exist in the array.
 
-##### Example 1
+Example 1
 ```
 Input: [3,2,3]
 Output: 3
 ```
 
-##### Example 2
+Example 2
 ```
 Input: [2,2,1,1,1,2,2]
 Output: 2
@@ -649,12 +649,12 @@ vector<int> majorityElement(vector<int> &nums) {
 
 Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
 
-##### Example 1:
+Example 1:
 ```
 Input: [3,2,1,5,6,4] and k = 2
 Output: 5
 ```
-##### Example 2:
+Example 2:
 ```
 Input: [3,2,3,1,2,4,5,5,6] and k = 4
 Output: 4
@@ -693,7 +693,7 @@ def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
 
 Given an array of `n` positive integers and a positive integer `s`, find the minimal length of a **contiguous** subarray of which the `sum >= s`. If there isn't one, return `0` instead.
 
-##### Example
+Example
 ```
 Input: s = 7, nums = [2,3,1,2,4,3]
 Output: 2
@@ -728,7 +728,7 @@ Given an array `nums` of `n` integers where `n > 1`,  return an array `output` s
 
 Note: Please solve it without division and in O(n).
 
-##### Example:
+Example:
 ```
 Input:  [1,2,3,4]
 Output: [24,12,8,6]
@@ -776,12 +776,12 @@ Given an array containing n distinct numbers taken from `0, 1, 2, ..., n`, find 
 
 Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
 
-##### Example 1:
+Example 1:
 ```
 Input: [3,0,1]
 Output: 2
 ```
-##### Example 2:
+Example 2:
 ```
 Input: [9,6,4,2,3,5,7,0,1]
 Output: 8
@@ -820,17 +820,17 @@ def missingNumber(nums: 'List[int]') -> 'int':
 
 Given an array of integers, find out whether there are two distinct indices `i` and `j` in the array such that the **absolute** difference between `nums[i]` and `nums[j]` is at most `t` and the **absolute** difference between `i` and `j` is at most `k`.
 
-**Example 1:**
+Example 1:
 ```
 Input: nums = [1,2,3,1], k = 3, t = 0
 Output: true
 ```
-##### Example 2:
+Example 2:
 ```
 Input: nums = [1,0,1,1], k = 1, t = 2
 Output: true
 ```
-##### Example 3:
+Example 3:
 ```
 Input: nums = [1,5,9,1,5,9], k = 2, t = 3
 Output: false
@@ -1094,7 +1094,7 @@ def hIndex(citations: List[int]) -> int:
 
 Given a binary tree, return the inorder traversal of its nodes' values.
 
-##### Example
+Example
 ```
 Input: [1,null,2,3]
    1
@@ -1214,7 +1214,7 @@ vector<int> inorderTraversal(TreeNode *root) {
 
 Given a binary tree, return the preorder traversal of its nodes' values.
 
-##### Example
+Example
 ```
 Input: [1,null,2,3]
    1
@@ -1434,7 +1434,7 @@ vector<int> postorderTraversal(TreeNode *root) {
 
 Given a binary tree, return the level order traversal of its nodes' values. (ie, from left to right, level by level).
 
-##### Example
+Example
 ```
 Given binary tree [3,9,20,null,null,15,7],
     3
@@ -1893,7 +1893,7 @@ Two elements of a binary search tree (BST) are swapped by mistake.
 
 Recover the tree without changing its structure.
 
-##### Example 1:
+Example 1:
 ```
 Input: [1,3,null,null,2]
 
@@ -1912,7 +1912,7 @@ Output: [3,1,null,null,2]
    2
 ```
 
-##### Example 2:
+Example 2:
 ```
 Input: [3,1,4,null,null,2]
 
