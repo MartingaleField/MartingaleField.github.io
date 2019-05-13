@@ -96,7 +96,10 @@ def twoSum(nums: List[int], target: int) -> List[int]:
         else:
             return i, num_to_idx[gap]
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -145,7 +148,10 @@ def maxArea(self, height: List[int]) -> int:
             j -= 1
     return ans
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -216,7 +222,10 @@ def threeSum(nums: 'List[int]') -> 'List[List[int]]':
                     k -= 1
     return ans
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -274,7 +283,10 @@ def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
                 ans = sum
     return ans
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -327,7 +339,10 @@ vector<vector<int>> fourSum(vector<int> &nums, int target) {
     return result;
 }
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -357,7 +372,10 @@ int fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vector<int> &D)
     return ans;
 }
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -386,7 +404,10 @@ int removeDuplicates(vector<int> &nums) {
     return j;
 }
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -420,7 +441,10 @@ int removeDuplicates(vector<int> &nums) {
     return j;
 }
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -458,7 +482,10 @@ def firstMissingPositive(nums: 'List[int]') -> 'int':
             return i
     return len(nums) + 1
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -512,7 +539,10 @@ def insert(intervals: 'List[Interval]', newInterval: 'Interval') -> 'List[Interv
         e = max(e, intervals[~len(right_part)].end)  
     return left_part + [Interval(s, e)] + right_part
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -563,7 +593,10 @@ def majorityElement(nums: 'List[int]') -> 'int':
         count += 1 if candidate == num else -1
     return candidate
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -638,7 +671,10 @@ vector<int> majorityElement(vector<int> &nums) {
     return result;
 }
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -682,7 +718,10 @@ def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
         ans = heapq.heappop(nums)
     return -ans
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -715,7 +754,10 @@ int minSubArrayLen(int s, vector<int> &nums) {
     return min_len <= nums.size() ? min_len : 0;
 }
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -764,7 +806,10 @@ def productExceptSelf(nums: 'List[int]') -> 'List[int]':
 
     return output
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -807,7 +852,10 @@ def missingNumber(nums: 'List[int]') -> 'int':
         ans ^= (nums[i] ^ i)
     return ans
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -893,7 +941,10 @@ bool containsNearbyAlmostDuplicate(vector<int> &nums, int k, int t) {
     return false;
 }
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -993,7 +1044,10 @@ def hIndex(self, citations: List[int]) -> int:
     return 0
 ```
 
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -1074,7 +1128,10 @@ def hIndex(citations: List[int]) -> int:
     return n - left
 ```
 
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- <!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+ -->
 
 ---
 
@@ -1200,7 +1257,10 @@ vector<int> inorderTraversal(TreeNode *root) {
     return result;
 }
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -1304,7 +1364,10 @@ vector<int> preorderTraversal(TreeNode *root) {
     return result;
 }
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -1421,7 +1484,10 @@ vector<int> postorderTraversal(TreeNode *root) {
 }
 ```
 
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -1528,7 +1594,10 @@ vector<vector<int>> levelOrder(TreeNode *root) {
 }
 ```
 
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -1618,7 +1687,10 @@ vector<vector<int>> zigzagLevelOrder(TreeNode *root) {
 }
 ```
 
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -1676,7 +1748,10 @@ bool isSymmetric(TreeNode *root) {
 }
 ```
 
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -1747,7 +1822,10 @@ TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
     return buildTree(begin(preorder), end(preorder), begin(inorder), end(inorder));
 }
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -1811,7 +1889,10 @@ TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder) {
 }
 ```
 
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -1876,7 +1957,10 @@ bool isValidBST(TreeNode *root) {
 }
 ```
 
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -2080,7 +2164,10 @@ private:
     }
 };
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -2134,7 +2221,10 @@ private:
     }
 };
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -2200,7 +2290,10 @@ def generateParenthesis(n: 'int') -> 'List[str]':
     backtrack("", n, n)
     return ans
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -2341,7 +2434,10 @@ public:
     }
 };
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -2430,7 +2526,10 @@ def combinationSum(candidates: 'List[int]', target: 'int') -> 'List[List[int]]':
     dfs(target, 0)
     return result
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -2532,7 +2631,10 @@ def combinationSum2(candidates: 'List[int]', target: 'int') -> 'List[List[int]]'
     return result
 ```
 
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -2610,7 +2712,10 @@ def combinationSum3(k: 'int', n: 'int') -> 'List[List[int]]':
     dfs(k, n, 1)
     return result
 ```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
@@ -2702,7 +2807,10 @@ class LRUCache:
 ```
 
 
-[![Back to Front][badge_back_to_front]](#table-of-contents)
+<!-- [![Back to Front][badge_back_to_front]](#table-of-contents) -->
+
+[Back to Front](#table-of-content)
+
 
 ---
 
