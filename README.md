@@ -68,7 +68,7 @@ You may assume that each input would have **exactly one** solution, and you may 
 
 #### Solution 
 
-[![C++]][c++]
+![C++][c++]
 ```c++
 vector<int> twoSum(vector<int> &nums, int target) {
     vector<int> ans;
@@ -88,7 +88,7 @@ vector<int> twoSum(vector<int> &nums, int target) {
 }
 ```
 
-##### Python3
+![Python3][python3]
 ```python
 def twoSum(nums: List[int], target: int) -> List[int]:
     num_to_idx = {}
