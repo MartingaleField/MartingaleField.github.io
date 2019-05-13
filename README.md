@@ -112,7 +112,7 @@ Use two pointers. Pointer `i` points to the first element and `j` to the last. T
 * If there exists taller bar on the right of `i` than `h`, move `i` to it and check if we have a better result.
 * If there exists taller bar on the left of `j` than `h`, move `j` to it and check if we have a better result.
 
-##### C++
+![C++][c++]
 ```c++
 int maxArea(vector<int> &height) {
     int water = 0;
@@ -127,7 +127,7 @@ int maxArea(vector<int> &height) {
 }
 ```
 
-##### Python3
+![Python3][python3]
 ```python
 def maxArea(self, height: List[int]) -> int:
     i, j = 0, len(height) - 1
@@ -154,7 +154,7 @@ Given an array nums of n integers, are there elements `a, b, c` in nums such tha
 The solution set must not contain duplicate triplets.
 
 #### Solution 
-##### C++
+![C++][c++]
 ```c++
 vector<vector<int>> threeSum(vector<int> &nums) {
     vector<vector<int>> result;
@@ -182,7 +182,7 @@ vector<vector<int>> threeSum(vector<int> &nums) {
 }
 ```
 
-##### Python3
+![Python3][python3]
 ```python
 def threeSum(nums: 'List[int]') -> 'List[List[int]]':
     ans = []
@@ -221,7 +221,7 @@ def threeSum(nums: 'List[int]') -> 'List[List[int]]':
 Given an array nums of `n` integers and an integer target, find three integers in `nums` such that the sum is closest to `target`. Return the sum of the three integers. You may assume that each input would have exactly one solution.
 
 #### Solution 
-##### C++
+![C++][c++]
 ```c++
 int threeSumClosest(vector<int> &nums, int target) {
     int res = nums[0] + nums[1] + nums[2], n = nums.size();
@@ -245,7 +245,7 @@ int threeSumClosest(vector<int> &nums, int target) {
 }
 ```
 
-##### Python3
+![Python3][python3]
 ```python
 def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
     nums.sort()
@@ -280,7 +280,7 @@ Given an array `nums` of `n` integers and an integer `target`, are there element
 The solution set must not contain duplicate quadruplets.
 
 #### Solution 
-##### C++
+![C++][c++]
 ```c++
 vector<vector<int>> fourSum(vector<int> &nums, int target) {
     vector<vector<int>> result;
@@ -331,7 +331,7 @@ Given four lists `A, B, C, D` of integer values, compute how many tuples `(i, j,
 To make problem a bit easier, all `A, B, C, D` have same length of `N` where `0 <= N <= 500`.
 
 #### Solution 
-##### C++
+![C++][c++]
 ```c++
 int fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vector<int> &D) {
     unordered_map<int, int> sum_freq;
@@ -359,7 +359,7 @@ Given a sorted array `nums`, remove the duplicates in-place such that each eleme
 Do not allocate extra space for another array, you must do this by **modifying the input array in-place** with `O(1)` extra memory.
 
 #### Solution 
-##### C++
+![C++][c++]
 ```c++
 int removeDuplicates(vector<int> &nums) {
     if (nums.size() < 2)
@@ -391,7 +391,7 @@ At first glance, we can follow the same idea as previous problem. Compare `nums[
 In fact, we simply need to compare `nums[i] == nums[j - 2]`. If this returns false, we can update the new array no matter what.
 - If `nums[i] == nums[j - 1]`, since we allow at most two duplicates, we can copy `nums[i]` to the end of the new array.
 
-##### C++
+![C++][c++]
 ```c++
 int removeDuplicates(vector<int> &nums) {
     if (nums.size() < 3)
@@ -428,7 +428,7 @@ Output: 2
 - Iterate integers `1` to `n + 1` and check one by one if `i` is located at `i - 1` already. If not, then `i` is the first missing positive integer. 
 
 
-##### Python3
+![Python3][python3]
 ```python
 def firstMissingPositive(nums: 'List[int]') -> 'int':
     for i in range(len(nums)):
@@ -460,7 +460,7 @@ Output: [[1,5],[6,9]]
 ```
 
 #### Solution 
-##### C++
+![C++][c++]
 ```c++
 vector<Interval> insert(vector<Interval> &intervals, Interval newInterval) {
     vector<Interval> result;
@@ -481,7 +481,7 @@ vector<Interval> insert(vector<Interval> &intervals, Interval newInterval) {
 }
 ```
 
-##### Python3
+![Python3][python3]
 ```python
 def insert(intervals: 'List[Interval]', newInterval: 'Interval') -> 'List[Interval]':
     s, e = newInterval.start, newInterval.end
@@ -518,7 +518,7 @@ Output: 2
 ```
 
 #### Solution 
-##### C++
+![C++][c++]
 ```c++
 int majorityElement(vector<int> &nums) {
     int candidate = nums[0], count = 0;
@@ -532,7 +532,7 @@ int majorityElement(vector<int> &nums) {
 }
 ```
 
-##### Python3
+![Python3][python3]
 ```python
 def majorityElement(nums: 'List[int]') -> 'int':
     count = 0
@@ -555,7 +555,7 @@ Given an integer array of size `n`, find all elements that appear more than `⌊
 Note: The algorithm should run in linear time and in O(1) space.
 
 #### Solution 
-##### C++
+![C++][c++]
 ```c++
 struct Candidate {
     int num_, count_;
@@ -638,7 +638,7 @@ Output: 4
 #### Solution
 When `nums.size()` is small, sort it first and return the kth element.
 
-##### Python3
+![Python3][python3]
 ```python
 def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
     nums.sort(reverse=True)
@@ -646,7 +646,7 @@ def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
 ```
 
 When `nums.size()` is large, use `max heap`.
-##### Python3
+![Python3][python3]
 ```python
 import heapq
 
@@ -674,7 +674,7 @@ Explanation: the subarray [4,3] has the minimal length under the problem constra
 ```
 
 #### Solution 
-##### C++
+![C++][c++]
 ```c++
 int minSubArrayLen(int s, vector<int> &nums) {
     int min_len = nums.size() + 1, sum = 0;
@@ -716,7 +716,7 @@ Output: [24,12,8,6]
     ```
     which is the desired result.
 
-##### Python3
+![Python3][python3]
 ```python
 def productExceptSelf(nums: 'List[int]') -> 'List[int]':
     n = len(nums)
@@ -757,7 +757,7 @@ Output: 8
 
 #### Solution: Math
 The missing one is `sum(0..n) - sum(nums)`.
-##### Python3
+![Python3][python3]
 ```python
 def missingNumber(nums: 'List[int]') -> 'int':
     n = len(nums)
@@ -767,7 +767,7 @@ def missingNumber(nums: 'List[int]') -> 'int':
 #### Solution: Bit Manipulation
 If `A == B`, then `A ^ B == 0`.
 
-##### Python3
+![Python3][python3]
 ```python
 def missingNumber(nums: 'List[int]') -> 'int':
     ans = len(nums)
@@ -801,7 +801,7 @@ Output: false
 #### Solution: Sort
 Use a `vector<pair<long, int>>` to store `(elem, index)` pairs. Sort this vector. This will produce a similar structure to `multimap<long, int>` but we can do sliding-window technique on it using continuous indexing.
 
-##### C++
+![C++][c++]
 ```c++
 bool containsNearbyAlmostDuplicate(vector<int> &nums, int k, int t) {
     vector<pair<long, int>> map;
@@ -821,7 +821,7 @@ bool containsNearbyAlmostDuplicate(vector<int> &nums, int k, int t) {
 }
 ```
 
-##### Python3
+![Python3][python3]
 ```python
 def containsNearbyAlmostDuplicate(nums: List[int], k: int, t: int) -> bool:
     map = [(e, i) for i, e in enumerate(nums)]
@@ -842,7 +842,7 @@ def containsNearbyAlmostDuplicate(nums: List[int], k: int, t: int) -> bool:
 
 The sliding-window idea can also be implemented using `set<long>`, in which elements are ordered automatically.
 
-##### C++
+![C++][c++]
 ```c++
 bool containsNearbyAlmostDuplicate(vector<int> &nums, int k, int t) {
     set<long> window; // set is ordered automatically
@@ -895,7 +895,7 @@ Algorithm:
 
 A simple implementation using built-in `sort` function can be
 
-##### C++
+![C++][c++]
 ```c++
 int hIndex(vector<int> &citations) {
     sort(citations.begin(), citations.end(), greater<int>());
@@ -905,7 +905,7 @@ int hIndex(vector<int> &citations) {
     return h;
 }
 ```
-##### Python3
+![Python3][python3]
 ```python
 def hIndex(citations: List[int]) -> int:
     h = 0
@@ -917,7 +917,7 @@ def hIndex(citations: List[int]) -> int:
 
 But this has a complexity of `O(n logn)`, so is applicable if `n` is small. When `n` is large, we use counting sort.
 
-##### C++
+![C++][c++]
 ```c++
 int hIndex(vector<int> &citations) {
     int n = citations.size();
@@ -937,7 +937,7 @@ int hIndex(vector<int> &citations) {
 }
 ```
 
-##### Python3
+![Python3][python3]
 ```python
 def hIndex(self, citations: List[int]) -> int:
     n = len(citations)
@@ -976,7 +976,7 @@ citations[index] >= length(citations) - index
 ```
 And return `length - index` as the result. The search can be done using binary search.
 
-##### C++
+![C++][c++]
 ```c++
 int hIndex(vector<int> &citations) {
     int n = citations.size();
@@ -1023,7 +1023,7 @@ Output: [1,3,2]
 
 #### Solution: Recursive
 
-##### C++
+![C++][c++]
 ```c++
 class Solution {
 public:
@@ -1047,7 +1047,7 @@ private:
 
 #### Solution: Iterative
 
-##### C++
+![C++][c++]
 ```c++
 vector<int> inorderTraversal(TreeNode *root) {
     vector<int> result;
@@ -1092,7 +1092,7 @@ The threads we need for inorder traveral are `A->B`, `C->D`, `E->F` and `H->I`. 
 
 Time complexity O(n), space complexity O(1).
 
-##### C++
+![C++][c++]
 ```c++
 vector<int> inorderTraversal(TreeNode *root) {
     vector<int> result;
@@ -1139,7 +1139,7 @@ Output: [1,2,3]
 
 #### Solution: Recursive
 
-##### C++
+![C++][c++]
 ```c++
 class Solution {
 public:
@@ -1163,7 +1163,7 @@ private:
 
 #### Solution: Iterative
 
-##### C++
+![C++][c++]
 ```c++
 vector<int> preorderTraversal(TreeNode *root) {
     vector<int> result;
@@ -1192,7 +1192,7 @@ Preorder: FBADCEGIH
 
 The threads we need for preorder traveral are `A->B`, `C->D`, `E->F` and `H->I`. The difference with inorder is that we print out `cur` before threading `p` to `cur`. The reason is that in preorder traversal, we need to visit the root first before traversing the left subtree.
 
-##### C++
+![C++][c++]
 ```c++
 vector<int> preorderTraversal(TreeNode *root) {
     vector<int> result;
@@ -1227,7 +1227,7 @@ Given a binary tree, return the postorder traversal of its nodes' values.
 
 #### Solution: Recursive
 
-##### C++
+![C++][c++]
 ```c++
 class Solution {
 public:
@@ -1251,7 +1251,7 @@ private:
 
 #### Solution: Iterative
 
-##### C++
+![C++][c++]
 ```c++
 vector<int> postorderTraversal(TreeNode *root) {
     vector<int> result;
@@ -1275,7 +1275,7 @@ vector<int> postorderTraversal(TreeNode *root) {
 
 #### Solution: Morris
 
-##### C++
+![C++][c++]
 ```c++
 void reverse(TreeNode *from, TreeNode *to) {
     TreeNode *x = from, *y = from->right, *z;
@@ -1356,7 +1356,7 @@ return its level order traversal as:
 ```
 
 #### Solution: Recursive
-##### C++
+![C++][c++]
 ```c++
 class Solution {
 public:
@@ -1385,7 +1385,7 @@ private:
 
 Do an **preorder** traversal using the interative way. Push each node and its level in the stack.
 
-##### C++
+![C++][c++]
 ```c++
 vector<vector<int>> levelOrder(TreeNode *root) {
     vector<vector<int>> result;
@@ -1412,7 +1412,7 @@ vector<vector<int>> levelOrder(TreeNode *root) {
 
 #### Solution: Queue
 
-##### C++
+![C++][c++]
 ```c++
 vector<vector<int>> levelOrder(TreeNode *root) {
     if (!root) return {};
@@ -1463,7 +1463,7 @@ return its zigzag level order traversal as:
 
 #### Solution: Recursive
 
-##### C++
+![C++][c++]
 ```c++
 class Solution {
 public:
@@ -1494,7 +1494,7 @@ private:
 
 #### Solution: Iterative, Stack
 
-##### C++
+![C++][c++]
 ```c++
 vector<vector<int>> zigzagLevelOrder(TreeNode *root) {
     vector<vector<int>> result;
@@ -1538,7 +1538,7 @@ Two binary trees are considered the same if they are structurally identical and 
 
 #### Solution: Recursive
 
-##### C++
+![C++][c++]
 ```c++
 bool isSameTree(TreeNode *p, TreeNode *q) {
     if (!p && !q) return true;
@@ -1551,7 +1551,7 @@ bool isSameTree(TreeNode *p, TreeNode *q) {
 
 #### Solution: Iterative
 
-##### C++
+![C++][c++]
 ```c++
 bool isSymmetric(TreeNode *root) {
     if (!root) return true;
@@ -1624,7 +1624,7 @@ We first find the position of root (i.e. `*begin(preorder)`) in inorder vector. 
     the preorder vector is
     `preorder[left_size + 1..pre_last]`
 
-##### C++
+![C++][c++]
 ```c++
 template<typename InputIterator>
 TreeNode *buildTree(InputIterator pre_first, InputIterator pre_last,
@@ -1683,7 +1683,7 @@ Postorder:
 [ left subtree ] [ right subtree ] root
 ```
 
-##### C++
+![C++][c++]
 ```c++
 template<typename InputIterator>
 TreeNode *buildTree(InputIterator in_first, InputIterator in_last,
@@ -1728,7 +1728,7 @@ Assume a BST is defined as follows:
 
 #### Solution: Recursive
 
-##### C++
+![C++][c++]
 ```c++
 bool helper(TreeNode *node, TreeNode *min_node = nullptr, TreeNode *max_node = nullptr) {
     if (node == nullptr) return true;
@@ -1749,7 +1749,7 @@ bool isValidBST(TreeNode *root) {
 
 Do an inorder traversal and compare `node->val` with `pre-val` along the way.
 
-##### C++
+![C++][c++]
 ```c++
 bool isValidBST(TreeNode *root) {
     vector<int> result;
@@ -1826,7 +1826,7 @@ Output: [2,1,4,null,null,3]
 
 We can use a `vector<TreeNode *> inorder` to store the inorder-traversed nodes. This can be implemented by any one of the inorder traversal approaches (recursive, stack-based iterative or Morris). If the BST is valid, `inorder` should be non-decreasing. We can then forwards-iterate the vector and find the node `broken1` which violates the ordering. Similarly, we can backwards-iterate the vector and find the node `broken2` which violates the ordering. Swapping `broken1` and `broken2` yields the valid BST.
 
-##### C++
+![C++][c++]
 ```c++
 void recoverTree(TreeNode *root) {
     vector<TreeNode *> inorder;
@@ -1861,7 +1861,7 @@ void recoverTree(TreeNode *root) {
 
 #### Solution: Iterative, Stack
 
-##### C++
+![C++][c++]
 ```c++
 class Solution {
 public:
@@ -1900,7 +1900,7 @@ private:
 
 Actually, we don't need to record all inorder-traversed nodes. We simply need a `TreeNode *pre` which points to the inorder predecessor of the currently visiting node.
 
-##### C++
+![C++][c++]
 ```c++
 class Solution {
 public:
@@ -1934,7 +1934,7 @@ private:
 
 #### Solution: Morris
 
-##### C++
+![C++][c++]
 ```c++
 class Solution {
 public:
@@ -2004,7 +2004,7 @@ while the minimum difference in this tree is 1, it occurs between node 1 and nod
 
 Do an inorder traversal and record predecessor node `pre` along the way. The minimum distance can only happen between two consecutive nodes in the traversal.
 
-##### C++
+![C++][c++]
 ```c++
 class Solution {
 public:
@@ -2049,7 +2049,7 @@ For example, given `n = 3`, a solution set is:
 
 #### Solution: DFS
 
-##### C++
+![C++][c++]
 ```c++
 class Solution {
 public:
@@ -2074,7 +2074,7 @@ private:
 };
 ```
 
-##### Python3
+![Python3][python3]
 ```python
 def generateParenthesis(n: 'int') -> 'List[str]':
     def backtrack(s, l, r):
@@ -2112,7 +2112,7 @@ You may assume that the given Sudoku puzzle will have a single unique solution.
 
 #### Solution: Backtracking
 
-##### C++
+![C++][c++]
 ```c++
 class Solution {
 public:
@@ -2163,7 +2163,7 @@ private:
 
 #### Solution: Backtracking with Caching
 
-##### C++
+![C++][c++]
 ```c++
 class Solution {
 public:
@@ -2264,7 +2264,7 @@ A solution set is:
 ```
 
 #### Solution: DFS
-##### C++
+![C++][c++]
 ```c++
 class Solution {
 public:
@@ -2295,7 +2295,7 @@ private:
 };
 ```
 
-##### Python3
+![Python3][python3]
 ```python
 def combinationSum(candidates: 'List[int]', target: 'int') -> 'List[List[int]]':
     def dfs(gap, cur):
@@ -2353,7 +2353,7 @@ A solution set is:
 ```
 
 #### Solution: DFS
-##### C++
+![C++][c++]
 ```c++
 class Solution {
 public:
@@ -2387,7 +2387,7 @@ private:
 };
 ```
 
-##### Python3
+![Python3][python3]
 ```python
 def combinationSum2(candidates: 'List[int]', target: 'int') -> 'List[List[int]]':
     def dfs(gap, cur):
@@ -2442,7 +2442,7 @@ Output: [[1,2,6], [1,3,5], [2,3,4]]
 ```
 
 #### Solution: DFS
-##### C++
+![C++][c++]
 ```c++
 class Solution {
 public:
@@ -2472,7 +2472,7 @@ private:
 };
 ```
 
-##### Python3
+![Python3][python3]
 ```python
 def combinationSum3(k: 'int', n: 'int') -> 'List[List[int]]':
     def dfs(left, gap, cur):
@@ -2511,7 +2511,7 @@ Design and implement a data structure for Least Recently Used (LRU) cache. It sh
 ![LRU1](https://www.geeksforgeeks.org/wp-content/uploads/LRU1.png)
 <!-- ![LRU2](https://www.geeksforgeeks.org/wp-content/uploads/LRU2.png) -->
 
-##### C++
+![C++][c++]
 ```c++
 class LRUCache {
 public:
@@ -2559,7 +2559,7 @@ private:
 };
 ```
 
-##### Python3
+![Python3][python3]
 ```python
 class LRUCache:
     def __init__(self, capacity: int):
