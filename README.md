@@ -788,7 +788,9 @@ Output: 8
 ```
 
 #### Solution: Math
+
 The missing one is `sum(0..n) - sum(nums)`.
+
 ![Python3][python3]
 ```python
 def missingNumber(nums: 'List[int]') -> 'int':
@@ -797,6 +799,7 @@ def missingNumber(nums: 'List[int]') -> 'int':
 ```
 
 #### Solution: Bit Manipulation
+
 If `A == B`, then `A ^ B == 0`.
 
 ![Python3][python3]
