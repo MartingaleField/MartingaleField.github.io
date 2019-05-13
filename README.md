@@ -30,6 +30,7 @@
     - [Contains Duplicate III](#contains-duplicate-iii)
     - [H-Index](#h-index)
 - [Binary Search](#binary-search)
+    - [Basics](#basics)
     - [H-Index II](#h-index-ii)
 - [Linked List](#linked-list)
 - [Binary Tree](#binary-tree)
@@ -999,6 +1000,31 @@ def hIndex(self, citations: List[int]) -> int:
 
 
 # Binary Search
+
+### Basics
+
+![C++][c++]
+```c++
+class BinSearch {
+    template<typename T>
+    static int search(vector<T> A, T K) {
+        int l = 0;
+        int u = A.size() - 1;
+        int m;
+        while (l <= u) {
+            m = l + ((u - l) >> 1);
+            if (A[m] < K) {
+                l = m + 1;
+            } else if (A[m] == K) {
+                return m;
+            } else {
+                u = m - 1;
+            }
+        }
+        return -1;
+    }
+};
+```
 
 ### [H-Index II](https://leetcode.com/problems/h-index-ii/)
 
