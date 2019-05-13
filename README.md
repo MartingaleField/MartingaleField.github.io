@@ -1,6 +1,8 @@
 [jump_to_github]: https://img.shields.io/static/v1.svg?label=Jump%20to&message=Github&color=green&style=popout&logo=github
 [jump_to_webpage]: https://img.shields.io/static/v1.svg?label=Jump%20to&message=Webpage&color=red&style=popout&logo=github
 [badge_back_to_front]: https://img.shields.io/badge/Back%20To-TOC-blue.svg
+[c++]: https://img.shields.io/static/v1.svg?label=C%2B%2B&message=%20&color=blue&labelColor=blue&style=popout-square&logo=c%2B%2B
+[python3]: https://img.shields.io/static/v1.svg?label=Python3&message=%20&color=gold&labelColor=gold&style=popout-square&logo=python
 
 [![Github][jump_to_github]](https://github.com/MartingaleField/MartingaleField.github.io/blob/master/README.md)
 [![Webpage][jump_to_webpage]](https://martingalefield.github.io/)
@@ -59,14 +61,14 @@
 
 # Array
 
-### ![](https://img.shields.io/static/v1.svg?label=:&message=1&color=orange&style=flat&logo=leetcode)[ Two Sum](https://leetcode.com/problems/two-sum/)
+### [Two Sum](https://leetcode.com/problems/two-sum/)
 
 Given an array of integers, return **indices** of the two numbers such that they add up to a specific target.
 You may assume that each input would have **exactly one** solution, and you may not use the same element twice.
 
 #### Solution 
 
-##### C++
+[![C++]][c++]
 ```c++
 vector<int> twoSum(vector<int> &nums, int target) {
     vector<int> ans;
