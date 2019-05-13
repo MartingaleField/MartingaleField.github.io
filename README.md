@@ -2580,7 +2580,8 @@ class LRUCache:
 ```
 
 
-[![Back to Front][badge_back_to_front]](#table-of-contents)\
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
 ---
 
 
