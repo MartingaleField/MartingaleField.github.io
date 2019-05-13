@@ -52,6 +52,7 @@
     - [Combination Sum](#combination-sum)
     - [Combination Sum II](#combination-sum-ii)
     - [Combination Sum III](#combination-sum-iii)
+    - [Permutations](#permutations)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 <!-- /TOC -->
@@ -2619,7 +2620,7 @@ def combinationSum3(k: 'int', n: 'int') -> 'List[List[int]]':
 ---
 
 
-### Permutations
+### [Permutations](https://leetcode.com/problems/permutations/)
 
 Given a collection of distinct integers, return all possible permutations.
 
@@ -2639,7 +2640,7 @@ Output:
 
 #### Solution: DFS
 
-![Permutations](https://raw.githubusercontent.com/MartingaleField/MartingaleField.github.io/master/Screen%20Shot%202019-05-13%20at%2012.35.49%20AM.png)
+![Permutations](https://raw.githubusercontent.com/MartingaleField/MartingaleField.github.io/master/Permutations.png)
 
 ![C++][c++]
 ```c++
