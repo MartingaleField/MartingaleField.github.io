@@ -2563,6 +2563,7 @@ Output: [[1,2,6], [1,3,5], [2,3,4]]
 ```
 
 #### Solution: DFS
+
 ![C++][c++]
 ```c++
 class Solution {
@@ -2617,6 +2618,65 @@ def combinationSum3(k: 'int', n: 'int') -> 'List[List[int]]':
 
 ---
 
+
+### Permutations
+
+Given a collection of distinct integers, return all possible permutations.
+
+Example:
+```
+Input: [1,2,3]
+Output:
+[
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
+]
+```
+
+#### Solution: DFS
+
+
+
+![C++][c++]
+```c++
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int> &nums) {
+        for (int i : nums)
+            used[i] = false;
+        dfs(nums);
+        return result;
+    }
+
+private:
+    vector<vector<int>> result;
+    vector<int> path;
+    unordered_map<int, bool> used;
+
+    void dfs(vector<int> &nums) {
+        if (path.size() == nums.size()) {
+            result.emplace_back(path);
+            return;
+        }
+        for (int i : nums) {
+            if (used[i]) continue;
+            used[i] = true;
+            path.emplace_back(i);
+            dfs(nums);
+            path.pop_back();
+            used[i] = false;
+        }
+    }
+};
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 
 
