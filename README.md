@@ -2639,7 +2639,7 @@ Output:
 
 #### Solution: DFS
 
-
+![Permutations](https://raw.githubusercontent.com/MartingaleField/MartingaleField.github.io/master/Screen%20Shot%202019-05-13%20at%2012.35.49%20AM.png)
 
 ![C++][c++]
 ```c++
