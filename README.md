@@ -63,7 +63,7 @@
 Given an array of integers, return **indices** of the two numbers such that they add up to a specific target.
 You may assume that each input would have **exactly one** solution, and you may not use the same element twice.
 
-#### Solution 
+### Solution 
 
 ![C++][c++]
 ```c++
@@ -111,7 +111,7 @@ Given `n` non-negative integers `a1, a2, ..., an` , where each represents a poin
 
 ![image1](https://raw.githubusercontent.com/MartingaleField/MartingaleField.github.io/master/question_11.jpg "Container With Most Water")
 
-#### Solution 
+### Solution 
 Use two pointers. Pointer `i` points to the first element and `j` to the last. The water volume is `(j - i) * h` where `h = min(height[i], height[j])`.
 * If there exists taller bar on the right of `i` than `h`, move `i` to it and check if we have a better result.
 * If there exists taller bar on the left of `j` than `h`, move `j` to it and check if we have a better result.
@@ -158,7 +158,7 @@ Given an array nums of n integers, are there elements `a, b, c` in nums such tha
 
 The solution set must not contain duplicate triplets.
 
-#### Solution 
+### Solution 
 ![C++][c++]
 ```c++
 vector<vector<int>> threeSum(vector<int> &nums) {
@@ -227,7 +227,7 @@ def threeSum(nums: 'List[int]') -> 'List[List[int]]':
 
 Given an array nums of `n` integers and an integer target, find three integers in `nums` such that the sum is closest to `target`. Return the sum of the three integers. You may assume that each input would have exactly one solution.
 
-#### Solution 
+### Solution 
 ![C++][c++]
 ```c++
 int threeSumClosest(vector<int> &nums, int target) {
@@ -288,7 +288,7 @@ Given an array `nums` of `n` integers and an integer `target`, are there element
 
 The solution set must not contain duplicate quadruplets.
 
-#### Solution 
+### Solution 
 ![C++][c++]
 ```c++
 vector<vector<int>> fourSum(vector<int> &nums, int target) {
@@ -341,7 +341,7 @@ Given four lists `A, B, C, D` of integer values, compute how many tuples `(i, j,
 
 To make problem a bit easier, all `A, B, C, D` have same length of `N` where `0 <= N <= 500`.
 
-#### Solution 
+### Solution 
 ![C++][c++]
 ```c++
 int fourSumCount(vector<int> &A, vector<int> &B, vector<int> &C, vector<int> &D) {
@@ -371,7 +371,7 @@ Given a sorted array `nums`, remove the duplicates in-place such that each eleme
 
 Do not allocate extra space for another array, you must do this by **modifying the input array in-place** with `O(1)` extra memory.
 
-#### Solution 
+### Solution 
 ![C++][c++]
 ```c++
 int removeDuplicates(vector<int> &nums) {
@@ -400,7 +400,7 @@ Given a sorted array `nums`, remove the duplicates **in-place** such that duplic
 
 Do not allocate extra space for another array, you must do this by modifying the input array in-place with O(1) extra memory.
 
-#### Solution
+### Solution
 At first glance, we can follow the same idea as previous problem. Compare `nums[i]` with the current last two elements of the new array. If either of the comparison return false, we can update the new array. 
 
 In fact, we simply need to compare `nums[i] == nums[j - 2]`. If this returns false, we can update the new array no matter what.
@@ -440,7 +440,7 @@ Input: [3,4,-1,1]
 Output: 2
 ```
 
-#### Solution
+### Solution
 - Scan through `nums` and swap each positive number `A[i]` with `A[A[i]-1]`. If `A[A[i]-1]` is again positive, swap it with `A[A[A[i]-1]-1]`... Do this iteratively until we meet a negative number or we have done put all the positive numbers at their correct locations. E.g. `[3, 4, -1, 1]` will become `[1, -1, 3, 4]`.
 - Iterate integers `1` to `n + 1` and check one by one if `i` is located at `i - 1` already. If not, then `i` is the first missing positive integer. 
 
@@ -478,7 +478,7 @@ Input: intervals = [[1,3],[6,9]], newInterval = [2,5]
 Output: [[1,5],[6,9]]
 ```
 
-#### Solution 
+### Solution 
 ![C++][c++]
 ```c++
 vector<Interval> insert(vector<Interval> &intervals, Interval newInterval) {
@@ -538,7 +538,7 @@ Input: [2,2,1,1,1,2,2]
 Output: 2
 ```
 
-#### Solution 
+### Solution 
 ![C++][c++]
 ```c++
 int majorityElement(vector<int> &nums) {
@@ -577,7 +577,7 @@ Given an integer array of size `n`, find all elements that appear more than `⌊
 
 Note: The algorithm should run in linear time and in O(1) space.
 
-#### Solution 
+### Solution 
 ![C++][c++]
 ```c++
 struct Candidate {
@@ -660,7 +660,7 @@ Input: [3,2,3,1,2,4,5,5,6] and k = 4
 Output: 4
 ```
 
-#### Solution
+### Solution
 When `nums.size()` is small, sort it first and return the kth element.
 
 ![Python3][python3]
@@ -700,7 +700,7 @@ Output: 2
 Explanation: the subarray [4,3] has the minimal length under the problem constraint.
 ```
 
-#### Solution 
+### Solution 
 ![C++][c++]
 ```c++
 int minSubArrayLen(int s, vector<int> &nums) {
@@ -734,7 +734,7 @@ Input:  [1,2,3,4]
 Output: [24,12,8,6]
 ```
 
-#### Solution
+### Solution
 - Iterate forwards over `nums` and generate `output`:
     ```
     1,  A[0],   A[0]*A[1],  ...,    A[0]*A[1]*...*A[n-3],   A[0]*A[1]*...*A[n-2]
@@ -787,7 +787,7 @@ Input: [9,6,4,2,3,5,7,0,1]
 Output: 8
 ```
 
-#### Solution: Math
+### Solution: Math
 
 The missing one is `sum(0..n) - sum(nums)`.
 
@@ -798,7 +798,7 @@ def missingNumber(nums: 'List[int]') -> 'int':
     return (n * (n + 1) // 2) - sum(nums)
 ```
 
-#### Solution: Bit Manipulation
+### Solution: Bit Manipulation
 
 If `A == B`, then `A ^ B == 0`.
 
@@ -836,7 +836,7 @@ Input: nums = [1,5,9,1,5,9], k = 2, t = 3
 Output: false
 ```
 
-#### Solution: Sort
+### Solution: Sort
 Use a `vector<pair<long, int>>` to store `(elem, index)` pairs. Sort this vector. This will produce a similar structure to `multimap<long, int>` but we can do sliding-window technique on it using continuous indexing.
 
 ![C++][c++]
@@ -876,7 +876,7 @@ def containsNearbyAlmostDuplicate(nums: List[int], k: int, t: int) -> bool:
     return False
 ```
 
-#### Solution: Ordered Set
+### Solution: Ordered Set
 
 The sliding-window idea can also be implemented using `set<long>`, in which elements are ordered automatically.
 
@@ -919,7 +919,7 @@ Explanation: [3,0,6,1,5] means the researcher has 5 papers in total and each of 
 ```
 Note: If there are several possible values for h, the maximum one is taken as the h-index.
 
-#### Solution
+### Solution
 
 ![h-index](https://upload.wikimedia.org/wikipedia/commons/d/da/H-index-en.svg)
 
@@ -1035,7 +1035,7 @@ Given an array of citations **sorted in ascending order** (each citation is a no
 
 If there are several possible values for h, the maximum one is taken as the h-index.
 
-#### Solution
+### Solution
 
 The idea is to search for the first index so that
 ```
@@ -1106,7 +1106,7 @@ Input: [1,null,2,3]
 Output: [1,3,2]
 ```
 
-#### Solution: Recursive
+### Solution: Recursive
 
 ![C++][c++]
 ```c++
@@ -1130,7 +1130,7 @@ private:
 };
 ```
 
-#### Solution: Iterative
+### Solution: Iterative
 
 ![C++][c++]
 ```c++
@@ -1153,7 +1153,7 @@ vector<int> inorderTraversal(TreeNode *root) {
 }
 ```
 
-#### Solution: Morris
+### Solution: Morris
 
 A binary tree is threaded by making all right child pointers that would normally be null point to the inorder successor of the node (if it exists), and all left child pointers that would normally be null point to the inorder predecessor of the node.
 
@@ -1226,7 +1226,7 @@ Input: [1,null,2,3]
 Output: [1,2,3]
 ```
 
-#### Solution: Recursive
+### Solution: Recursive
 
 ![C++][c++]
 ```c++
@@ -1250,7 +1250,7 @@ private:
 };
 ```
 
-#### Solution: Iterative
+### Solution: Iterative
 
 ![C++][c++]
 ```c++
@@ -1273,7 +1273,7 @@ vector<int> preorderTraversal(TreeNode *root) {
 }
 ```
 
-#### Solution: Morris
+### Solution: Morris
 
 ![image3](https://upload.wikimedia.org/wikipedia/commons/7/7a/Threaded_tree.svg "Threaded Binary Tree")
 
@@ -1317,7 +1317,7 @@ vector<int> preorderTraversal(TreeNode *root) {
 
 Given a binary tree, return the postorder traversal of its nodes' values.
 
-#### Solution: Recursive
+### Solution: Recursive
 
 ![C++][c++]
 ```c++
@@ -1341,7 +1341,7 @@ private:
 };
 ```
 
-#### Solution: Iterative
+### Solution: Iterative
 
 ![C++][c++]
 ```c++
@@ -1365,7 +1365,7 @@ vector<int> postorderTraversal(TreeNode *root) {
 }
 ```
 
-#### Solution: Morris
+### Solution: Morris
 
 ![C++][c++]
 ```c++
@@ -1450,7 +1450,7 @@ return its level order traversal as:
 ]
 ```
 
-#### Solution: Recursive
+### Solution: Recursive
 ![C++][c++]
 ```c++
 class Solution {
@@ -1476,7 +1476,7 @@ private:
 };
 ```
 
-#### Solution: Iterative
+### Solution: Iterative
 
 Do an **preorder** traversal using the interative way. Push each node and its level in the stack.
 
@@ -1505,7 +1505,7 @@ vector<vector<int>> levelOrder(TreeNode *root) {
 }
 ```
 
-#### Solution: Queue
+### Solution: Queue
 
 ![C++][c++]
 ```c++
@@ -1559,7 +1559,7 @@ return its zigzag level order traversal as:
 ]
 ```
 
-#### Solution: Recursive
+### Solution: Recursive
 
 ![C++][c++]
 ```c++
@@ -1590,7 +1590,7 @@ private:
 };
 ```
 
-#### Solution: Iterative, Stack
+### Solution: Iterative, Stack
 
 ![C++][c++]
 ```c++
@@ -1636,7 +1636,7 @@ Given two binary trees, write a function to check if they are the same or not.
 
 Two binary trees are considered the same if they are structurally identical and the nodes have the same value.
 
-#### Solution: Recursive
+### Solution: Recursive
 
 ![C++][c++]
 ```c++
@@ -1649,7 +1649,7 @@ bool isSameTree(TreeNode *p, TreeNode *q) {
 }
 ```
 
-#### Solution: Iterative
+### Solution: Iterative
 
 ![C++][c++]
 ```c++
@@ -1706,7 +1706,7 @@ Return the following binary tree:
    15   7
 ```
 
-#### Solution
+### Solution
 
 Inorder:
 ```
@@ -1777,7 +1777,7 @@ Return the following binary tree:
    15   7
 ```
 
-#### Solution
+### Solution
 
 Inorder:
 ```
@@ -1833,7 +1833,7 @@ Assume a BST is defined as follows:
 - The right subtree of a node contains only nodes with keys **greater than** the node's key.
 - Both the left and right subtrees must also be binary search trees.
 
-#### Solution: Recursive
+### Solution: Recursive
 
 ![C++][c++]
 ```c++
@@ -1852,7 +1852,7 @@ bool isValidBST(TreeNode *root) {
 }
 ```
 
-#### Solution: Iterative
+### Solution: Iterative
 
 Do an inorder traversal and compare `node->val` with `pre-val` along the way.
 
@@ -1931,7 +1931,7 @@ Output: [2,1,4,null,null,3]
   3
 ```
 
-#### Solution: Straightforward, O(n) space
+### Solution: Straightforward, O(n) space
 
 We can use a `vector<TreeNode *> inorder` to store the inorder-traversed nodes. This can be implemented by any one of the inorder traversal approaches (recursive, stack-based iterative or Morris). If the BST is valid, `inorder` should be non-decreasing. We can then forwards-iterate the vector and find the node `broken1` which violates the ordering. Similarly, we can backwards-iterate the vector and find the node `broken2` which violates the ordering. Swapping `broken1` and `broken2` yields the valid BST.
 
@@ -1968,7 +1968,7 @@ void recoverTree(TreeNode *root) {
 }
 ```
 
-#### Solution: Iterative, Stack
+### Solution: Iterative, Stack
 
 ![C++][c++]
 ```c++
@@ -2005,7 +2005,7 @@ private:
 };
 ```
 
-#### Solution: Recursive, O(1) space
+### Solution: Recursive, O(1) space
 
 Actually, we don't need to record all inorder-traversed nodes. We simply need a `TreeNode *pre` which points to the inorder predecessor of the currently visiting node.
 
@@ -2041,7 +2041,7 @@ private:
 ```
 
 
-#### Solution: Morris
+### Solution: Morris
 
 ![C++][c++]
 ```c++
@@ -2111,7 +2111,7 @@ The given tree [4,2,6,1,3,null,null] is represented by the following diagram:
 while the minimum difference in this tree is 1, it occurs between node 1 and node 2, also between node 3 and node 2.
 ```
 
-#### Solution: Recursive
+### Solution: Recursive
 
 Do an inorder traversal and record predecessor node `pre` along the way. The minimum distance can only happen between two consecutive nodes in the traversal.
 
@@ -2160,7 +2160,7 @@ For example, given `n = 3`, a solution set is:
 ]
 ```
 
-#### Solution: DFS
+### Solution: DFS
 
 ![C++][c++]
 ```c++
@@ -2225,7 +2225,7 @@ You may assume that the given Sudoku puzzle will have a single unique solution.
 ![image](https://upload.wikimedia.org/wikipedia/commons/e/e0/Sudoku_Puzzle_by_L2G-20050714_standardized_layout.svg "A typical Sudoku puzzle")
 ![image](https://upload.wikimedia.org/wikipedia/commons/1/12/Sudoku_Puzzle_by_L2G-20050714_solution_standardized_layout.svg "solution")
 
-#### Solution: Backtracking
+### Solution: Backtracking
 
 ![C++][c++]
 ```c++
@@ -2276,7 +2276,7 @@ private:
 };
 ```
 
-#### Solution: Backtracking with Caching
+### Solution: Backtracking with Caching
 
 ![C++][c++]
 ```c++
@@ -2380,7 +2380,7 @@ A solution set is:
 ]
 ```
 
-#### Solution: DFS
+### Solution: DFS
 ![C++][c++]
 ```c++
 class Solution {
@@ -2471,7 +2471,7 @@ A solution set is:
 ]
 ```
 
-#### Solution: DFS
+### Solution: DFS
 ![C++][c++]
 ```c++
 class Solution {
@@ -2562,7 +2562,7 @@ Input: k = 3, n = 9
 Output: [[1,2,6], [1,3,5], [2,3,4]]
 ```
 
-#### Solution: DFS
+### Solution: DFS
 ![C++][c++]
 ```c++
 class Solution {
@@ -2629,7 +2629,7 @@ Design and implement a data structure for Least Recently Used (LRU) cache. It sh
 - `get(key)` - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
 - `put(key, value)` - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.
 
-#### Solution
+### Solution
 
 ![LRU1](https://www.geeksforgeeks.org/wp-content/uploads/LRU1.png)
 <!-- ![LRU2](https://www.geeksforgeeks.org/wp-content/uploads/LRU2.png) -->
