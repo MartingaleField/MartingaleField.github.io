@@ -2592,5 +2592,5 @@ class LRUCache:
 [jump_to_github]: https://img.shields.io/static/v1.svg?label=Jump%20to&message=Github&color=green&style=popout&logo=github
 [jump_to_webpage]: https://img.shields.io/static/v1.svg?label=Jump%20to&message=Webpage&color=red&style=popout&logo=github
 [badge_back_to_front]: https://img.shields.io/badge/Back%20To-TOC-blue.svg
-[c++]: https://img.shields.io/static/v1.svg?label=C%2B%2B&message=&color=blue&labelColor=grey&style=popout-square&logo=c%2B%2B&logoColor=White
-[python3]: https://img.shields.io/static/v1.svg?label=Python3&message=&color=gold&labelColor=grey&style=popout-square&logo=python&logoColor=DeepSkyBlue
+[c++]: https://img.shields.io/static/v1.svg?label=C%2B%2B&message=%20&color=blue&labelColor=grey&style=popout-square&logo=c%2B%2B&logoColor=White
+[python3]: https://img.shields.io/static/v1.svg?label=Python3&message=%20&color=gold&labelColor=grey&style=popout-square&logo=python&logoColor=DeepSkyBlue
