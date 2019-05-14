@@ -1139,7 +1139,7 @@ private:
 ```c++
 vector<int> inorderTraversal(TreeNode *root) {
     vector<int> result;
-    stack<TreeNode *> s; // nodes to be visited
+    stack<TreeNode *> s; 
     auto node = root;
     while (!s.empty() || node != nullptr) {
         if (node != nullptr) {
@@ -1259,7 +1259,7 @@ private:
 ```c++
 vector<int> preorderTraversal(TreeNode *root) {
     vector<int> result;
-    stack<TreeNode *> s; // nodes that have been visited
+    stack<TreeNode *> s; 
     auto node = root;
     while (!s.empty() || node != nullptr) {
         if (node != nullptr) {
@@ -1350,7 +1350,7 @@ private:
 ```c++
 vector<int> postorderTraversal(TreeNode *root) {
     vector<int> result;
-    stack<TreeNode *> s; // nodes to be visited
+    stack<TreeNode *> s; 
     auto node = root;
     while (!s.empty() || node != nullptr) {
         if (node != nullptr) {
