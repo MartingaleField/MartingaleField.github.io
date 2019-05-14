@@ -56,6 +56,7 @@
     - [N-Queens](#n-queens)
     - [N-Queens II](#n-queens-ii)
     - [Combinations](#combinations)
+    - [Subsets](#subsets)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 
@@ -3062,6 +3063,152 @@ def combine(self, n: int, k: int) -> List[List[int]]:
 
 ---
 
+### [Subsets](https://leetcode.com/problems/subsets/)
+
+Given a set of **distinct** integers, `nums`, return all possible subsets (the power set).
+
+**Note**: The solution set must not contain duplicate subsets.
+
+**Example**:
+```
+Input: nums = [1,2,3]
+Output:
+[
+  [3],
+  [1],
+  [2],
+  [1,2,3],
+  [1,3],
+  [2,3],
+  [1,2],
+  []
+]
+```
+
+#### Solution: DFS
+
+![C++][c++]
+```c++
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int> &nums) {
+        dfs(nums, 0);
+        return power_set;
+    }
+
+private:
+    vector<vector<int>> power_set;
+    vector<int> subset;
+
+    void dfs(vector<int> &nums, int idx) {
+        power_set.push_back(subset);
+        for (int i = idx; i < nums.size(); i++) {
+            subset.push_back(nums[i]);
+            dfs(nums, i + 1);
+            subset.pop_back();
+        }
+    }
+};
+```
+
+![Python3][python3]
+```python
+def subsets(nums):
+    def dfs(idx, subset):
+        power_set.append(subset[:])
+        for i in range(idx, len(nums)):
+            subset.append(nums[i])
+            dfs(i + 1, subset)
+            subset.pop()
+
+    power_set = []
+    dfs(0, [])
+    return power_set
+```
+
+#### Solution: Bit Manipulation
+
+When `n` is less than or equal to the width of an integer on the architecture (or language) we are working on, we can enumerate bit arrays by enumerating integers in `[0,2^n-1]` and examining the indices of bit set in these integers. These indices are determined by first isolating the lowest set bit and then getting the index by computing `log2`.
+```
+000 = 0  <->  {}
+001 = 1  <->  {1}
+010 = 2  <->  {2}
+011 = 3  <->  {1, 2}
+100 = 4  <->  {3}
+101 = 5  <->  {1, 3}
+110 = 6  <->  {2, 3}
+111 = 7  <->  {1, 2, 3}
+```
+
+![C++][c++]
+```c++
+vector<vector<int>> subsets(vector<int> &nums) {
+    vector<vector<int>> power_set;
+    // i = [0..2^n - 1]
+    for (int i = 0; i < (1 << nums.size()); ++i) {
+        int bit_array = i;
+        vector<int> subset;
+        while (bit_array) {
+            // isolate the rightmost one and obtain its location
+            subset.emplace_back(nums[log2(bit_array & ~(bit_array - 1))]);
+            bit_array &= bit_array - 1; // unset the rightmost one
+        }
+        power_set.emplace_back(subset);
+    }
+    return power_set;
+}
+```
+
+![Python3][python3]
+```python
+def subsets(nums):
+    power_set = []
+    for int_for_subset in range(1 << len(nums)):
+        bit_array = int_for_subset
+        subset = []
+        while bit_array:
+            subset.append(nums[int(math.log2(bit_array & ~(bit_array - 1)))])
+            bit_array &= bit_array - 1
+        power_set.append(subset)
+    return power_set
+```
+
+#### Solution: Iterative
+
+Take `[1, 2, 3]` as an example. The process of generating all the subsets is like:
+- Initially: `[]`
+- Adding the first number to all the existed subsets: `[[], [1]]`
+- Adding the second number to all the existed subsets: `[[], [1], [2], [1, 2]]`
+- Adding the third number to all the existed subsets: 
+`[[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]`
+
+![C++][c++]
+```c++
+vector<vector<int>> subsets(vector<int> &nums) {
+    vector<vector<int>> power_set{{}};
+    for (int i = 0; i < nums.size(); ++i) {
+        int n = power_set.size();
+        for (int j = 0; j < n; ++j) {
+            power_set.emplace_back(power_set[j]);
+            power_set.back().emplace_back(nums[i]);
+        }
+    }
+    return power_set;
+}
+```
+
+![Python3][python3]
+```python
+def subsets(nums):
+    power_set = [[]]
+    for num in nums:
+        power_set += [subset + [num] for subset in power_set]
+    return power_set
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 # Design
 
