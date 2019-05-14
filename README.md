@@ -55,6 +55,7 @@
     - [Permutations II](#permutations-ii)
     - [N-Queens](#n-queens)
     - [N-Queens II](#n-queens-ii)
+    - [Combinations](#combinations)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 
@@ -2966,26 +2967,92 @@ private:
 
 ![Python3][python3]
 ```python
-def totalNQueens(n: int) -> int:
-    def dfs(row, result):
-        if row == n:
-            result[0] += 1
-            return
-        for i in range(n):
-            if not col[i] and not main_diag[n - 1 + row - i] and not anti_diag[row + i]:
-                col[i] = main_diag[n - 1 + row - i] = anti_diag[row + i] = True
-                dfs(row + 1, result)
-                col[i] = main_diag[n - 1 + row - i] = anti_diag[row + i] = False
+class Solution:    
+    def totalNQueens(self, n: int) -> int:
+        def dfs(row):
+            if row == n:
+                self.cnt += 1
+                return
+            for i in range(n):
+                if not col[i] and not main_diag[n - 1 + row - i] and not anti_diag[row + i]:
+                    col[i] = main_diag[n - 1 + row - i] = anti_diag[row + i] = True
+                    dfs(row + 1)
+                    col[i] = main_diag[n - 1 + row - i] = anti_diag[row + i] = False
 
-    result = [0]
-    col, main_diag, anti_diag = [False] * n, [False] * (2 * n - 1), [False] * (2 * n - 1)
-    dfs(0, result)
-    return result[0]
+        self.cnt = 0
+        col, main_diag, anti_diag = [False] * n, [False] * (2 * n - 1), [False] * (2 * n - 1)
+        dfs(0)
+        return self.cnt
 ```
 
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
+
+
+### [Combinations](https://leetcode.com/problems/combinations/)
+
+Given two integers `n` and `k`, return all possible combinations of `k` numbers out of `1 ... n`.
+
+Example:
+```
+Input: n = 4, k = 2
+Output:
+[
+  [2,4],
+  [3,4],
+  [2,3],
+  [1,2],
+  [1,3],
+  [1,4],
+]
+```
+
+#### Solution: DFS
+
+![C++][c++]
+```c++
+class Solution {
+public:
+    vector<vector<int>> combine(int n, int k) {
+        dfs(1, n, k);
+        return result;
+    }
+
+private:
+    vector<int> path;
+    vector<vector<int>> result;
+
+    void dfs(int start, int n, int k) {
+        if (path.size() == k) {
+            result.emplace_back(path);
+            return;
+        }
+        for (int i = start; i <= n; ++i) {
+            path.emplace_back(i);
+            dfs(i + 1, n, k);
+            path.pop_back();
+        }
+    }
+};
+```
+
+![Python3][python3]
+```python
+def combine(self, n: int, k: int) -> List[List[int]]:
+    def dfs(start):
+        if len(path) == k:
+            result.append(path[:])
+            return
+        for i in range(start, n + 1):
+            path.append(i)
+            dfs(i + 1)
+            path.pop()
+
+    result, path = [], []
+    dfs(1)
+    return result
+```
 
 # Design
 
