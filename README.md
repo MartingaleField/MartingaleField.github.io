@@ -3058,6 +3058,10 @@ def combine(self, n: int, k: int) -> List[List[int]]:
     dfs(1)
     return result
 ```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
 
 # Design
 
