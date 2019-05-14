@@ -2699,7 +2699,51 @@ def permute(nums: 'List[int]') -> 'List[List[int]]':
 
 ![Permutations2](./Images/Permutations2.svg)
 
+![C++][c++]
+```c++
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int> &nums) {
+        dfs(nums, 0);
+        return result;
+    }
+
+private:
+    vector<vector<int>> result;
+
+    void dfs(vector<int> &nums, int start) {
+        if (start == nums.size()) {
+            result.emplace_back(nums);
+            return;
+        }
+
+        for (int i = start; i < nums.size(); ++i) {
+            swap(nums[i], nums[start]);
+            dfs(nums, start + 1);
+            swap(nums[start], nums[i]);
+        }
+    }
+};
+```
+![Python3][python3]
+```python
+def permute(nums: 'List[int]') -> 'List[List[int]]':
+    def dfs(start):
+        if start == len(nums):
+            result.append(nums[:])
+            return
+        for i in range(start, len(nums)):
+            nums[i], nums[start] = nums[start], nums[i]
+            dfs(start + 1)
+            nums[i], nums[start] = nums[start], nums[i]
+
+    result = []
+    dfs(0)
+    return result
+```
+
 [![Back to Front][badge_back_to_front]](#table-of-contents)
+
 
 ---
 
