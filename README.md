@@ -53,6 +53,7 @@
     - [Combination Sum III](#combination-sum-iii)
     - [Permutations](#permutations)
     - [Permutations II](#permutations-ii)
+    - [[N-Queens]()](#n-queens)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 
@@ -2767,8 +2768,6 @@ Output:
 
 #### Solution: DFS
 
-
-
 ![C++][c++]
 ```c++
 class Solution {
@@ -2831,6 +2830,96 @@ def permuteUnique(nums: List[int]) -> List[List[int]]:
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
+
+
+### [N-Queens]()
+
+The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
+
+![N-Queens](https://assets.leetcode.com/uploads/2018/10/12/8-queens.png)
+
+Given an integer `n`, return all distinct solutions to the n-queens puzzle.
+
+Each solution contains a distinct board configuration of the n-queens' placement, where `'Q'` and `'.'` both indicate a queen and an empty space respectively.
+
+Example:
+```
+Input: 4
+Output: [
+ [".Q..",  // Solution 1
+  "...Q",
+  "Q...",
+  "..Q."],
+
+ ["..Q.",  // Solution 2
+  "Q...",
+  "...Q",
+  ".Q.."]
+]
+Explanation: There exist two distinct solutions to the 4-queens puzzle as shown above.
+```
+
+#### Solution: DFS
+
+![C++][c++]
+```c++
+class Solution {
+public:
+    vector<vector<string>> solveNQueens(int n) {
+        col = vector<bool>(n, false);
+        main_diag = vector<bool>(2 * n - 1, false);
+        anti_diag = vector<bool>(2 * n - 1, false);
+
+        path = vector<string>(n, string(n, '.'));
+        dfs(0);
+        return result;
+    }
+
+private:
+    vector<bool> col, main_diag, anti_diag;
+    vector<string> path;
+    vector<vector<string>> result;
+
+    void dfs(int row) {
+        int n = path.size();
+        if (row == n) {
+            result.emplace_back(path);
+            return;
+        }
+        for (int i = 0; i < n; ++i) {
+            bool ok = !col[i] && !main_diag[n - 1 + row - i] && !anti_diag[row + i];
+            if (!ok) continue;
+            path[row][i] = 'Q';
+            col[i] = main_diag[n - 1 + row - i] = anti_diag[row + i] = true;
+            dfs(row + 1);
+            path[row][i] = '.';
+            col[i] = main_diag[n - 1 + row - i] = anti_diag[row + i] = false;
+        }
+    }
+};
+```
+
+![Python3][python3]
+```python
+def solveNQueens(self, n: int) -> List[List[str]]:
+    def dfs(row):
+        if row == n:
+            result.append(["".join(s) for s in path])
+            return
+        for i in range(n):
+            if not col[i] and not main_diag[n - 1 + row - i] and not anti_diag[row + i]:
+                path[row][i] = 'Q'
+                col[i] = main_diag[n - 1 + row - i] = anti_diag[row + i] = True
+                dfs(row + 1)
+                col[i] = main_diag[n - 1 + row - i] = anti_diag[row + i] = False
+                path[row][i] = '.'
+
+    result, path = [], [['.'] * n for _ in range(n)]
+    col, main_diag, anti_diag = [False] * n, [False] * (2 * n - 1), [False] * (2 * n - 1)
+    dfs(0)
+    return result
+```
+
 
 # Design
 
