@@ -2638,7 +2638,7 @@ Output:
 
 #### Solution: DFS
 
-![Permutations](https://github.com/MartingaleField/MartingaleField.github.io/blob/master/Permutations.svg)
+![Permutations](https://github.com/MartingaleField/MartingaleField.github.io/blob/master/Permutations.png)
 
 ![C++][c++]
 ```c++
