@@ -2922,6 +2922,11 @@ def solveNQueens(self, n: int) -> List[List[str]]:
     return result
 ```
 
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+
 ### [N-Queens II](https://leetcode.com/problems/n-queens-ii/)
 
 Follow up for N-Queens problem.
