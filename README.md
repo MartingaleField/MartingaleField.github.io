@@ -57,6 +57,7 @@
     - [N-Queens II](#n-queens-ii)
     - [Combinations](#combinations)
     - [Subsets](#subsets)
+    - [Subsets II](#subsets-ii)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 
@@ -3209,6 +3210,122 @@ def subsets(nums):
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
+
+### [Subsets II](https://leetcode.com/problems/subsets-ii/)
+
+Given a collection of integers that **might contain duplicates**, `nums`, return all possible subsets (the power set).
+
+**Note**: The solution set must not contain duplicate subsets.
+
+**Example**:
+```
+Input: [1,2,2]
+Output:
+[
+  [2],
+  [1],
+  [1,2,2],
+  [2,2],
+  [1,2],
+  []
+]
+```
+
+#### Solution: DFS
+
+![C++][c++]
+```c++
+class Solution {
+public:
+    vector<vector<int>> subsetsWithDup(vector<int> &nums) {
+        sort(nums.begin(), nums.end());
+        dfs(nums, 0);
+        return power_set;
+    }
+
+private:
+    vector<int> subset;
+    vector<vector<int>> power_set;
+
+    void dfs(vector<int> &nums, int idx) {
+        power_set.emplace_back(subset);
+        for (int i = idx; i < nums.size(); ++i) {
+            if (i != idx && nums[i] == nums[i - 1])
+                continue;
+            subset.emplace_back(nums[i]);
+            dfs(nums, i + 1);
+            subset.pop_back();
+        }
+    }
+};
+```
+
+![Python3][python3]
+```python
+def subsetsWithDup(nums):
+    def dfs(idx, subset):
+        power_set.append(subset[:])
+        for i in range(idx, len(nums)):
+            if i != idx and nums[i] == nums[i - 1]:
+                continue
+            subset.append(nums[i])
+            dfs(i + 1, subset)
+            subset.pop()
+
+    nums.sort()
+    power_set = []
+    dfs(0, [])
+    return power_set
+```
+
+#### Solution: Iterative
+
+If we want to insert an element which is a duplicate, we can only insert it after the newly inserted elements from last step. For input `[1, 2, 2]`, after processing 1 and 2, we get
+```
+[[],[1],[2],[1,2]]
+```
+The next number is still 2. If we insert it after all current subsets, we will get duplicated subsets as following:
+```
+[[], [1], [2], [1,2], [2], [1,2], [2,2], [1,2,2]]
+                      ----------
+                      duplicates
+```
+
+![C++][c++]
+```c++
+vector<vector<int>> subsetsWithDup(vector<int> &nums) {
+    vector<vector<int>> power_set{{}};
+    sort(nums.begin(), nums.end());
+    int length = 0, start = 0;
+    for (int i = 0; i < nums.size(); ++i) {
+        start = i > 0 && nums[i] == nums[i - 1] ? length : 0;
+        length = power_set.size();
+        for (int j = start; j < length; ++j) {
+            power_set.emplace_back(power_set[j]);
+            power_set.back().emplace_back(nums[i]);
+        }
+    }
+    return power_set;
+}
+```
+
+![Python3][python3]
+```python
+def subsetsWithDup(nums):
+    nums.sort()
+    power_set = [[]]
+    start, length = None, None
+    for i in range(len(nums)):
+        start = length if i > 0 and nums[i] == nums[i - 1] else 0
+        length = len(power_set)
+        power_set += [subset + [nums[i]] for subset in power_set[start:start + length]]
+    return power_set
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
 
 # Design
 
