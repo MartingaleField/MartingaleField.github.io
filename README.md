@@ -2636,7 +2636,7 @@ Output:
 ]
 ```
 
-#### Solution: DFS
+#### Solution: DFS I
 
 ![Permutations](./Images/Permutations.svg)
 
@@ -2672,6 +2672,32 @@ private:
     }
 };
 ```
+
+![Python3][python3]
+```python
+def permute(nums: 'List[int]') -> 'List[List[int]]':
+    def dfs():
+        if len(path) == len(nums):
+            result.append(path[:])
+            return
+        for num in nums:
+            if used[num]:
+                continue
+            used[num] = True
+            path.append(num)
+            dfs()
+            path.pop()
+            used[num] = False
+
+    result, path = [], []
+    used = defaultdict(bool)
+    dfs()
+    return result
+```
+
+#### Solution: DFS II
+
+![Permutations2](./Images/Permutations2.svg)
 
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
