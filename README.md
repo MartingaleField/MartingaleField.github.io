@@ -53,7 +53,8 @@
     - [Combination Sum III](#combination-sum-iii)
     - [Permutations](#permutations)
     - [Permutations II](#permutations-ii)
-    - [[N-Queens]()](#n-queens)
+    - [N-Queens](#n-queens)
+    - [N-Queens II](#n-queens-ii)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 
@@ -2832,7 +2833,7 @@ def permuteUnique(nums: List[int]) -> List[List[int]]:
 ---
 
 
-### [N-Queens]()
+### [N-Queens](https://leetcode.com/problems/n-queens/)
 
 The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
 
@@ -2920,6 +2921,71 @@ def solveNQueens(self, n: int) -> List[List[str]]:
     return result
 ```
 
+### [N-Queens II](https://leetcode.com/problems/n-queens-ii/)
+
+Follow up for N-Queens problem.
+Now, instead of outputting board configurations, return the total number of distinct solutions.
+
+#### Solution: DFS
+
+Similar as N-Queens. This time use a global `count` variable to keep track of the total number of distinct solutions.
+
+![C++][c++]
+```c++
+class Solution {
+public:
+    int totalNQueens(int n) {
+        col = vector<bool>(n, false);
+        main_diag = vector<bool>(2 * n - 1, false);
+        anti_diag = vector<bool>(2 * n - 1, false);
+
+        dfs(0);
+        return result;
+    }
+
+private:
+    vector<bool> col, main_diag, anti_diag;
+    int result = 0;
+
+    void dfs(int row) {
+        int n = col.size();
+        if (row == n) {
+            result += 1;
+            return;
+        }
+        for (int i = 0; i < n; ++i) {
+            if (!col[i] && !main_diag[n - 1 + row - i] && !anti_diag[row + i]) {
+                col[i] = main_diag[n - 1 + row - i] = anti_diag[row + i] = true;
+                dfs(row + 1);
+                col[i] = main_diag[n - 1 + row - i] = anti_diag[row + i] = false;
+            }
+        }
+    }
+};
+```
+
+![Python3][python3]
+```python
+def totalNQueens(n: int) -> int:
+    def dfs(row, result):
+        if row == n:
+            result[0] += 1
+            return
+        for i in range(n):
+            if not col[i] and not main_diag[n - 1 + row - i] and not anti_diag[row + i]:
+                col[i] = main_diag[n - 1 + row - i] = anti_diag[row + i] = True
+                dfs(row + 1, result)
+                col[i] = main_diag[n - 1 + row - i] = anti_diag[row + i] = False
+
+    result = [0]
+    col, main_diag, anti_diag = [False] * n, [False] * (2 * n - 1), [False] * (2 * n - 1)
+    dfs(0, result)
+    return result[0]
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 # Design
 
