@@ -52,6 +52,7 @@
     - [Combination Sum II](#combination-sum-ii)
     - [Combination Sum III](#combination-sum-iii)
     - [Permutations](#permutations)
+    - [Permutations II](#permutations-ii)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 
@@ -2675,6 +2676,8 @@ private:
 
 ![Python3][python3]
 ```python
+from collections import defaultdict
+
 def permute(nums: 'List[int]') -> 'List[List[int]]':
     def dfs():
         if len(path) == len(nums):
@@ -2744,10 +2747,90 @@ def permute(nums: 'List[int]') -> 'List[List[int]]':
 
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
-
 ---
 
 
+### [Permutations II](https://leetcode.com/problems/permutations-ii/)
+
+Given a collection of numbers that might contain duplicates, return all possible unique permutations.
+
+Example:
+```
+Input: [1,1,2]
+Output:
+[
+  [1,1,2],
+  [1,2,1],
+  [2,1,1]
+]
+```
+
+#### Solution: DFS
+
+
+
+![C++][c++]
+```c++
+class Solution {
+public:
+    vector<vector<int>> permuteUnique(vector<int> &nums) {
+        int n = nums.size();
+        for (int i : nums) 
+            cnt[i]++;
+        dfs(n, nums);
+        return result;
+    }
+
+private:
+    vector<vector<int>> result;
+    vector<int> path;
+    unordered_map<int, int> cnt;
+
+    void dfs(int gap, vector<int> &nums) {
+        if (!gap) {
+            result.emplace_back(path);
+            return;
+        }
+        for (auto &p : cnt) {
+            if (p.second <= 0) continue;
+            p.second--;
+            path.emplace_back(p.first);
+            dfs(gap - 1, nums);
+            path.pop_back();
+            p.second++;
+        }
+    }
+};
+```
+
+![Python3][python3]
+```python
+from collections import Counter
+
+def permuteUnique(nums: List[int]) -> List[List[int]]:
+    def dfs():
+        if len(path) == len(nums):
+            result.append(path[:])
+            return
+        for num in cnt:
+            if cnt[num] == 0:
+                continue
+            cnt[num] -= 1
+            path.append(num)
+            dfs()
+            path.pop()
+            cnt[num] += 1
+
+    result, path = [], []
+    cnt = Counter(nums)
+    dfs()
+    return result
+```
+
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 # Design
 
