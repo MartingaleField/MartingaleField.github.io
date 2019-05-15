@@ -3493,14 +3493,38 @@ $$
 - **Log-normality**:  if we assume that prices are distributed **log normally** (which, in practice, may or may not be true for any given price series), then $\log(1 + r_i)$ is **normally distributed**.
 
 - **Approximate raw-log equality**: when returns are very small (common for trades with short holding durations), the following approximation ensures they are close in value to raw returns:
-$$
-\log(1 + r) \approx r, \quad r \ll 1 
-$$
+    $$
+    \log(1 + r) \approx r, \quad r \ll 1 
+    $$
 
 - **Time-additivity**: consider an ordered sequence of $n$ trades. A statistic frequently calculated from this sequence is the compounding return, which is the running return of this sequence of trades over time:
-$$
-(1 + r_1)(1 + r_2)  \cdots (1 + r_n) = \prod_i (1+r_i)
-$$
+    $$
+    (1 + r_1)(1 + r_2)  \cdots (1 + r_n) = \prod_i (1+r_i)
+    $$
+    This formula is fairly unpleasant, as probability theory reminds us the product of normally-distributed variables is not normal. Instead, the sum of normally-distributed variables is normal (important technicality: only when all variables are uncorrelated), which is useful when we recall the following logarithmic identity:
+    $$
+    \log(1 + r_i) = \log\left(\frac{p_i}{p_{i-1}}\right) = \log(p_i) - \log(p_{i-1}) 
+    $$
+    Thus, compounding returns are normally distributed. Finally, this identity leads us to a pleasant algorithmic benefit; a simple formula for calculating compound returns:
+    $$
+    \sum_i \log(1+r_i) = \log(1 + r_1) + \log(1 + r_2)  + \cdots + \log(1 + r_n) = \log(p_n) - \log(p_0)
+    $$
+    Thus, the compound return over n periods is merely the difference in log between initial and final periods. In terms of **algorithmic complexity**, this simplification reduces O(n) multiplications to O(1) additions. This is a huge win for moderate to large n. Further, this sum is useful for cases in which returns diverge from normal, as the **central limit theorem** reminds us that the sample average of this sum will converge to normality (presuming finite first and second moments).
+
+- **Mathematical ease**: from calculus, we are reminded (ignoring the constant of integration):
+    $$
+    e^x = \int e^x dx = \frac{d}{dx} e^x = e^x 
+    $$
+    This identity is tremendously useful, as much of financial mathematics is built upon **continuous time stochastic processes** which rely heavily upon integration and differentiation.
+- **Numerical stability**: addition of small numbers is numerically safe, while multiplying small numbers is not as it is subject to **arithmetic underflow**. For many interesting problems, this is a serious potential problem. To solve this, either the algorithm must be modified to be numerically robust or it can be transformed into a numerically safe summation via logs.
+
+#### Pandas:
+
+```python
+returns = close.copy()
+returns['AAPL pct_return'] = returns['AAPL'].pct_change()
+returns['AAPL log_return'] = np.log(1 + returns['AAPL pct_return'])
+```
 
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
