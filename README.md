@@ -3534,6 +3534,7 @@ returns['AAPL log_return'] = np.log(1 + returns['AAPL pct_return'])
 
 
 
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
 
 [jump_to_github]: https://img.shields.io/static/v1.svg?label=Jump%20to&message=Github&color=green&style=popout&logo=github
 [jump_to_webpage]: https://img.shields.io/static/v1.svg?label=Jump%20to&message=Webpage&color=red&style=popout&logo=internet%20explorer
