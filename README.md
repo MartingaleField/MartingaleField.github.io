@@ -3445,6 +3445,8 @@ close = close.reindex(all_weekdays)
 close = close.fillna(method='ffill')
 ```
 
+
+
 ```python
 # Get the MSFT timeseries. This now returns a Pandas Series object indexed by date.
 msft = close.loc[:, 'MSFT']
@@ -3452,7 +3454,18 @@ msft = close.loc[:, 'MSFT']
 # Calculate the 20 and 100 days moving averages of the closing prices
 short_rolling_msft = msft.rolling(window=20).mean()
 long_rolling_msft = msft.rolling(window=100).mean()
+
+# Plot
+fig, ax = plt.subplots(figsize=(6,4))
+ax.plot(msft.index, msft, label='MSFT')
+ax.plot(short_rolling_msft.index, short_rolling_msft, label='20 days rolling')
+ax.plot(long_rolling_msft.index, long_rolling_msft, label='100 days rolling')
+ax.set_xlabel('Date')
+ax.set_ylabel('Adjusted closing price ($)')
+ax.legend()
+plt.savefig('msft.pdf', bbox_inches='tight')
 ```
+
 
 
 
