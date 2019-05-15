@@ -61,7 +61,10 @@
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 - [Pandas](#pandas)
-    - [Time Series Data Manipulation](#time-series-data-manipulation)
+  - [Time Series Data Manipulation](#time-series-data-manipulation)
+    - [Reindexing and NA-Filling](#reindexing-and-na-filling)
+    - [Moving average](#moving-average)
+    - [Returns](#returns)
 
 # Array
 
@@ -3421,7 +3424,7 @@ class LRUCache:
 
 # Pandas
 
-### Time Series Data Manipulation
+## Time Series Data Manipulation
 
 We first get the adjusted close prices (from 01/01/2000 to 12/31/2016) of Apple (`AAPL`), Microsoft (`MSFT`) and S&P 500 (`^GSPC`).
 
@@ -3436,6 +3439,8 @@ end_date = '2016-12-31'
 panel_data = data.DataReader(tickers, 'yahoo', start_date, end_date)['Adj Close']
 ```
 
+### Reindexing and NA-Filling
+
 Get all weekdays between 01/01/2000 and 12/31/2016 and reindex adj close using `all_weekdays` as the new index.
 
 ```python
@@ -3445,7 +3450,7 @@ close = close.reindex(all_weekdays)
 close = close.fillna(method='ffill')
 ```
 
-
+### Moving average
 
 ```python
 # Get the MSFT timeseries. This now returns a Pandas Series object indexed by date.
@@ -3466,13 +3471,40 @@ ax.legend()
 plt.savefig('msft.pdf', bbox_inches='tight')
 ```
 
-
-
-
 ![msft](./Images/msft.svg)
 
+### Returns
 
+The following is taken from this great [blog article](https://quantivity.wordpress.com/2011/02/21/why-log-returns/).
 
+#### Why Returns?
+$$
+r_i = \frac{p_i - p_{i-1}}{p_{i-1}}
+$$
+
+Benefit of using returns, versus prices, is **normalization**: measuring all variables in a comparable metric, thus enabling evaluation of analytic relationships amongst two or more variables despite originating from price series of unequal values. This is a requirement for many multidimensional statistical analysis and machine learning techniques. For example, interpreting an equity covariance matrix is made sane when the variables are both measured in percentage.
+
+#### Why Log Returns?
+
+$$
+\log(1+r_i) = \log(p_i/p_{i-1})
+$$
+
+- **Log-normality**:  if we assume that prices are distributed **log normally** (which, in practice, may or may not be true for any given price series), then $\log(1 + r_i)$ is **normally distributed**.
+
+- **Approximate raw-log equality**: when returns are very small (common for trades with short holding durations), the following approximation ensures they are close in value to raw returns:
+$$
+\log(1 + r) \approx r, \quad r \ll 1 
+$$
+
+- **Time-additivity**: consider an ordered sequence of $n$ trades. A statistic frequently calculated from this sequence is the compounding return, which is the running return of this sequence of trades over time:
+$$
+(1 + r_1)(1 + r_2)  \cdots (1 + r_n) = \prod_i (1+r_i)
+$$
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 
 
