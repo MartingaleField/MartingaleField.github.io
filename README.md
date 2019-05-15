@@ -3454,6 +3454,8 @@ short_rolling_msft = msft.rolling(window=20).mean()
 long_rolling_msft = msft.rolling(window=100).mean()
 ```
 
+
+
 ![msft](./images/msft.svg)
 
 
