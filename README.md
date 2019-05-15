@@ -3436,12 +3436,28 @@ end_date = '2016-12-31'
 panel_data = data.DataReader(tickers, 'yahoo', start_date, end_date)['Adj Close']
 ```
 
-Get all weekdays between 01/01/2000 and 12/31/2016 and reindex adj close using all_weekdays as the new index.
+Get all weekdays between 01/01/2000 and 12/31/2016 and reindex adj close using `all_weekdays` as the new index.
 
 ```python
+close = panel_data
 all_weekdays = pd.date_range(start=start_date, end=end_date, freq='B')
 close = close.reindex(all_weekdays)
+close = close.fillna(method='ffill')
 ```
+
+```python
+# Get the MSFT timeseries. This now returns a Pandas Series object indexed by date.
+msft = close.loc[:, 'MSFT']
+
+# Calculate the 20 and 100 days moving averages of the closing prices
+short_rolling_msft = msft.rolling(window=20).mean()
+long_rolling_msft = msft.rolling(window=100).mean()
+```
+
+![msft](./images/msft.svg)
+
+
+
 
 
 
