@@ -3537,6 +3537,59 @@ returns['AAPL pct_return'] = returns['AAPL'].pct_change()
 returns['AAPL log_return'] = np.log(1 + returns['AAPL pct_return'])
 ```
 
+```python
+from pandas_datareader import data
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+from keras.layers import Input, Conv1D, MaxPool1D, UpSampling1D
+from keras import Model
+
+start_date = '2010-01-01'
+end_date = '2016-12-31'
+encoding_dim = 3
+epochs = 100
+test_samples = 2000
+
+
+def plot_history(history):
+    plt.figure(figsize=(15, 5))
+    ax = plt.subplot(1, 2, 1)
+    plt.plot(history.history["loss"])
+    plt.title("Train loss")
+    ax = plt.subplot(1, 2, 2)
+    plt.plot(history.history["val_loss"])
+    plt.title("Test loss")
+
+
+tickers = ['AAPL', 'MSFT', '^GSPC']
+panel_data = data.DataReader(tickers, 'yahoo', start_date, end_date)['Adj Close']
+all_weekdays = pd.date_range(start=start_date, end=end_date, freq='B')
+panel_data = panel_data.reindex(all_weekdays)
+panel_data = panel_data.fillna(method='ffill')
+
+df_ret = np.log(1 + panel_data.pct_change().dropna())
+df_ret[df_ret.columns] = MinMaxScaler().fit_transform(df_ret[df_ret.columns])
+
+timesteps = df_ret.shape[0]
+
+inputs = Input(shape=(1, timesteps, 1))
+encoded = Conv1D(16, kernel_size=3, activation='relu', padding='same')(inputs)
+encoded = MaxPool1D(pool_size=3, padding='same')(encoded)
+
+decoded = Conv1D(16, kernel_size=3, activation='relu', padding='same')(encoded)
+decoded = MaxPool1D(pool_size=3, padding='same')(decoded)
+autoencoder = Model(inputs, decoded)
+autoencoder.compile(optimizer='adam', loss='mse')
+
+fig, ax = plt.subplots(figsize=(20, 4))
+ax.plot(df_ret['AAPL'])
+ax.set_xlabel('Date')
+ax.set_ylabel('Log Return')
+plt.show()
+```
+
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
