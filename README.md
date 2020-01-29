@@ -10,9 +10,9 @@
 
 - [Table of Contents](#table-of-contents)
 - [Two Pointers](#two-pointers)
-- [Array](#array)
     - [Two Sum](#two-sum)
     - [Container With Most Water](#container-with-most-water)
+- [Array](#array)
     - [3Sum](#3sum)
     - [3Sum Closest](#3sum-closest)
     - [4Sum](#4sum)
@@ -69,10 +69,6 @@
 
 # Two Pointers
 
-
-
-# Array
-
 ### [Two Sum](https://leetcode.com/problems/two-sum/)
 
 Given an array of integers, return **indices** of the two numbers such that they add up to a specific target.
@@ -114,11 +110,6 @@ def twoSum(nums: List[int], target: int) -> List[int]:
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
-
-
-
-
-
 
 ### [Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
 
@@ -163,6 +154,17 @@ def maxArea(self, height: List[int]) -> int:
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
+
+# Array
+
+
+
+
+
+
+
+
+
 
 
 
