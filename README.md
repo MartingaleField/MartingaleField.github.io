@@ -12,9 +12,9 @@
 - [Two Pointers](#two-pointers)
     - [Two Sum](#two-sum)
     - [Container With Most Water](#container-with-most-water)
-- [Array](#array)
     - [3Sum](#3sum)
     - [3Sum Closest](#3sum-closest)
+- [Array](#array)
     - [4Sum](#4sum)
     - [4Sum II](#4sum-ii)
     - [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array)
@@ -155,20 +155,6 @@ def maxArea(self, height: List[int]) -> int:
 
 ---
 
-# Array
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### [3Sum](https://leetcode.com/problems/3sum/)
 
 Given an array nums of n integers, are there elements `a, b, c` in nums such that `a + b + c = 0`? Find all unique triplets in the array which gives the sum of zero.
@@ -176,6 +162,7 @@ Given an array nums of n integers, are there elements `a, b, c` in nums such tha
 The solution set must not contain duplicate triplets.
 
 #### Solution 
+
 ![C++][c++]
 ```c++
 vector<vector<int>> threeSum(vector<int> &nums) {
@@ -218,16 +205,19 @@ def threeSum(nums: 'List[int]') -> 'List[List[int]]':
             sum = nums[i] + nums[j] + nums[k]
             if sum < 0:
                 j += 1
+                # skip over duplicates
                 while j < k and nums[j] == nums[j - 1]:
                     j += 1
             elif sum > 0:
                 k -= 1
+                # skip over duplicates
                 while j < k and nums[k] == nums[k + 1]:
                     k -= 1
             else:
                 ans.append([nums[i], nums[j], nums[k]])
                 j += 1
                 k -= 1
+                # skip over duplicates
                 while j < k and nums[j] == nums[j - 1] and nums[k] == nums[k + 1]:
                     j += 1
                     k -= 1
@@ -237,14 +227,14 @@ def threeSum(nums: 'List[int]') -> 'List[List[int]]':
 
 ---
 
-
-
-
 ### [3Sum Closest](https://leetcode.com/problems/3sum-closest/)
 
 Given an array nums of `n` integers and an integer target, find three integers in `nums` such that the sum is closest to `target`. Return the sum of the three integers. You may assume that each input would have exactly one solution.
 
 #### Solution 
+
+Note that in this problem we are guaranteed that there is only one solution. Therefore there is no need to handle duplicates like we do in [3Sum](#3sum).
+
 ![C++][c++]
 ```c++
 int threeSumClosest(vector<int> &nums, int target) {
@@ -294,6 +284,10 @@ def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
+
+# Array
+
+
 
 
 
