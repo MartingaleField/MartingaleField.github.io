@@ -313,7 +313,7 @@ Divide and conquer. Start from the whole array and partition it by pivoting on a
 
 After partitioning, the pivot value will be at its correct place in the sorted array. We then check if it is the `(k - 1)`-th location. If yes, return it. If not, focus on the left or right part of the array and do the partition again. Recursively do this until we find the `k`-th largest. 
 
-Time complexity is `O(n)` because in each recursion we look at only `r * n` length of the array. Add the total complexity will be `O(n) + O(r * n) + O(r^2 * n) + ...` and this is upperly bounded by `O(n/(1 - r))`. 
+Time complexity is `O(n)` because in each recursion we look at only `r * n` length of the array where `r < 1`. Add the total complexity will be `O(n) + O(r * n) + O(r^2 * n) + ...` and this is upperly bounded by `O(n/(1 - r))`. 
 
 ```python
 import random
