@@ -304,6 +304,41 @@ Output: 4
 ```
 
 #### Solution
+
+Divide and conquer. Start from the whole array and partition it by pivoting on a random element. By partitioning, we move all numbers which are larger than the pivot to the front of the array, following by all the elements that are equal to the pivot and the ones that are smaller. After partitioning, the pivot value will be at its correct place in the sorted array. We then check if it is the `(k - 1)`-th location. If yes, return it. If not, focus on the left or right part of the array and do the partition again.
+
+```python
+import random
+
+class Solution:
+    def findKthLargest(self, nums, k):
+        def partition(left, right):
+            pivot = nums[random.randint(left, right - 1)]
+            larger, equal, smaller = left, left, right
+            while equal < smaller:
+                if nums[equal] > pivot:
+                    nums[equal], nums[larger] = nums[larger], nums[equal]
+                    equal, larger = equal + 1, larger + 1
+                elif nums[equal] == pivot:
+                    equal += 1
+                else:  # nums[equal] > pivot
+                    smaller -= 1
+                    nums[equal], nums[smaller] = nums[smaller], nums[equal]
+            return equal - 1
+
+        low, high = 0, len(nums)
+        while (True):
+            idx = partition(low, high)
+            if k - 1 == idx:
+                kth = nums[idx]
+                break
+            elif k - 1 < idx:
+                high = idx
+            else:  # k - 1 > idx
+                low = idx + 1
+        return kth
+```
+
 When `nums.size()` is small, sort it first and return the kth element.
 
 ![Python3][python3]
