@@ -14,6 +14,8 @@
     - [Container With Most Water](#container-with-most-water)
     - [3Sum](#3sum)
     - [3Sum Closest](#3sum-closest)
+- [Divide and Conquer](#divide-and-conquer)
+    - [Kth Largest Element in an Array](#kth-largest-element-in-an-array)
 - [Array](#array)
     - [4Sum](#4sum)
     - [4Sum II](#4sum-ii)
@@ -23,7 +25,6 @@
     - [Insert Interval](#insert-interval)
     - [Majority Element](#majority-element)
     - [Majority Element II](#majority-element-ii)
-    - [Kth Largest Element in an Array](#kth-largest-element-in-an-array)
     - [Minimum Size Subarray Sum](#minimum-size-subarray-sum)
     - [Product of Array Except Self](#product-of-array-except-self)
     - [Missing Number](#missing-number)
@@ -285,13 +286,51 @@ def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
 
 ---
 
+# Divide and Conquer
+
+### [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
+
+Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
+
+Example 1:
+```
+Input: [3,2,1,5,6,4] and k = 2
+Output: 5
+```
+Example 2:
+```
+Input: [3,2,3,1,2,4,5,5,6] and k = 4
+Output: 4
+```
+
+#### Solution
+When `nums.size()` is small, sort it first and return the kth element.
+
+![Python3][python3]
+```python
+def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
+    nums.sort(reverse=True)
+    return nums[k - 1]
+```
+
+When `nums.size()` is large, use `max heap`.
+
+![Python3][python3]
+```python
+import heapq
+
+def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
+    nums = [-n for n in nums];
+    heapq.heapify(nums)
+    for _ in range(k):
+        ans = heapq.heappop(nums)
+    return -ans
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
 # Array
-
-
-
-
-
-
 
 ### [4Sum](https://leetcode.com/problems/4sum/)
 
@@ -656,46 +695,7 @@ vector<int> majorityElement(vector<int> &nums) {
 
 
 
-### [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
 
-Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
-
-Example 1:
-```
-Input: [3,2,1,5,6,4] and k = 2
-Output: 5
-```
-Example 2:
-```
-Input: [3,2,3,1,2,4,5,5,6] and k = 4
-Output: 4
-```
-
-#### Solution
-When `nums.size()` is small, sort it first and return the kth element.
-
-![Python3][python3]
-```python
-def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
-    nums.sort(reverse=True)
-    return nums[k - 1]
-```
-
-When `nums.size()` is large, use `max heap`.
-![Python3][python3]
-```python
-import heapq
-
-def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
-    nums = [-n for n in nums];
-    heapq.heapify(nums)
-    for _ in range(k):
-        ans = heapq.heappop(nums)
-    return -ans
-```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
----
 
 
 
