@@ -10,16 +10,19 @@
 
 - [Table of Contents](#table-of-contents)
 - [Data Structures](#data-structures)
-  - [Arrays and Strings](#arrays-and-strings)
-    - [Hash Tables](#hash-tables)
-- [Two Pointers](#two-pointers)
+  - [Hash Tables](#hash-tables)
+  - [Arrays](#arrays)
     - [Two Sum](#two-sum)
     - [Container With Most Water](#container-with-most-water)
     - [3Sum](#3sum)
     - [3Sum Closest](#3sum-closest)
-- [Sort](#sort)
+  - [Strings](#strings)
+    - [Rabin-Karp Substring Search](#rabin-karp-substring-search)
+  - [Stacks and Queues](#stacks-and-queues)
+- [Algorithms](#algorithms)
+  - [Sorting](#sorting)
     - [Pancake Sorting](#pancake-sorting)
-- [Divide and Conquer](#divide-and-conquer)
+  - [Divide and Conquer](#divide-and-conquer)
     - [Kth Largest Element in an Array](#kth-largest-element-in-an-array)
 - [Array](#array)
     - [4Sum](#4sum)
@@ -50,6 +53,7 @@
     - [Construct Binary Tree from Preorder and Inorder Traversal](#construct-binary-tree-from-preorder-and-inorder-traversal)
     - [Construct Binary Tree from Inorder and Postorder Traversal](#construct-binary-tree-from-inorder-and-postorder-traversal)
 - [Binary Search Tree](#binary-search-tree)
+    - [Kth Smallest Element in a BST](#kth-smallest-element-in-a-bst)
     - [Validate Binary Search Tree](#validate-binary-search-tree)
     - [Recover Binary Search Tree](#recover-binary-search-tree)
     - [Minimum Distance Between BST Nodes](#minimum-distance-between-bst-nodes)
@@ -77,9 +81,7 @@
 
 # Data Structures
 
-## Arrays and Strings
-
-### Hash Tables
+## Hash Tables
 
 One simple but common implementation:
 1. Compute the key's hash code (usually an `int` or `long`). Note that two different keys could have the same hash code (there may be infinite number of keys and a finite number of ints).
@@ -88,7 +90,33 @@ One simple but common implementation:
 
 ![Hash table implementation](./Images/hash_table_implmnt.png)
 
-# Two Pointers
+To retrieve: key -> hash code -> index -> search in linked list. 
+
+If the number of collisions is high, the worst case runtime is `O(N)`, where `N` is the number of keys. 
+We generally assume a good implementation that keeps collisions to a minimum, in which case the lookup time is `O(1)`.
+
+Alternatively, we can implement the hash table with a balanced BST. This gives us an `O(log N)` lookup time. The advantage is potentially less space, since we no longer allocate a large array. We can also iterate through the keys in order (e.g. through an [*inorder traversal of BST*](#binary-tree-inorder-traversal)), which can be useful sometimes.
+
+* Example: [Kth Smallest Element in a BST](#kth-smallest-element-in-a-bst)
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+## Arrays
+
+*Why is the amortized insertion runtime `O(1)`?*
+
+For an resizable array of size `N`, how many elements are copied at each capacity increase?
+
+- Final capacity increase: `n/2` elements to copy
+- Previous capacity increase: `n/4` elements to copy
+- Previous capacity increase: `n/8` elements to copy
+- ...
+- Second capacity increase: `2` elements to copy
+- First capacity increase: `1` element to copy
+  
+In total, the number of copies to insert `N` elements is roughly `N/2 + N/4 + N/8 + ... + 2 + 1`, which is just less than `N`. Therefore, inserting `N` elements takes `O(N)` work total. Each insertion is `O(1)` on average, even though some insertions take `O(N)` time in the worst case.
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ### [Two Sum](https://leetcode.com/problems/two-sum/)
 
@@ -138,8 +166,9 @@ Given `n` non-negative integers `a1, a2, ..., an` , where each represents a poin
 
 ![Container With Most Water](./Images/question_11.jpg)
 
-#### Solution 
-Use two pointers. Pointer `i` points to the first element and `j` to the last. The water volume is `(j - i) * h` where `h = min(height[i], height[j])`.
+#### Solution: Two Pointers
+
+Pointer `i` points to the first element and `j` to the last. The water volume is `(j - i) * h` where `h = min(height[i], height[j])`.
 * If there exists taller bar on the right of `i` than `h`, move `i` to it and check if we have a better result.
 * If there exists taller bar on the left of `j` than `h`, move `j` to it and check if we have a better result.
 
@@ -306,7 +335,41 @@ def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
 
 ---
 
-# Sort
+## Strings
+
+What would be the running time of the following code?
+
+```python
+def join_words(words):
+    sentence = ""
+    for w in words:
+        sentence += w
+    return sentence
+```
+
+On each concatenation, a new copy of the string is created, and the two strings are copied over, character by character. The total time is `O(x + 2x + ... + nx)` which reduces to `O(n^2)`.
+
+If we do
+```python
+def join_words(words):
+    return ''.join(words)
+```
+the total time is `O(n)`.
+
+### Rabin-Karp Substring Search
+
+Use a *rolling hash function* to map each substring to a hash code, such as the Rabin fingerprint. This essentially treats a string as a base 128 (or however many characters are in our alphabet) number
+```python
+hash('doe') = code('d') * 128**2 + code('o') * 128**1 + code('e') * 128**0
+hash('oe ') = (hash('doe') - code('d') * 128**2) * 128 + code(' ')
+```
+
+
+## Stacks and Queues
+
+# Algorithms
+
+## Sorting
 
 ### [Pancake Sorting](https://leetcode.com/problems/pancake-sorting/)
 
@@ -337,7 +400,7 @@ class Solution:
         return ans
 ```
 
-# Divide and Conquer
+## Divide and Conquer
 
 ### [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
 
@@ -356,7 +419,9 @@ Output: 4
 
 #### Solution
 
-Divide and conquer. Start from the whole array and partition it by pivoting on a random element. By partitioning, we move all numbers which are larger than the pivot to the front of the array, following by all the elements that are equal to the pivot and the ones that are smaller, i.e.
+##### Randomized Quick Select
+
+Start from the whole array and partition it by pivoting on a random element. By partitioning, we move all numbers which are larger than the pivot to the front of the array, following by all the elements that are equal to the pivot and the ones that are smaller, i.e.
 
 ```
 [L1, L2, L3, ..., E1, E2, ..., S1, S2, S3, ...]
@@ -372,6 +437,7 @@ import random
 
 class Solution:
     def findKthLargest(self, nums, k):
+
         def partition(left, right):
             pivot = nums[random.randint(left, right - 1)]
             larger, equal, smaller = left, left, right
@@ -399,7 +465,9 @@ class Solution:
         return kth
 ```
 
-When `nums.size()` is small, sort it first and return the kth element.
+##### When `nums.size()` is small
+
+Sort it first and return the kth element.
 
 ![Python3][python3]
 ```python
@@ -408,7 +476,9 @@ def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
     return nums[k - 1]
 ```
 
-When `nums.size()` is large, use `max heap`.
+##### When `nums.size()` is large
+
+Use `max heap`.
 
 ![Python3][python3]
 ```python
@@ -1959,6 +2029,55 @@ TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder) {
 
 
 # Binary Search Tree
+
+### [Kth Smallest Element in a BST](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)
+
+Given a binary search tree, write a function `kthSmallest` to find the `k`th smallest element in it.
+
+#### Solution
+
+Do an inorder traversal of the BST. The `k`th smallest element is at index `k - 1`.
+
+##### Recursive
+
+![Python3][python3]
+```python
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+
+        def inorder(node, status):
+            if not node or status[1] == k:
+                return
+            inorder(node.left, status)
+            if status[1] < k:
+                status[0], status[1] = node.val, status[1] + 1
+            inorder(node.right, status)
+
+        status = [-1, 0]  # [kth, cnt]
+        inorder(root, status)
+        return status[0]
+```
+
+##### Iterative
+
+![Python3][python3]
+```python
+class Solution:
+    def kthSmallest(self, root: TreeNode, k: int) -> int:
+        stack = []
+        node = root
+        cnt = 0
+        while len(stack) or node:
+            if node:
+                stack.append(node)
+                node = node.left
+            else:
+                node = stack.pop()
+                cnt += 1
+                if cnt == k:
+                    return node.val
+                node = node.right
+```
 
 ### [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)
 
