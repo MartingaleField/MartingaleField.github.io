@@ -459,7 +459,7 @@ Very commonly, a trie is used to store the entire language for quick prefix look
       In an undirected graph, an adjacency matrix will be symmetric. In a directed graph, it will not (necessarily) be.
 
 - Graph Search
-  - Depth-First Search (DFS)
+  - *Depth-First Search (DFS)*
     
     ```python
     def search(root):
@@ -468,16 +468,35 @@ Very commonly, a trie is used to store the entire language for quick prefix look
         visit(root)
         root.visited = True
         for n in root.adjacent:
-            if n.visited == False:
+            if n.visited is False:
                 search(n)
     ```
 
-  - Breadth-First Search (BFS)
+  - *Breadth-First Search (BFS)*
 
     ```python
     def search(root):
+        queue = []
+        root.marked = True
+        queue.append(root)
 
+        while queue:
+            r = queue.pop(0)
+            visit(r)
+            for n in r.adjacent:
+                if n.marked is False:
+                    n.marked = True
+                    queue.append(n)
     ```
+
+  - *Bidirectional Search*
+
+    Bidirectional Search is used to find the shortest path between a source and destination node. It operates by essentially running two simultaneous BFS, one from each node. When their searches collide, we have found a path.
+
+    To see why this is faster, consider a graph where every node has at most `k` adjacent nodes and the shortest path from node `s` to node `t` has length `d`. In BFS, we would search up to `k` nodes in each level of search, and in total `O(k^d)` nodes. In bidirectional search, we have two searches that collide after approximately `d/2` levels (the midpoint of the path). The search from `s` visits approximately `k^(d/2)`, so does the search from `t`. That's approximately `O(k^(d/2))` nodes in total.
+    
+    ![BFS vs Bidirectional Search](./Images/bidirectional_search.png)
+
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 # Algorithms
