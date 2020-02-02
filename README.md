@@ -20,6 +20,8 @@
     - [Rabin-Karp Substring Search](#rabin-karp-substring-search)
   - [Stacks and Queues](#stacks-and-queues)
   - [Binary Heaps (Min-Heaps and Max-Heaps)](#binary-heaps-min-heaps-and-max-heaps)
+  - [Tries (Prefix Trees)](#tries-prefix-trees)
+  - [Graphs](#graphs)
 - [Algorithms](#algorithms)
   - [Sorting](#sorting)
     - [Pancake Sorting](#pancake-sorting)
@@ -357,6 +359,8 @@ def join_words(words):
 ```
 the total time is `O(n)`.
 
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
 ### Rabin-Karp Substring Search
 
 Use a good *rolling hash function* to map each substring to a hash code (and reduce the likelihood of collisions), such as the Rabin fingerprint. This essentially treats a string as a base 128 (or however many characters are in our alphabet) number
@@ -393,8 +397,11 @@ def rabin_karp(t, s):
         return len(t) - len(s)
     return -1  # s is not a substring of t.
 ```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ## Stacks and Queues
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ## Binary Heaps (Min-Heaps and Max-Heaps)
 
@@ -406,12 +413,72 @@ We have two key operations on a min-heap: `insert` and `extract_min`.
   1. Always start by inserting the element at the bottom rightmost spot so as to maintain the complete tree property. 
   2. Bubble up the minimum -- swap the new element with its parent, until we find an appropriate spot for the element.
 
-    ![Min-Heap Insert](./Images/min_heap_insert.png)
+   ![Min-Heap Insert](./Images/min_heap_insert.png)
 
 - *Extract Minimum Element.* The minimum element is always at the top. Removing the minimum takes `O(log n)` time.
   
   1. Remove the minimum element and swap it with the last element in the heap (the bottommost, rightmost element).
   2. Bubble down the element, swapping it with the smaller one of its children until the min-heap property is restored. 
+  
+  ![Min-Heap Insert](./Images/min_heap_remove_min.png)
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+## Tries (Prefix Trees)
+
+A trie is a variant of an n-ary tree in which characters are stored at each node. Each path down the tree may represent a word. The `*` nodes (a.k.a. null nodes) are often used to indicate complete words.
+
+![Trie example](./Images/trie.png)
+
+Very commonly, a trie is used to store the entire language for quick prefix lookups. While a hash table can quickly look up whether a string is a valid word, it cannot tell us if a string is a prefix of any valid words. A trie can check if a string is a valid prefix in `O(K)` time where `K` is the length of the string. Although we often refer to hash table lookups as being `O(1)` time, this isn't entirely true. A hash table must read through all the characters in the input, which takes `O(K)` time in the case of a word lookup.
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+## Graphs
+
+- Graph Representation
+  - *Adjacency List.* 
+    
+      ```python
+      class Node:
+          def __init__(self, val=0, neighbors=[]):
+              self.val = val
+              self.neighbors = neighbors
+
+      class Graph:
+          def __init__(self, nodes=[]):
+              self.nodes = nodes
+      ```
+
+      Don't necessarily need any additional classes to represent a graph. An array (or a hash table) of lists (arrays, linked lists, etc.) can store the adjacency list.
+
+  - *Adjacency Matrices.* 
+
+      An adjacency matrix is an `N x N` boolean matrix (where `N` is the number of nodes), where a `True` value at `matrix[i][j]` indicates an edge from `i` to `j`.
+
+      In an undirected graph, an adjacency matrix will be symmetric. In a directed graph, it will not (necessarily) be.
+
+- Graph Search
+  - Depth-First Search (DFS)
+    
+    ```python
+    def search(root):
+        if root is None:
+            return
+        visit(root)
+        root.visited = True
+        for n in root.adjacent:
+            if n.visited == False:
+                search(n)
+    ```
+
+  - Breadth-First Search (BFS)
+
+    ```python
+    def search(root):
+
+    ```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
 
 # Algorithms
 
