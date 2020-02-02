@@ -402,9 +402,16 @@ A min-heap is a *complete* binary tree (i.e., totally filled other than the righ
 
 We have two key operations on a min-heap: `insert` and `extract_min`.
 
-- *Insert.* 
+- *Insert.* `O(log n)` time, where `n` is the number of nodes in the heap.
+  1. Always start by inserting the element at the bottom rightmost spot so as to maintain the complete tree property. 
+  2. Bubble up the minimum -- swap the new element with its parent, until we find an appropriate spot for the element.
 
-![Min-Heap Insert](./Images/min_heap_insert.png)
+    ![Min-Heap Insert](./Images/min_heap_insert.png)
+
+- *Extract Minimum Element.* The minimum element is always at the top. Removing the minimum takes `O(log n)` time.
+  
+  1. Remove the minimum element and swap it with the last element in the heap (the bottommost, rightmost element).
+  2. Bubble down the element, swapping it with the smaller one of its children until the min-heap property is restored. 
 
 # Algorithms
 
