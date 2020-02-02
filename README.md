@@ -14,6 +14,8 @@
     - [Container With Most Water](#container-with-most-water)
     - [3Sum](#3sum)
     - [3Sum Closest](#3sum-closest)
+- [Sort](#sort)
+    - [Pancake Sorting](#pancake-sorting)
 - [Divide and Conquer](#divide-and-conquer)
     - [Kth Largest Element in an Array](#kth-largest-element-in-an-array)
 - [Array](#array)
@@ -33,7 +35,8 @@
 - [Binary Search](#binary-search)
     - [Basics](#basics)
     - [H-Index II](#h-index-ii)
-- [Linked List](#linked-list)
+- [Heap](#heap)
+    - [Kth Largest Element in a Stream](#kth-largest-element-in-a-stream)
 - [Binary Tree](#binary-tree)
     - [Binary Tree Inorder Traversal](#binary-tree-inorder-traversal)
     - [Binary Tree Preorder Traversal](#binary-tree-preorder-traversal)
@@ -286,6 +289,37 @@ def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
 
 ---
 
+# Sort
+
+### [Pancake Sorting](https://leetcode.com/problems/pancake-sorting/)
+
+Given an array `A`, we can perform a pancake flip: We choose some positive integer `k <= A.length`, then reverse the order of the first `k` elements of `A`.  We want to perform zero or more pancake flips (doing them one after another in succession) to sort the array `A`.
+
+Return the `k`-values corresponding to a sequence of pancake flips that sort `A`.  Any valid answer that sorts the array within `10 * A.length` flips will be judged as correct.
+
+`A` is a permutation of `[1, 2, ..., A.length]`
+
+#### Solution
+
+1. Find the index `max_idx` for the next maximum number `i`
+2. Reverse the first `max_idx + 1` numbers, so that `i` is at index `0`
+3. Reverse the first `i + 1` numbers so that `i` is at index `i - 1`
+4. Repeat the process `A.length` times
+
+![Python3][python3]
+```python
+class Solution:
+    def pancakeSort(self, A):
+        ans = []
+        for i in range(len(A), 0, -1):
+            max_idx = A.index(i)
+            ans.append(max_idx + 1)
+            A = A[max_idx::-1] + A[max_idx + 1:]  # flip max to A[0]
+            ans.append(i)
+            A = A[i - 1::-1] + A[i:]  # flip max to A[i - 1]
+        return ans
+```
+
 # Divide and Conquer
 
 ### [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
@@ -315,6 +349,7 @@ After partitioning, the pivot value will be at its correct place in the sorted a
 
 Time complexity is `O(n)` because in each recursion we look at only `r * n` length of the array where `r < 1`. Add the total complexity will be `O(n) + O(r * n) + O(r^2 * n) + ...` and this is upperly bounded by `O(n/(1 - r))`. 
 
+![Python3][python3]
 ```python
 import random
 
@@ -1139,7 +1174,37 @@ def hIndex(citations: List[int]) -> int:
 
 
 
-# Linked List
+# Heap
+
+### [Kth Largest Element in a Stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/)
+
+Design a class to find the kth largest element in a stream. Note that it is the kth largest element in the sorted order, not the kth distinct element.
+
+Your `KthLargest` class will have a constructor which accepts an integer `k` and an integer array `nums`, which contains initial elements from the stream. For each call to the method `KthLargest.add`, return the element representing the kth largest element in the stream.
+
+#### Solution
+
+Use a min heap with size `k` to store the largest `k` numbers. The heap starts with zero elements. We add the first `k` input numbers directly into the heap. For any new number after `k`th input, if it is larger than the smallert one in the heap, add it to the heap and pop out the smallest one; else ignore it.
+
+![Python3][python3]
+```python
+import heapq
+
+class KthLargest(object):
+    def __init__(self, k, nums):
+        self.pool = nums
+        self.k = k
+        heapq.heapify(self.pool)
+        while len(self.pool) > k:
+            heapq.heappop(self.pool)
+
+    def add(self, val):
+        if len(self.pool) < self.k:
+            heapq.heappush(self.pool, val)
+        elif val > self.pool[0]:
+            heapq.heapreplace(self.pool, val)
+        return self.pool[0]
+```
 
 
 # Binary Tree
