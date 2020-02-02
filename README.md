@@ -19,6 +19,7 @@
   - [Strings](#strings)
     - [Rabin-Karp Substring Search](#rabin-karp-substring-search)
   - [Stacks and Queues](#stacks-and-queues)
+  - [Binary Heaps (Min-Heaps and Max-Heaps)](#binary-heaps-min-heaps-and-max-heaps)
 - [Algorithms](#algorithms)
   - [Sorting](#sorting)
     - [Pancake Sorting](#pancake-sorting)
@@ -358,14 +359,52 @@ the total time is `O(n)`.
 
 ### Rabin-Karp Substring Search
 
-Use a *rolling hash function* to map each substring to a hash code, such as the Rabin fingerprint. This essentially treats a string as a base 128 (or however many characters are in our alphabet) number
+Use a good *rolling hash function* to map each substring to a hash code (and reduce the likelihood of collisions), such as the Rabin fingerprint. This essentially treats a string as a base 128 (or however many characters are in our alphabet) number
 ```python
 hash('doe') = code('d') * 128**2 + code('o') * 128**1 + code('e') * 128**0
 hash('oe ') = (hash('doe') - code('d') * 128**2) * 128 + code(' ')
 ```
 
+In Python, we can use `ord()` for `code()` function, which returns an integer representing the Unicode code point of the character.
+
+```python
+def rabin_karp(t, s):
+    if len(s) > len(t):
+        return -1  # s is not a substring of t.
+
+    BASE = 128
+    # Hash codes for the substring of t and s.
+    t_hash = functools.reduce(lambda h, c: h * BASE + ord(c), t[:len(s)], 0)
+    s_hash = functools.reduce(lambda h, c: h * BASE + ord(c), s, 0)
+    power_s = BASE ** max(len(s) - 1, 0)  # BASE^|s-1|.
+
+    for i in range(len(s), len(t)):
+        # Checks the two substrings are actually equal or not, to protect
+        # against hash collision.
+        if t_hash == s_hash and t[i - len(s):i] == s:
+            return i - len(s)  # Found a match.
+
+        # Uses rolling hash to compute the hash code.
+        t_hash -= ord(t[i - len(s)]) * power_s
+        t_hash = t_hash * BASE + ord(t[i])
+
+    # Tries to match s and t[-len(s):].
+    if t_hash == s_hash and t[-len(s):] == s:
+        return len(t) - len(s)
+    return -1  # s is not a substring of t.
+```
 
 ## Stacks and Queues
+
+## Binary Heaps (Min-Heaps and Max-Heaps)
+
+A min-heap is a *complete* binary tree (i.e., totally filled other than the rightmost elements on the last level) where each node is smaller than its children. The root is the minimum element in the tree.
+
+We have two key operations on a min-heap: `insert` and `extract_min`.
+
+- *Insert.* 
+
+![Min-Heap Insert](./Images/min_heap_insert.png)
 
 # Algorithms
 
@@ -399,6 +438,8 @@ class Solution:
             A = A[i - 1::-1] + A[i:]  # flip max to A[i - 1]
         return ans
 ```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ## Divide and Conquer
 
