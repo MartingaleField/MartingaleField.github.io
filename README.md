@@ -9,6 +9,9 @@
 # Table of Contents
 
 - [Table of Contents](#table-of-contents)
+- [Data Structures](#data-structures)
+  - [Arrays and Strings](#arrays-and-strings)
+    - [Hash Tables](#hash-tables)
 - [Two Pointers](#two-pointers)
     - [Two Sum](#two-sum)
     - [Container With Most Water](#container-with-most-water)
@@ -70,6 +73,20 @@
     - [Reindexing and NA-Filling](#reindexing-and-na-filling)
     - [Moving average](#moving-average)
     - [Returns](#returns)
+
+
+# Data Structures
+
+## Arrays and Strings
+
+### Hash Tables
+
+One simple but common implementation:
+1. Compute the key's hash code (usually an `int` or `long`). Note that two different keys could have the same hash code (there may be infinite number of keys and a finite number of ints).
+2. Map the hash code to an index in the array. E.g. `hash(key) % array_length`. Two different hash codes could, of course, map to the same index.
+3. At each index, there is a linked list of keys and values. Store the key and value in this index. 
+
+![Hash table implementation](./Images/hash_table_implmnt.png)
 
 # Two Pointers
 
