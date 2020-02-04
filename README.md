@@ -8,78 +8,78 @@
 
 # Table of Contents
 
-- [Table of Contents](#Table-of-Contents)
-- [Data Structures](#Data-Structures)
-  - [Hash Tables](#Hash-Tables)
-  - [Arrays](#Arrays)
-    - [Two Sum](#Two-Sum)
-    - [Container With Most Water](#Container-With-Most-Water)
-    - [3Sum](#3Sum)
-    - [3Sum Closest](#3Sum-Closest)
-  - [Strings](#Strings)
-    - [Rabin-Karp Substring Search](#Rabin-Karp-Substring-Search)
-  - [Stacks and Queues](#Stacks-and-Queues)
-  - [Binary Heaps (Min-Heaps and Max-Heaps)](#Binary-Heaps-Min-Heaps-and-Max-Heaps)
-  - [Tries (Prefix Trees)](#Tries-Prefix-Trees)
-  - [Graphs](#Graphs)
-- [Algorithms](#Algorithms)
-  - [Sorting](#Sorting)
-    - [Pancake Sorting](#Pancake-Sorting)
-  - [Divide and Conquer](#Divide-and-Conquer)
-    - [Kth Largest Element in an Array](#Kth-Largest-Element-in-an-Array)
-- [Array](#Array)
-    - [4Sum](#4Sum)
-    - [4Sum II](#4Sum-II)
-    - [Remove Duplicates from Sorted Array](#Remove-Duplicates-from-Sorted-Array)
-    - [Remove Duplicates from Sorted Array II](#Remove-Duplicates-from-Sorted-Array-II)
-    - [Find Missing Positive](#Find-Missing-Positive)
-    - [Insert Interval](#Insert-Interval)
-    - [Majority Element](#Majority-Element)
-    - [Majority Element II](#Majority-Element-II)
-    - [Minimum Size Subarray Sum](#Minimum-Size-Subarray-Sum)
-    - [Product of Array Except Self](#Product-of-Array-Except-Self)
-    - [Missing Number](#Missing-Number)
-    - [Contains Duplicate III](#Contains-Duplicate-III)
-    - [H-Index](#H-Index)
-- [Binary Search](#Binary-Search)
-    - [Basics](#Basics)
-    - [H-Index II](#H-Index-II)
-- [Heap](#Heap)
-    - [Kth Largest Element in a Stream](#Kth-Largest-Element-in-a-Stream)
-- [Binary Tree](#Binary-Tree)
-    - [Binary Tree Inorder Traversal](#Binary-Tree-Inorder-Traversal)
-    - [Binary Tree Preorder Traversal](#Binary-Tree-Preorder-Traversal)
-    - [Binary Tree Postorder Traversal](#Binary-Tree-Postorder-Traversal)
-    - [Binary Tree Level Order Traversal](#Binary-Tree-Level-Order-Traversal)
-    - [Binary Tree Zigzag Level Order Traversal](#Binary-Tree-Zigzag-Level-Order-Traversal)
-    - [Same Tree](#Same-Tree)
-    - [Construct Binary Tree from Preorder and Inorder Traversal](#Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal)
-    - [Construct Binary Tree from Inorder and Postorder Traversal](#Construct-Binary-Tree-from-Inorder-and-Postorder-Traversal)
-- [Binary Search Tree](#Binary-Search-Tree)
-    - [Kth Smallest Element in a BST](#Kth-Smallest-Element-in-a-BST)
-    - [Validate Binary Search Tree](#Validate-Binary-Search-Tree)
-    - [Recover Binary Search Tree](#Recover-Binary-Search-Tree)
-    - [Minimum Distance Between BST Nodes](#Minimum-Distance-Between-BST-Nodes)
-- [Depth First Search](#Depth-First-Search)
-    - [Generate Parentheses](#Generate-Parentheses)
-    - [Sudoku Solver](#Sudoku-Solver)
-    - [Combination Sum](#Combination-Sum)
-    - [Combination Sum II](#Combination-Sum-II)
-    - [Combination Sum III](#Combination-Sum-III)
-    - [Permutations](#Permutations)
-    - [Permutations II](#Permutations-II)
-    - [N-Queens](#N-Queens)
-    - [N-Queens II](#N-Queens-II)
-    - [Combinations](#Combinations)
-    - [Subsets](#Subsets)
-    - [Subsets II](#Subsets-II)
-- [Design](#Design)
-    - [LRU Cache](#LRU-Cache)
-- [Pandas](#Pandas)
-  - [Time Series Data Manipulation](#Time-Series-Data-Manipulation)
-    - [Reindexing and NA-Filling](#Reindexing-and-NA-Filling)
-    - [Moving average](#Moving-average)
-    - [Returns](#Returns)
+- [Table of Contents](#table-of-contents)
+- [Data Structures](#data-structures)
+  - [Hash Tables](#hash-tables)
+    - [Degree of an Array](#degree-of-an-array)
+  - [Arrays](#arrays)
+    - [Two Sum](#two-sum)
+    - [Container With Most Water](#container-with-most-water)
+    - [3Sum](#3sum)
+    - [3Sum Closest](#3sum-closest)
+    - [4Sum](#4sum)
+    - [4Sum II](#4sum-ii)
+    - [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array)
+    - [Remove Duplicates from Sorted Array II](#remove-duplicates-from-sorted-array-ii)
+    - [Find Missing Positive](#find-missing-positive)
+    - [Insert Interval](#insert-interval)
+    - [Majority Element](#majority-element)
+    - [Majority Element II](#majority-element-ii)
+    - [Minimum Size Subarray Sum](#minimum-size-subarray-sum)
+    - [Product of Array Except Self](#product-of-array-except-self)
+    - [Missing Number](#missing-number)
+    - [Contains Duplicate III](#contains-duplicate-iii)
+    - [H-Index](#h-index)
+  - [Strings](#strings)
+    - [Rabin-Karp Substring Search](#rabin-karp-substring-search)
+  - [Stacks and Queues](#stacks-and-queues)
+  - [Binary Heaps (Min-Heaps and Max-Heaps)](#binary-heaps-min-heaps-and-max-heaps)
+  - [Tries (Prefix Trees)](#tries-prefix-trees)
+  - [Graphs](#graphs)
+- [Algorithms](#algorithms)
+  - [Sorting](#sorting)
+    - [Pancake Sorting](#pancake-sorting)
+  - [Divide and Conquer](#divide-and-conquer)
+    - [Kth Largest Element in an Array](#kth-largest-element-in-an-array)
+- [Binary Search](#binary-search)
+    - [Basics](#basics)
+    - [H-Index II](#h-index-ii)
+- [Heap](#heap)
+    - [Kth Largest Element in a Stream](#kth-largest-element-in-a-stream)
+- [Binary Tree](#binary-tree)
+    - [Binary Tree Inorder Traversal](#binary-tree-inorder-traversal)
+    - [Binary Tree Preorder Traversal](#binary-tree-preorder-traversal)
+    - [Binary Tree Postorder Traversal](#binary-tree-postorder-traversal)
+    - [Binary Tree Level Order Traversal](#binary-tree-level-order-traversal)
+    - [Binary Tree Zigzag Level Order Traversal](#binary-tree-zigzag-level-order-traversal)
+    - [Same Tree](#same-tree)
+    - [Construct Binary Tree from Preorder and Inorder Traversal](#construct-binary-tree-from-preorder-and-inorder-traversal)
+    - [Construct Binary Tree from Inorder and Postorder Traversal](#construct-binary-tree-from-inorder-and-postorder-traversal)
+- [Binary Search Tree](#binary-search-tree)
+    - [Kth Smallest Element in a BST](#kth-smallest-element-in-a-bst)
+    - [Validate Binary Search Tree](#validate-binary-search-tree)
+    - [Recover Binary Search Tree](#recover-binary-search-tree)
+    - [Minimum Distance Between BST Nodes](#minimum-distance-between-bst-nodes)
+- [Depth First Search](#depth-first-search)
+    - [Generate Parentheses](#generate-parentheses)
+    - [Sudoku Solver](#sudoku-solver)
+    - [Combination Sum](#combination-sum)
+    - [Combination Sum II](#combination-sum-ii)
+    - [Combination Sum III](#combination-sum-iii)
+    - [Permutations](#permutations)
+    - [Permutations II](#permutations-ii)
+    - [N-Queens](#n-queens)
+    - [N-Queens II](#n-queens-ii)
+    - [Combinations](#combinations)
+    - [Subsets](#subsets)
+    - [Subsets II](#subsets-ii)
+- [Design](#design)
+    - [LRU Cache](#lru-cache)
+- [Pandas](#pandas)
+  - [Time Series Data Manipulation](#time-series-data-manipulation)
+    - [Reindexing and NA-Filling](#reindexing-and-na-filling)
+    - [Moving average](#moving-average)
+    - [Returns](#returns)
 
 
 # Data Structures
@@ -103,6 +103,46 @@ Alternatively, we can implement the hash table with a balanced BST. This gives u
 * Example: [Kth Smallest Element in a BST](#kth-smallest-element-in-a-bst)
 
 [![Back to Front][badge_back_to_front]](#table-of-contents)
+
+### [Degree of an Array](https://leetcode.com/problems/degree-of-an-array/)
+
+Given a non-empty array of non-negative integers `nums`, the **degree** of this array is defined as the maximum frequency of any one of its elements.
+
+Your task is to find the smallest possible length of a (contiguous) subarray of `nums`, that has the same degree as `nums`.
+
+```
+Input: [1, 2, 2, 3, 1]
+Output: 2
+Explanation: 
+The input array has a degree of 2 because both elements 1 and 2 appear twice.
+Of the subarrays that have the same degree:
+[1, 2, 2, 3, 1], [1, 2, 2, 3], [2, 2, 3, 1], [1, 2, 2], [2, 2, 3], [2, 2]
+The shortest length is 2. So return 2.
+```
+
+#### Solution
+The degree is determined by the element with maximum frequency. Therefore the required subarray must include every one of this element. The shortest will start from the first occurrence of this element and end with the last occurrence.
+
+![Python3][python3]
+```python
+def findShortestSubArray(self, nums: List[int]) -> int:
+    cnt = Counter(nums)
+    degree = max(cnt.values())
+
+    left_right = {}
+    for i, num in enumerate(nums):
+        if num not in left_right:
+            left_right[num] = [i, i]
+        else:
+            left_right[num][1] = i
+
+    ans = len(nums)
+    for x, c in cnt.items():
+        if c == degree:
+            ans = min(ans, left_right[x][1] - left_right[x][0] + 1)
+    return ans
+```
+
 
 ## Arrays
 
@@ -337,299 +377,6 @@ def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
-
-## Strings
-
-What would be the running time of the following code?
-
-```python
-def join_words(words):
-    sentence = ""
-    for w in words:
-        sentence += w
-    return sentence
-```
-
-On each concatenation, a new copy of the string is created, and the two strings are copied over, character by character. The total time is `O(x + 2x + ... + nx)` which reduces to `O(n^2)`.
-
-If we do
-```python
-def join_words(words):
-    return ''.join(words)
-```
-the total time is `O(n)`.
-
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
-### Rabin-Karp Substring Search
-
-Use a good *rolling hash function* to map each substring to a hash code (and reduce the likelihood of collisions), such as the Rabin fingerprint. This essentially treats a string as a base 128 (or however many characters are in our alphabet) number
-```python
-hash('doe') = code('d') * 128**2 + code('o') * 128**1 + code('e') * 128**0
-hash('oe ') = (hash('doe') - code('d') * 128**2) * 128 + code(' ')
-```
-
-In Python, we can use `ord()` for `code()` function, which returns an integer representing the Unicode code point of the character.
-
-```python
-def rabin_karp(t, s):
-    if len(s) > len(t):
-        return -1  # s is not a substring of t.
-
-    BASE = 128
-    # Hash codes for the substring of t and s.
-    t_hash = functools.reduce(lambda h, c: h * BASE + ord(c), t[:len(s)], 0)
-    s_hash = functools.reduce(lambda h, c: h * BASE + ord(c), s, 0)
-    power_s = BASE ** max(len(s) - 1, 0)  # BASE^|s-1|.
-
-    for i in range(len(s), len(t)):
-        # Checks the two substrings are actually equal or not, to protect
-        # against hash collision.
-        if t_hash == s_hash and t[i - len(s):i] == s:
-            return i - len(s)  # Found a match.
-
-        # Uses rolling hash to compute the hash code.
-        t_hash -= ord(t[i - len(s)]) * power_s
-        t_hash = t_hash * BASE + ord(t[i])
-
-    # Tries to match s and t[-len(s):].
-    if t_hash == s_hash and t[-len(s):] == s:
-        return len(t) - len(s)
-    return -1  # s is not a substring of t.
-```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
-## Stacks and Queues
-
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
-## Binary Heaps (Min-Heaps and Max-Heaps)
-
-A min-heap is a *complete* binary tree (i.e., totally filled other than the rightmost elements on the last level) where each node is smaller than its children. The root is the minimum element in the tree.
-
-We have two key operations on a min-heap: `insert` and `extract_min`.
-
-- *Insert.* `O(log n)` time, where `n` is the number of nodes in the heap.
-  1. Always start by inserting the element at the bottom rightmost spot so as to maintain the complete tree property. 
-  2. Bubble up the minimum -- swap the new element with its parent, until we find an appropriate spot for the element.
-
-   ![Min-Heap Insert](./Images/min_heap_insert.png)
-
-- *Extract Minimum Element.* The minimum element is always at the top. Removing the minimum takes `O(log n)` time.
-  
-  1. Remove the minimum element and swap it with the last element in the heap (the bottommost, rightmost element).
-  2. Bubble down the element, swapping it with the smaller one of its children until the min-heap property is restored. 
-  
-  ![Min-Heap Insert](./Images/min_heap_remove_min.png)
-
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
-## Tries (Prefix Trees)
-
-A trie is a variant of an n-ary tree in which characters are stored at each node. Each path down the tree may represent a word. The `*` nodes (a.k.a. null nodes) are often used to indicate complete words.
-
-![Trie example](./Images/trie.png)
-
-Very commonly, a trie is used to store the entire language for quick prefix lookups. While a hash table can quickly look up whether a string is a valid word, it cannot tell us if a string is a prefix of any valid words. A trie can check if a string is a valid prefix in `O(K)` time where `K` is the length of the string. Although we often refer to hash table lookups as being `O(1)` time, this isn't entirely true. A hash table must read through all the characters in the input, which takes `O(K)` time in the case of a word lookup.
-
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
-## Graphs
-
-- Graph Representation
-  - *Adjacency List.* 
-    
-      ```python
-      class Node:
-          def __init__(self, val=0, neighbors=[]):
-              self.val = val
-              self.neighbors = neighbors
-
-      class Graph:
-          def __init__(self, nodes=[]):
-              self.nodes = nodes
-      ```
-
-      Don't necessarily need any additional classes to represent a graph. An array (or a hash table) of lists (arrays, linked lists, etc.) can store the adjacency list.
-
-  - *Adjacency Matrices.* 
-
-      An adjacency matrix is an `N x N` boolean matrix (where `N` is the number of nodes), where a `True` value at `matrix[i][j]` indicates an edge from `i` to `j`.
-
-      In an undirected graph, an adjacency matrix will be symmetric. In a directed graph, it will not (necessarily) be.
-
-- Graph Search
-  - *Depth-First Search (DFS)*
-    
-    ```python
-    def search(root):
-        if root is None:
-            return
-        visit(root)
-        root.visited = True
-        for n in root.adjacent:
-            if n.visited is False:
-                search(n)
-    ```
-
-  - *Breadth-First Search (BFS)*
-
-    ```python
-    def search(root):
-        queue = []
-        root.marked = True
-        queue.append(root)
-
-        while queue:
-            r = queue.pop(0)
-            visit(r)
-            for n in r.adjacent:
-                if n.marked is False:
-                    n.marked = True
-                    queue.append(n)
-    ```
-
-  - *Bidirectional Search*
-
-    Bidirectional Search is used to find the shortest path between a source and destination node. It operates by essentially running two simultaneous BFS, one from each node. When their searches collide, we have found a path.
-
-    To see why this is faster, consider a graph where every node has at most `k` adjacent nodes and the shortest path from node `s` to node `t` has length `d`. In BFS, we would search up to `k` nodes in each level of search, and in total `O(k^d)` nodes. In bidirectional search, we have two searches that collide after approximately `d/2` levels (the midpoint of the path). The search from `s` visits approximately `k^(d/2)`, so does the search from `t`. That's approximately `O(k^(d/2))` nodes in total.
-    
-    ![BFS vs Bidirectional Search](./Images/bidirectional_search.png)
-
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
-# Algorithms
-
-## Sorting
-
-### [Pancake Sorting](https://leetcode.com/problems/pancake-sorting/)
-
-Given an array `A`, we can perform a pancake flip: We choose some positive integer `k <= A.length`, then reverse the order of the first `k` elements of `A`.  We want to perform zero or more pancake flips (doing them one after another in succession) to sort the array `A`.
-
-Return the `k`-values corresponding to a sequence of pancake flips that sort `A`.  Any valid answer that sorts the array within `10 * A.length` flips will be judged as correct.
-
-`A` is a permutation of `[1, 2, ..., A.length]`
-
-#### Solution
-
-1. Find the index `max_idx` for the next maximum number `i`
-2. Reverse the first `max_idx + 1` numbers, so that `i` is at index `0`
-3. Reverse the first `i + 1` numbers so that `i` is at index `i - 1`
-4. Repeat the process `A.length` times
-
-![Python3][python3]
-```python
-class Solution:
-    def pancakeSort(self, A):
-        ans = []
-        for i in range(len(A), 0, -1):
-            max_idx = A.index(i)
-            ans.append(max_idx + 1)
-            A = A[max_idx::-1] + A[max_idx + 1:]  # flip max to A[0]
-            ans.append(i)
-            A = A[i - 1::-1] + A[i:]  # flip max to A[i - 1]
-        return ans
-```
-
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
-## Divide and Conquer
-
-### [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
-
-Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
-
-Example 1:
-```
-Input: [3,2,1,5,6,4] and k = 2
-Output: 5
-```
-Example 2:
-```
-Input: [3,2,3,1,2,4,5,5,6] and k = 4
-Output: 4
-```
-
-#### Solution
-
-##### Randomized Quick Select
-
-Start from the whole array and partition it by pivoting on a random element. By partitioning, we move all numbers which are larger than the pivot to the front of the array, following by all the elements that are equal to the pivot and the ones that are smaller, i.e.
-
-```
-[L1, L2, L3, ..., E1, E2, ..., S1, S2, S3, ...]
-```
-
-After partitioning, the pivot value will be at its correct place in the sorted array. We then check if it is the `(k - 1)`-th location. If yes, return it. If not, focus on the left or right part of the array and do the partition again. Recursively do this until we find the `k`-th largest. 
-
-Time complexity is `O(n)` because in each recursion we look at only `r * n` length of the array where `r < 1`. Add the total complexity will be `O(n) + O(r * n) + O(r^2 * n) + ...` and this is upperly bounded by `O(n/(1 - r))`. 
-
-![Python3][python3]
-```python
-import random
-
-class Solution:
-    def findKthLargest(self, nums, k):
-
-        def partition(left, right):
-            pivot = nums[random.randint(left, right - 1)]
-            larger, equal, smaller = left, left, right
-            while equal < smaller:
-                if nums[equal] > pivot:
-                    nums[equal], nums[larger] = nums[larger], nums[equal]
-                    equal, larger = equal + 1, larger + 1
-                elif nums[equal] == pivot:
-                    equal += 1
-                else:  # nums[equal] > pivot
-                    smaller -= 1
-                    nums[equal], nums[smaller] = nums[smaller], nums[equal]
-            return equal - 1
-
-        low, high = 0, len(nums)
-        while (True):
-            idx = partition(low, high)
-            if k - 1 == idx:
-                kth = nums[idx]
-                break
-            elif k - 1 < idx:
-                high = idx
-            else:  # k - 1 > idx
-                low = idx + 1
-        return kth
-```
-
-##### When `nums.size()` is small
-
-Sort it first and return the kth element.
-
-![Python3][python3]
-```python
-def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
-    nums.sort(reverse=True)
-    return nums[k - 1]
-```
-
-##### When `nums.size()` is large
-
-Use `max heap`.
-
-![Python3][python3]
-```python
-import heapq
-
-def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
-    nums = [-n for n in nums];
-    heapq.heapify(nums)
-    for _ in range(k):
-        ans = heapq.heappop(nums)
-    return -ans
-```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
----
-
-# Array
 
 ### [4Sum](https://leetcode.com/problems/4sum/)
 
@@ -1306,6 +1053,297 @@ def hIndex(self, citations: List[int]) -> int:
     return 0
 ```
 
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+## Strings
+
+What would be the running time of the following code?
+
+```python
+def join_words(words):
+    sentence = ""
+    for w in words:
+        sentence += w
+    return sentence
+```
+
+On each concatenation, a new copy of the string is created, and the two strings are copied over, character by character. The total time is `O(x + 2x + ... + nx)` which reduces to `O(n^2)`.
+
+If we do
+```python
+def join_words(words):
+    return ''.join(words)
+```
+the total time is `O(n)`.
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+### Rabin-Karp Substring Search
+
+Use a good *rolling hash function* to map each substring to a hash code (and reduce the likelihood of collisions), such as the Rabin fingerprint. This essentially treats a string as a base 128 (or however many characters are in our alphabet) number
+```python
+hash('doe') = code('d') * 128**2 + code('o') * 128**1 + code('e') * 128**0
+hash('oe ') = (hash('doe') - code('d') * 128**2) * 128 + code(' ')
+```
+
+In Python, we can use `ord()` for `code()` function, which returns an integer representing the Unicode code point of the character.
+
+```python
+def rabin_karp(t, s):
+    if len(s) > len(t):
+        return -1  # s is not a substring of t.
+
+    BASE = 128
+    # Hash codes for the substring of t and s.
+    t_hash = functools.reduce(lambda h, c: h * BASE + ord(c), t[:len(s)], 0)
+    s_hash = functools.reduce(lambda h, c: h * BASE + ord(c), s, 0)
+    power_s = BASE ** max(len(s) - 1, 0)  # BASE^|s-1|.
+
+    for i in range(len(s), len(t)):
+        # Checks the two substrings are actually equal or not, to protect
+        # against hash collision.
+        if t_hash == s_hash and t[i - len(s):i] == s:
+            return i - len(s)  # Found a match.
+
+        # Uses rolling hash to compute the hash code.
+        t_hash -= ord(t[i - len(s)]) * power_s
+        t_hash = t_hash * BASE + ord(t[i])
+
+    # Tries to match s and t[-len(s):].
+    if t_hash == s_hash and t[-len(s):] == s:
+        return len(t) - len(s)
+    return -1  # s is not a substring of t.
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+## Stacks and Queues
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+## Binary Heaps (Min-Heaps and Max-Heaps)
+
+A min-heap is a *complete* binary tree (i.e., totally filled other than the rightmost elements on the last level) where each node is smaller than its children. The root is the minimum element in the tree.
+
+We have two key operations on a min-heap: `insert` and `extract_min`.
+
+- *Insert.* `O(log n)` time, where `n` is the number of nodes in the heap.
+  1. Always start by inserting the element at the bottom rightmost spot so as to maintain the complete tree property. 
+  2. Bubble up the minimum -- swap the new element with its parent, until we find an appropriate spot for the element.
+
+   ![Min-Heap Insert](./Images/min_heap_insert.png)
+
+- *Extract Minimum Element.* The minimum element is always at the top. Removing the minimum takes `O(log n)` time.
+  
+  1. Remove the minimum element and swap it with the last element in the heap (the bottommost, rightmost element).
+  2. Bubble down the element, swapping it with the smaller one of its children until the min-heap property is restored. 
+  
+  ![Min-Heap Insert](./Images/min_heap_remove_min.png)
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+## Tries (Prefix Trees)
+
+A trie is a variant of an n-ary tree in which characters are stored at each node. Each path down the tree may represent a word. The `*` nodes (a.k.a. null nodes) are often used to indicate complete words.
+
+![Trie example](./Images/trie.png)
+
+Very commonly, a trie is used to store the entire language for quick prefix lookups. While a hash table can quickly look up whether a string is a valid word, it cannot tell us if a string is a prefix of any valid words. A trie can check if a string is a valid prefix in `O(K)` time where `K` is the length of the string. Although we often refer to hash table lookups as being `O(1)` time, this isn't entirely true. A hash table must read through all the characters in the input, which takes `O(K)` time in the case of a word lookup.
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+## Graphs
+
+- Graph Representation
+  - *Adjacency List.* 
+    
+      ```python
+      class Node:
+          def __init__(self, val=0, neighbors=[]):
+              self.val = val
+              self.neighbors = neighbors
+
+      class Graph:
+          def __init__(self, nodes=[]):
+              self.nodes = nodes
+      ```
+
+      Don't necessarily need any additional classes to represent a graph. An array (or a hash table) of lists (arrays, linked lists, etc.) can store the adjacency list.
+
+  - *Adjacency Matrices.* 
+
+      An adjacency matrix is an `N x N` boolean matrix (where `N` is the number of nodes), where a `True` value at `matrix[i][j]` indicates an edge from `i` to `j`.
+
+      In an undirected graph, an adjacency matrix will be symmetric. In a directed graph, it will not (necessarily) be.
+
+- Graph Search
+  - *Depth-First Search (DFS)*
+    
+    ```python
+    def search(root):
+        if root is None:
+            return
+        visit(root)
+        root.visited = True
+        for n in root.adjacent:
+            if n.visited is False:
+                search(n)
+    ```
+
+  - *Breadth-First Search (BFS)*
+
+    ```python
+    def search(root):
+        queue = []
+        root.marked = True
+        queue.append(root)
+
+        while queue:
+            r = queue.pop(0)
+            visit(r)
+            for n in r.adjacent:
+                if n.marked is False:
+                    n.marked = True
+                    queue.append(n)
+    ```
+
+  - *Bidirectional Search*
+
+    Bidirectional Search is used to find the shortest path between a source and destination node. It operates by essentially running two simultaneous BFS, one from each node. When their searches collide, we have found a path.
+
+    To see why this is faster, consider a graph where every node has at most `k` adjacent nodes and the shortest path from node `s` to node `t` has length `d`. In BFS, we would search up to `k` nodes in each level of search, and in total `O(k^d)` nodes. In bidirectional search, we have two searches that collide after approximately `d/2` levels (the midpoint of the path). The search from `s` visits approximately `k^(d/2)`, so does the search from `t`. That's approximately `O(k^(d/2))` nodes in total.
+    
+    ![BFS vs Bidirectional Search](./Images/bidirectional_search.png)
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+# Algorithms
+
+## Sorting
+
+### [Pancake Sorting](https://leetcode.com/problems/pancake-sorting/)
+
+Given an array `A`, we can perform a pancake flip: We choose some positive integer `k <= A.length`, then reverse the order of the first `k` elements of `A`.  We want to perform zero or more pancake flips (doing them one after another in succession) to sort the array `A`.
+
+Return the `k`-values corresponding to a sequence of pancake flips that sort `A`.  Any valid answer that sorts the array within `10 * A.length` flips will be judged as correct.
+
+`A` is a permutation of `[1, 2, ..., A.length]`
+
+#### Solution
+
+1. Find the index `max_idx` for the next maximum number `i`
+2. Reverse the first `max_idx + 1` numbers, so that `i` is at index `0`
+3. Reverse the first `i + 1` numbers so that `i` is at index `i - 1`
+4. Repeat the process `A.length` times
+
+![Python3][python3]
+```python
+class Solution:
+    def pancakeSort(self, A):
+        ans = []
+        for i in range(len(A), 0, -1):
+            max_idx = A.index(i)
+            ans.append(max_idx + 1)
+            A = A[max_idx::-1] + A[max_idx + 1:]  # flip max to A[0]
+            ans.append(i)
+            A = A[i - 1::-1] + A[i:]  # flip max to A[i - 1]
+        return ans
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+## Divide and Conquer
+
+### [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
+
+Find the kth largest element in an unsorted array. Note that it is the kth largest element in the sorted order, not the kth distinct element.
+
+Example 1:
+```
+Input: [3,2,1,5,6,4] and k = 2
+Output: 5
+```
+Example 2:
+```
+Input: [3,2,3,1,2,4,5,5,6] and k = 4
+Output: 4
+```
+
+#### Solution
+
+##### Randomized Quick Select
+
+Start from the whole array and partition it by pivoting on a random element. By partitioning, we move all numbers which are larger than the pivot to the front of the array, following by all the elements that are equal to the pivot and the ones that are smaller, i.e.
+
+```
+[L1, L2, L3, ..., E1, E2, ..., S1, S2, S3, ...]
+```
+
+After partitioning, the pivot value will be at its correct place in the sorted array. We then check if it is the `(k - 1)`-th location. If yes, return it. If not, focus on the left or right part of the array and do the partition again. Recursively do this until we find the `k`-th largest. 
+
+Time complexity is `O(n)` because in each recursion we look at only `r * n` length of the array where `r < 1`. Add the total complexity will be `O(n) + O(r * n) + O(r^2 * n) + ...` and this is upperly bounded by `O(n/(1 - r))`. 
+
+![Python3][python3]
+```python
+import random
+
+class Solution:
+    def findKthLargest(self, nums, k):
+
+        def partition(left, right):
+            pivot = nums[random.randint(left, right - 1)]
+            larger, equal, smaller = left, left, right
+            while equal < smaller:
+                if nums[equal] > pivot:
+                    nums[equal], nums[larger] = nums[larger], nums[equal]
+                    equal, larger = equal + 1, larger + 1
+                elif nums[equal] == pivot:
+                    equal += 1
+                else:  # nums[equal] > pivot
+                    smaller -= 1
+                    nums[equal], nums[smaller] = nums[smaller], nums[equal]
+            return equal - 1
+
+        low, high = 0, len(nums)
+        while (True):
+            idx = partition(low, high)
+            if k - 1 == idx:
+                kth = nums[idx]
+                break
+            elif k - 1 < idx:
+                high = idx
+            else:  # k - 1 > idx
+                low = idx + 1
+        return kth
+```
+
+##### When `nums.size()` is small
+
+Sort it first and return the kth element.
+
+![Python3][python3]
+```python
+def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
+    nums.sort(reverse=True)
+    return nums[k - 1]
+```
+
+##### When `nums.size()` is large
+
+Use `max heap`.
+
+![Python3][python3]
+```python
+import heapq
+
+def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
+    nums = [-n for n in nums];
+    heapq.heapify(nums)
+    for _ in range(k):
+        ans = heapq.heappop(nums)
+    return -ans
+```
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
