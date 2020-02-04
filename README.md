@@ -71,6 +71,8 @@
   - [Binary Search](#binary-search)
     - [Basics](#basics)
     - [H-Index II](#h-index-ii)
+  - [Dynamic Programming](#dynamic-programming)
+    - [Best Time to Buy and Sell Stock IV](#best-time-to-buy-and-sell-stock-iv)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 - [Pandas](#pandas)
@@ -3744,9 +3746,39 @@ def hIndex(citations: List[int]) -> int:
 ---
 
 
+## Dynamic Programming
 
+### [Best Time to Buy and Sell Stock IV](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/)
 
+Say you have an array for which the `i`-th element is the price of a given stock on day `i`.
+Design an algorithm to find the maximum profit. You may complete **at most k transactions**.
+You may not engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again).
 
+#### Solution
+
+- `B[j][i]` - maximum profit if exactly `i` buy-sell transactions before day `j` and then buy on day `j`
+- `S[j][i]` - maximum profit if exactly `i` buy-sell transactions with the last sell happening on day `j` 
+
+Initially, `B[-1][i] = -Inf, S[-1][i] = 0, i = 1:k-1`.
+
+```c++
+B[j][i] = max(B[j - 1][i], -P[j] + (i ? S[j - 1][i - 1] : 0));
+S[j][i] = max(S[j - 1][i], P[j] + B[j - 1][i]);
+```
+
+```python
+def maxProfit(k, prices):
+    if not k or len(prices) < 2:
+        return 0
+    elif 2 * k >= len(prices):
+        return sum(max(0, b - a) for a, b in zip(prices[:-1], prices[1:]))
+    buy, sell = [float('-inf')] * k, [0] * k
+    for price in prices:
+        for i in range(k):
+            buy[i] = max(buy[i], -price + (0 if i == 0 else sell[i - 1]))
+            sell[i] = max(sell[i], price + buy[i])
+    return sell[-1]
+```
 
 # Design
 
