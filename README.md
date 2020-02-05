@@ -12,6 +12,7 @@
 - [Data Structures](#data-structures)
   - [Hash Tables](#hash-tables)
     - [Degree of an Array](#degree-of-an-array)
+    - [Substring with Concatenation of All Words](#substring-with-concatenation-of-all-words)
   - [Arrays](#arrays)
     - [Two Sum](#two-sum)
     - [Container With Most Water](#container-with-most-water)
@@ -143,6 +144,39 @@ def findShortestSubArray(self, nums: List[int]) -> int:
     return ans
 ```
 
+### [Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/)
+
+You are given a string, `s`, and a list of words, `words`, that are all of the same length. Find all starting indices of substring(s) in `s` that is a concatenation of each word in `words` exactly once and without any intervening characters.
+
+#### Solution
+
+![Python3][python3]
+```python
+from collections import defaultdict, Counter
+
+class Solution:
+    def findSubstring(self, s: str, words: List[str]) -> List[int]:
+        if not words or not s:
+            return []
+
+        len_str, n_words, len_word = len(s), len(words), len(words[0])
+
+        ans = []
+        cnt = Counter(words)
+        for i in range(len_str - n_words * len_word + 1):
+            seen = defaultdict(int)
+            for j in range(n_words):
+                word = s[(i + j * len_word): (i + (j + 1) * len_word)]
+                if word in cnt:
+                    seen[word] += 1
+                    if seen[word] > cnt[word]:
+                        break
+                else:
+                    break
+            if seen[word] <= cnt[word] and word in cnt:
+                ans.append(i)
+        return ans
+```
 
 ## Arrays
 
