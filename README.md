@@ -169,7 +169,8 @@ class Solution:
                 word = s[(i + j * len_word): (i + (j + 1) * len_word)]
                 if word in cnt:
                     seen[word] += 1
-                    if seen[word] > cnt[word]:
+                    # if word is seen more than its occurrence in words
+                    if seen[word] > cnt[word]:  
                         break
                 else:
                     break
