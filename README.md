@@ -3628,9 +3628,9 @@ class Solution:
             mid1 = nums1[start1 + k // 2 - 1] if start1 + k // 2 - 1 < len(nums1) else float('Inf')
             mid2 = nums2[start2 + k // 2 - 1] if start2 + k // 2 - 1 < len(nums2) else float('Inf')
 
-            if mid1 < mid2:  # chop off left half of nums1[start1:]
+            if mid1 < mid2:  # chop off first k//2 elements of nums1[start1:]
                 return findKth(start1 + k // 2, start2, k - k // 2)
-            else:  # chop off left half of nums2[start2:]
+            else:  # chop off first k//2 elements of nums2[start2:]
                 return findKth(start1, start2 + k // 2, k - k // 2)
 
         total = len(nums1) + len(nums2)
@@ -3892,6 +3892,12 @@ def maxProfit(k, prices):
             sell[i] = max(sell[i], price + buy[i])
     return sell[-1]
 ```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+
 
 # Design
 
