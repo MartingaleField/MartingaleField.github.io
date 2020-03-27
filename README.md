@@ -7,7 +7,6 @@
 
 
 # Table of Contents
-
 - [Table of Contents](#table-of-contents)
 - [Data Structures](#data-structures)
   - [Hash Tables](#hash-tables)
@@ -24,6 +23,7 @@
     - [Remove Duplicates from Sorted Array II](#remove-duplicates-from-sorted-array-ii)
     - [Find Missing Positive](#find-missing-positive)
     - [Insert Interval](#insert-interval)
+    - [Interval List Intersections](#interval-list-intersections)
     - [Majority Element](#majority-element)
     - [Majority Element II](#majority-element-ii)
     - [Minimum Size Subarray Sum](#minimum-size-subarray-sum)
@@ -675,8 +675,10 @@ class Solution:
                 j += 1
         return ans
 ```
-###### [Back to Front](#table-of-contents)
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
 ---
+
 
 
 ### [Majority Element](https://leetcode.com/problems/majority-element/)
