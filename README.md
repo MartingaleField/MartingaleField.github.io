@@ -15,6 +15,7 @@
   - [Arrays](#arrays)
     - [Two Sum](#two-sum)
     - [Container With Most Water](#container-with-most-water)
+    - [Trapping Rain Water](#trapping-rain-water)
     - [3Sum](#3sum)
     - [3Sum Closest](#3sum-closest)
     - [4Sum](#4sum)
@@ -283,6 +284,71 @@ def maxArea(self, height: List[int]) -> int:
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
+
+
+### [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
+
+Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it is able to trap after raining.
+
+![Trapping Rain Water](./Images/rainwatertrap.jpg)
+
+#### Solution: DP
+
+![Python3][python3]
+```python
+def trap(self, height: List[int]) -> int:
+    n = len(height)
+    if n == 0:
+        return 0
+
+    water = 0
+    left_max = [0] * n
+    right_max = [0] * n
+
+    left_max[0] = height[0]
+    for i in range(1, n):
+        left_max[i] = max(height[i], left_max[i - 1])
+
+    right_max[-1] = height[-1]
+    for i in range(n - 2, -1, -1):
+        right_max[i] = max(height[i], right_max[i + 1])
+
+    for i in range(1, n - 1):
+        water += min(left_max[i], right_max[i]) - height[i]
+
+    return water
+```
+
+#### Solution: Two Pointers
+
+NB: in the loop below, every time we find `height[l] < height[r]`, it is guranteed that `height[r] >= left_max`. Similarly, every time we find `height[l] >= height[r]`, we must have `height[l] >= right_max`.
+
+![Python3][python3]
+```python
+def trap(self, height: List[int]) -> int:
+    n = len(height)
+    if n == 0:
+        return 0
+
+    water = 0
+    left_max, right_max = 0, 0
+    l, r = 0, n - 1
+    while l < r:
+        if height[l] < height[r]:  # right bar is taller so can focus on left pointer area
+            water += max(left_max - height[l], 0)
+            left_max = max(left_max, height[l])
+            l += 1
+        else:  # left bar is taller so can focus on right pointer area
+            water += max(right_max - height[r], 0)
+            right_max = max(right_max, height[r])
+            r -= 1
+    return water
+
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
 
 ### [3Sum](https://leetcode.com/problems/3sum/)
 
