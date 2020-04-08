@@ -32,6 +32,7 @@
     - [Missing Number](#missing-number)
     - [Contains Duplicate III](#contains-duplicate-iii)
     - [H-Index](#h-index)
+    - [Sliding Window Maximum](#sliding-window-maximum)
   - [Strings](#strings)
     - [Rabin-Karp Substring Search](#rabin-karp-substring-search)
   - [Stacks and Queues](#stacks-and-queues)
@@ -1181,6 +1182,86 @@ def hIndex(self, citations: List[int]) -> int:
         if ans >= i:
             return i
     return 0
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)
+
+Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position. Return the maximum in the sliding window.
+
+Follow up:
+Could you solve it in linear time?
+
+```
+Input: nums = [1,3,-1,-3,5,3,6,7], and k = 3
+Output: [3,3,5,5,6,7] 
+Explanation: 
+
+Window position                Max
+---------------               -----
+[1  3  -1] -3  5  3  6  7       3
+ 1 [3  -1  -3] 5  3  6  7       3
+ 1  3 [-1  -3  5] 3  6  7       5
+ 1  3  -1 [-3  5  3] 6  7       5
+ 1  3  -1  -3 [5  3  6] 7       6
+ 1  3  -1  -3  5 [3  6  7]      7
+ ```
+
+#### Solution: Brute Force
+
+A sort-of brute-force approach is to check if the newly added number to the window is larger then the previous maximum. If yes, this new number will be the new maximum. Otherwise, we have to recalculate the maximum in the new window.
+
+![Python3][python3]
+```python
+def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+    ans = []
+    n = len(nums)
+
+    max_val = max(nums[:k])
+    ans.append(max_val)
+    for i in range(k, n):
+        if nums[i] > max_val:
+            max_val = nums[i]
+        elif nums[i - k] == max_val:
+            max_val = max(nums[i - k + 1:i + 1])
+        ans.append(max_val)
+    return ans
+```
+
+#### Solution: Deque
+
+The linear-time approach is to use a deque to store the maximum at its leftmost index. Every time a new number is scanned, we scan in the deque from right to left and pop out all numbers that are smaller than the new number (since these numbers will never be the maximum in the following sliding windows). We then append the new number to the deque. When we hit the window size, we output the leftmost number in deque (the maximum one). If it happens to be the leftmost number in the previous window, we need to pop it from the deque as well.
+
+```
+deque([1])       []
+deque([3])       []
+deque([3, -1])   [3]
+deque([-1, -3])  [3, 3]
+deque([5])       [3, 3, 5]
+deque([5, 3])    [3, 3, 5, 5]
+deque([6])       [3, 3, 5, 5, 6]
+deque([7])       [3, 3, 5, 5, 6, 7]
+```
+
+```python
+from collections import deque
+
+def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+    ans = []
+    n = len(nums)
+    q = deque()
+    for i in range(n):
+        while q and nums[i] > q[-1]:
+            q.pop()
+        q.append(nums[i])
+        if i - k + 1 >= 0:
+            ans.append(q[0])
+            if nums[i - k + 1] == q[0]:
+                q.popleft()
+    return ans
 ```
 
 [![Back to Front][badge_back_to_front]](#table-of-contents)
