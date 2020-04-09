@@ -77,6 +77,7 @@
     - [H-Index II](#h-index-ii)
   - [Dynamic Programming](#dynamic-programming)
     - [Best Time to Buy and Sell Stock IV](#best-time-to-buy-and-sell-stock-iv)
+    - [Cherry Pickup](#cherry-pickup)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 - [Pandas](#pandas)
@@ -4054,6 +4055,7 @@ B[j][i] = max(B[j - 1][i], -P[j] + (i ? S[j - 1][i - 1] : 0));
 S[j][i] = max(S[j - 1][i], P[j] + B[j - 1][i]);
 ```
 
+![Python3][python3]
 ```python
 def maxProfit(k, prices):
     if not k or len(prices) < 2:
@@ -4072,7 +4074,72 @@ def maxProfit(k, prices):
 
 ---
 
+### [Cherry Pickup](https://leetcode.com/problems/cherry-pickup/)
 
+In an `N x N` grid representing a field of cherries, each cell is one of three possible integers.
+
+- `0` means the cell is empty, so you can pass through;
+- `1` means the cell contains a cherry, that you can pick up and pass through;
+- `-1` means the cell contains a thorn that blocks your way.
+ 
+Your task is to collect maximum number of cherries possible by following the rules below:
+
+- Starting at the position `(0, 0)` and reaching `(N-1, N-1)` by moving right or down through valid path cells (cells with value `0` or `1`);
+- After reaching `(N-1, N-1)`, returning to `(0, 0)` by moving left or up through valid path cells;
+- When passing through a path cell containing a cherry, you pick it up and the cell becomes an empty cell (0);
+If there is no valid path between `(0, 0)` and `(N-1, N-1)`, then no cherries can be collected.
+
+#### Solution
+
+Key observation: `(0, 0)` to `(n-1, n-1)` to `(0, 0)` is the same as `(n-1, n-1)` to `(0, 0)` twice
+
+- Two people start from `(n-1, n-1)` and go to `(0, 0)`.
+- They move one step (left or up) at a time simultaneously, and pick up the cherry within the grid (if there is one).
+- If they ended up at the same grid with a cherry, only one of them can pick up it.
+
+`dp(x1, y1, x2)` computes the max cherries if starting from `(x1, y1)` and `(x2, y2)` to `(0, 0)`.
+
+Since two people move independently, there are 4 subproblems: `(left, left)`, `(left, up)`, `(up, left)`, `(left, up)`. Finally, we have:
+
+```
+dp(x1, y1, x2) = g[y1][x1] + g[y2][x2] + max{dp(x1-1, y1, x2-1), dp(x1, y1-1, x2-1), dp(x1-1, y1, x2), dp(x1, y1-1, x2)}
+```
+
+![Python3][python3]
+```python
+def cherryPickup(self, grid: List[List[int]]) -> int:
+    N = len(grid)
+    memo = [[[float('-inf')] * N for i in range(N)] for j in range(N)]
+
+    def dp(x1, y1, x2):
+        y2 = x1 + y1 - x2
+        if x1 < 0 or y1 < 0 or x2 < 0 or y2 < 0:
+            return -1
+        if grid[y1][x1] < 0 or grid[y2][x2] < 0:
+            return -1
+        if x1 == 0 and y1 == 0:
+            return grid[y1][x1]
+        if memo[x1][y1][x2] != float('-inf'):
+            return memo[x1][y1][x2]
+
+        ans = max(dp(x1 - 1, y1, x2 - 1),
+                  dp(x1, y1 - 1, x2),
+                  dp(x1, y1 - 1, x2 - 1), dp(x1 - 1, y1, x2))
+        if ans < 0:
+            memo[x1][y1][x2] = -1
+            return -1
+        ans += grid[y1][x1]
+        if x1 != x2:
+            ans += grid[y2][x2]
+        memo[x1][y1][x2] = ans
+        return ans
+
+    return max(0, dp(N - 1, N - 1, N - 1))
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 # Design
 
