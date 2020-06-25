@@ -27,12 +27,11 @@
     - [Interval List Intersections](#interval-list-intersections)
     - [Majority Element](#majority-element)
     - [Majority Element II](#majority-element-ii)
-    - [Minimum Size Subarray Sum](#minimum-size-subarray-sum)
     - [Product of Array Except Self](#product-of-array-except-self)
     - [Missing Number](#missing-number)
     - [Contains Duplicate III](#contains-duplicate-iii)
     - [H-Index](#h-index)
-    - [Minimum Size Subarray Sum](#minimum-size-subarray-sum-1)
+    - [Minimum Size Subarray Sum](#minimum-size-subarray-sum)
     - [Sliding Window Maximum](#sliding-window-maximum)
   - [Strings](#strings)
     - [Rabin-Karp Substring Search](#rabin-karp-substring-search)
@@ -879,39 +878,6 @@ vector<int> majorityElement(vector<int> &nums) {
 
 
 
-### [Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/)
-
-Given an array of `n` positive integers and a positive integer `s`, find the minimal length of a **contiguous** subarray of which the `sum >= s`. If there isn't one, return `0` instead.
-
-Example
-```
-Input: s = 7, nums = [2,3,1,2,4,3]
-Output: 2
-Explanation: the subarray [4,3] has the minimal length under the problem constraint.
-```
-
-#### Solution 
-![C++][c++]
-```c++
-int minSubArrayLen(int s, vector<int> &nums) {
-    int min_len = nums.size() + 1, sum = 0;
-    for (int i = 0, j = 0; j < nums.size(); j++) {
-        sum += nums[j];
-        while (sum >= s) {
-            min_len = min(min_len, j - i + 1);
-            sum -= nums[i++];
-        }
-    }
-    return min_len <= nums.size() ? min_len : 0;
-}
-```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
----
-
-
-
-
 ### [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)
 
 Given an array `nums` of `n` integers where `n > 1`,  return an array `output` such that `output[i]` is equal to the product of all the elements of `nums` except `nums[i]`.
@@ -1221,6 +1187,20 @@ def minSubArrayLen(self, s: int, nums: List[int]) -> int:
     if ans == n + 1:
         ans = 0
     return ans
+```
+![C++][c++]
+```c++
+int minSubArrayLen(int s, vector<int> &nums) {
+    int min_len = nums.size() + 1, sum = 0;
+    for (int i = 0, j = 0; j < nums.size(); j++) {
+        sum += nums[j];
+        while (sum >= s) {
+            min_len = min(min_len, j - i + 1);
+            sum -= nums[i++];
+        }
+    }
+    return min_len <= nums.size() ? min_len : 0;
+}
 ```
 
 [![Back to Front][badge_back_to_front]](#table-of-contents)
