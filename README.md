@@ -32,6 +32,7 @@
     - [Missing Number](#missing-number)
     - [Contains Duplicate III](#contains-duplicate-iii)
     - [H-Index](#h-index)
+    - [Minimum Size Subarray Sum](#minimum-size-subarray-sum-1)
     - [Sliding Window Maximum](#sliding-window-maximum)
   - [Strings](#strings)
     - [Rabin-Karp Substring Search](#rabin-karp-substring-search)
@@ -1189,11 +1190,48 @@ def hIndex(self, citations: List[int]) -> int:
 
 ---
 
+### [Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/)
+
+Given an array of `n` positive integers and a positive integer `s`, find the minimal length of a contiguous subarray of which the `sum ≥ s`. If there isn't one, return `0` instead.
+
+```
+Input: s = 7, nums = [2,3,1,2,4,3]
+Output: 2
+Explanation: the subarray [4,3] has the minimal length under the problem constraint.
+```
+
+#### Solution: Two Pointers
+
+Two pointers, `i` and `j`, one of which points to the first element of the required subarray
+and the other to the last one. Initially, both `i` and `j` point to 0. Move `j` rightwards until the sum of the subarray is over `s`. Fix `j` and move `i` rightwards to reduce the sum to the smallest possible (but still >= `s`). Updated the minimum subarray size during the process.
+
+![Python3][python3]
+```python
+def minSubArrayLen(self, s: int, nums: List[int]) -> int:
+    n = len(nums)
+    i = 0
+    ans = n + 1
+    sub_sum = 0
+    for j in range(n):
+        sub_sum += nums[j]
+        while sub_sum >= s:
+            ans = min(ans, j - i + 1)
+            sub_sum -= nums[i]
+            i += 1
+    if ans == n + 1:
+        ans = 0
+    return ans
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
 ### [Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)
 
-Given an array nums, there is a sliding window of size k which is moving from the very left of the array to the very right. You can only see the k numbers in the window. Each time the sliding window moves right by one position. Return the maximum in the sliding window.
+Given an array `nums`, there is a sliding window of size `k` which is moving from the very left of the array to the very right. You can only see the `k` numbers in the window. Each time the sliding window moves right by one position. Return the maximum in the sliding window.
 
-Follow up:
+**Follow up**:
 Could you solve it in linear time?
 
 ```
@@ -1330,9 +1368,15 @@ def rabin_karp(t, s):
 ```
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
+
+
+
 ## Stacks and Queues
 
 [![Back to Front][badge_back_to_front]](#table-of-contents)
+
+
+
 
 ## Binary Tree
 
