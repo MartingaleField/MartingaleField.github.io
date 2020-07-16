@@ -323,7 +323,8 @@ def trap(self, height: List[int]) -> int:
 
 #### Solution: Two Pointers
 
-NB: in the loop below, every time we find `height[l] < height[r]`, it is guranteed that `height[r] >= left_max`. Similarly, every time we find `height[l] >= height[r]`, we must have `height[l] >= right_max`.
+**NB**: in the loop below, every time we find `height[l] < height[r]`, it is guaranteed that `height[r] >= left_max`. Similarly, every time we find `height[l] >= height[r]`, we must have `height[l] >= right_max`.
+
 
 ![Python3][python3]
 ```python
