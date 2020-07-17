@@ -74,6 +74,7 @@
     - [Kth Largest Element in an Array](#kth-largest-element-in-an-array)
   - [Binary Search](#binary-search)
     - [Basics](#basics)
+    - [Search Insert Position](#search-insert-position)
     - [H-Index II](#h-index-ii)
   - [Dynamic Programming](#dynamic-programming)
     - [Best Time to Buy and Sell Stock IV](#best-time-to-buy-and-sell-stock-iv)
@@ -4006,6 +4007,34 @@ class BinSearch {
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
+
+### [Search Insert Position](https://leetcode.com/problems/search-insert-position/)
+Given a sorted array and a target value, return the index if the target is found. If not, return the index where it would be if it were inserted in order.
+
+You may assume no duplicates in the array.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        l, r = 0, len(nums)
+        while l < r:
+            m = l + (r - l) // 2
+            if nums[m] == target:
+                return m
+            elif nums[m] > target:
+                r = m
+            else:
+                l = m + 1
+        return l
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
 
 ### [H-Index II](https://leetcode.com/problems/h-index-ii/)
 
