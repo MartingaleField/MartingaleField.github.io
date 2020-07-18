@@ -74,7 +74,6 @@
     - [Kth Largest Element in an Array](#kth-largest-element-in-an-array)
   - [Binary Search](#binary-search)
     - [Binary Search](#binary-search-1)
-    - [Basics](#basics)
     - [Search Insert Position](#search-insert-position)
     - [Find First and Last Position of Element in Sorted Array](#find-first-and-last-position-of-element-in-sorted-array)
     - [Time Based Key-Value Store](#time-based-key-value-store)
@@ -4002,35 +4001,6 @@ class Solution:
             else:
                 r = m
         return -1
-```
-
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
----
-
-### Basics
-
-![C++][c++]
-```c++
-class BinSearch {
-    template<typename T>
-    static int search(vector<T> A, T K) {
-        int l = 0;
-        int u = A.size() - 1;
-        int m;
-        while (l <= u) {
-            m = l + ((u - l) >> 1);
-            if (A[m] < K) {
-                l = m + 1;
-            } else if (A[m] == K) {
-                return m;
-            } else {
-                u = m - 1;
-            }
-        }
-        return -1;
-    }
-};
 ```
 
 [![Back to Front][badge_back_to_front]](#table-of-contents)
