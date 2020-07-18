@@ -73,8 +73,11 @@
     - [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
     - [Kth Largest Element in an Array](#kth-largest-element-in-an-array)
   - [Binary Search](#binary-search)
+    - [Binary Search](#binary-search-1)
     - [Basics](#basics)
     - [Search Insert Position](#search-insert-position)
+    - [Find First and Last Position of Element in Sorted Array](#find-first-and-last-position-of-element-in-sorted-array)
+    - [Time Based Key-Value Store](#time-based-key-value-store)
     - [H-Index II](#h-index-ii)
   - [Dynamic Programming](#dynamic-programming)
     - [Best Time to Buy and Sell Stock IV](#best-time-to-buy-and-sell-stock-iv)
@@ -3979,6 +3982,32 @@ def findKthLargest(nums: 'List[int]', k: 'int') -> 'int':
 
 ## Binary Search
 
+### [Binary Search](https://leetcode.com/problems/binary-search/)
+Given a sorted (in ascending order) integer array `nums` of `n` elements and a `target` value, write a function to search target in `nums`. If `target` exists, then return its index, otherwise return `-1`.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        n = len(nums)
+        l, r = 0, n
+        while l < r:
+            m = l + (r - l) // 2
+            if nums[m] == target:
+                return m
+            elif nums[m] < target:
+                l = m + 1
+            else:
+                r = m
+        return -1
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
 ### Basics
 
 ![C++][c++]
@@ -4035,6 +4064,103 @@ class Solution:
 
 ---
 
+### [Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+Given an array of integers `nums` sorted in ascending order, find the starting and ending position of a given `target` value.
+
+Your algorithm's runtime complexity must be in the order of `O(log n)`.
+
+If the target is not found in the array, return `[-1, -1]`.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        n = len(nums)
+
+        def firstPos():
+            l, r = 0, n
+            while l < r:
+                m = l + (r - l) // 2
+                if nums[m] >= target:
+                    r = m
+                else:
+                    l = m + 1
+            if l == n or nums[l] != target:
+                return -1
+            return l
+
+        def lastPos():
+            l, r = 0, n
+            while l < r:
+                m = l + (r - l) // 2
+                if nums[m] > target:
+                    r = m
+                else:
+                    l = m + 1
+            l -= 1  # l is pointing to the right of last position
+            if l < 0 or nums[l] != target:
+                return -1
+            return l
+
+        return [firstPos(), lastPos()]
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Time Based Key-Value Store](https://leetcode.com/problems/time-based-key-value-store/)
+Create a timebased key-value store class TimeMap, that supports two operations.
+
+1. `set(string key, string value, int timestamp)`
+
+   Stores the key and value, along with the given timestamp.
+
+2. `get(string key, int timestamp)`
+
+    Returns a value such that `set(key, value, timestamp_prev)` was called previously, with `timestamp_prev <= timestamp`.
+    
+    If there are multiple such values, it returns the one with the largest `timestamp_prev`.
+    
+    If there are no values, it returns the empty string (`""`).
+
+#### Solution
+
+![Python3][python3]
+```python
+from collections import defaultdict
+
+class TimeMap:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.s_ = defaultdict(list) 
+
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        self.s_[key].append([timestamp, value])        
+
+    def get(self, key: str, timestamp: int) -> str:
+        arr = self.s_[key]
+        
+        n = len(arr)
+        l, r = 0, n
+        while l < r:
+            m = l + (r - l) // 2
+            if arr[m][0] > timestamp:
+                r = m
+            else:
+                l = m + 1
+        l -= 1
+        return "" if l < 0 else arr[l][1]
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 ### [H-Index II](https://leetcode.com/problems/h-index-ii/)
 
