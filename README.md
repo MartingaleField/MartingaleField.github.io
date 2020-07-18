@@ -70,7 +70,6 @@
   - [Sorting](#sorting)
     - [Pancake Sorting](#pancake-sorting)
   - [Divide and Conquer](#divide-and-conquer)
-    - [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
     - [Kth Largest Element in an Array](#kth-largest-element-in-an-array)
   - [Binary Search](#binary-search)
     - [Binary Search](#binary-search-1)
@@ -81,6 +80,7 @@
     - [Search in Rotated Sorted Array II](#search-in-rotated-sorted-array-ii)
     - [Find Minimum in Rotated Sorted Array](#find-minimum-in-rotated-sorted-array)
     - [Find Minimum in Rotated Sorted Array II](#find-minimum-in-rotated-sorted-array-ii)
+    - [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
     - [H-Index II](#h-index-ii)
   - [Dynamic Programming](#dynamic-programming)
     - [Best Time to Buy and Sell Stock IV](#best-time-to-buy-and-sell-stock-iv)
@@ -3811,82 +3811,7 @@ class Solution:
 
 ## Divide and Conquer
 
-### [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
 
-There are two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively.
-
-Find the median of the two sorted arrays. The overall run time complexity should be `O(log (m+n))`.
-
-You may assume `nums1` and `nums2` cannot be both empty.
-
-![Python3][python3]
-```python
-class Solution:
-    def findMedianSortedArrays(self, nums1, nums2):
-
-        # k starts from 1, not 0
-        def findKth(start1, start2, k):
-            if start1 > len(nums1) - 1:
-                return nums2[start2 + k - 1]
-            if start2 > len(nums2) - 1:
-                return nums1[start1 + k - 1]
-            if k == 1:
-                return min(nums1[start1], nums2[start2])
-
-            mid1 = nums1[start1 + k // 2 - 1] if start1 + k // 2 - 1 < len(nums1) else float('Inf')
-            mid2 = nums2[start2 + k // 2 - 1] if start2 + k // 2 - 1 < len(nums2) else float('Inf')
-
-            if mid1 < mid2:  # chop off first k//2 elements of nums1[start1:]
-                return findKth(start1 + k // 2, start2, k - k // 2)
-            else:  # chop off first k//2 elements of nums2[start2:]
-                return findKth(start1, start2 + k // 2, k - k // 2)
-
-        total = len(nums1) + len(nums2)
-        if total % 2 == 0:
-            return (findKth(0, 0, total // 2) + findKth(0, 0, total // 2 + 1)) / 2
-        else:
-            return findKth(0, 0, total // 2 + 1)
-```
-
-![C++][c++]
-```c++
-// Get the kth element of merge(nums1, nums2)
-double getKth(vector<int> &nums1, int start1, vector<int> &nums2, int start2, int k) {
-    int n = nums1.size(), m = nums2.size();
-    if (start1 > n - 1) {
-        return nums2[start2 + k - 1];
-    }
-    if (start2 > m - 1) {
-        return nums1[start1 + k - 1];
-    }
-    if (k == 1) {
-        return min(nums1[start1], nums2[start2]);
-    }
-    int mid1 = numeric_limits<int>::max(), mid2 = numeric_limits<int>::max();
-    if (start1 + k / 2 - 1 < n) {
-        mid1 = nums1[start1 + k / 2 - 1];
-    }
-    if (start2 + k / 2 - 1 < m) {
-        mid2 = nums2[start2 + k / 2 - 1];
-    }
-    // Chop half of the array each time
-    if (mid1 < mid2) {
-        return getKth(nums1, start1 + k / 2, nums2, start2, k - k / 2);
-    } else {
-        return getKth(nums1, start1, nums2, start2 + k / 2, k - k / 2);
-    }
-
-}
-
-double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2) {
-    int n = nums1.size(), m = nums2.size();
-    int left = (n + m + 1) / 2, right = (n + m + 2) / 2;
-    return (getKth(nums1, 0, nums2, 0, left) + getKth(nums1, 0, nums2, 0, right)) / 2.0;
-}
-```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
----
 
 ### [Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)
 
@@ -4277,6 +4202,83 @@ class Solution:
         return nums[l]
 ```
 
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
+
+There are two sorted arrays `nums1` and `nums2` of size `m` and `n` respectively.
+
+Find the median of the two sorted arrays. The overall run time complexity should be `O(log (m+n))`.
+
+You may assume `nums1` and `nums2` cannot be both empty.
+
+![Python3][python3]
+```python
+class Solution:
+    def findMedianSortedArrays(self, nums1, nums2):
+
+        # k starts from 1, not 0
+        def findKth(start1, start2, k):
+            if start1 > len(nums1) - 1:
+                return nums2[start2 + k - 1]
+            if start2 > len(nums2) - 1:
+                return nums1[start1 + k - 1]
+            if k == 1:
+                return min(nums1[start1], nums2[start2])
+
+            mid1 = nums1[start1 + k // 2 - 1] if start1 + k // 2 - 1 < len(nums1) else float('Inf')
+            mid2 = nums2[start2 + k // 2 - 1] if start2 + k // 2 - 1 < len(nums2) else float('Inf')
+
+            if mid1 < mid2:  # chop off first k//2 elements of nums1[start1:]
+                return findKth(start1 + k // 2, start2, k - k // 2)
+            else:  # chop off first k//2 elements of nums2[start2:]
+                return findKth(start1, start2 + k // 2, k - k // 2)
+
+        total = len(nums1) + len(nums2)
+        if total % 2 == 0:
+            return (findKth(0, 0, total // 2) + findKth(0, 0, total // 2 + 1)) / 2
+        else:
+            return findKth(0, 0, total // 2 + 1)
+```
+
+![C++][c++]
+```c++
+// Get the kth element of merge(nums1, nums2)
+double getKth(vector<int> &nums1, int start1, vector<int> &nums2, int start2, int k) {
+    int n = nums1.size(), m = nums2.size();
+    if (start1 > n - 1) {
+        return nums2[start2 + k - 1];
+    }
+    if (start2 > m - 1) {
+        return nums1[start1 + k - 1];
+    }
+    if (k == 1) {
+        return min(nums1[start1], nums2[start2]);
+    }
+    int mid1 = numeric_limits<int>::max(), mid2 = numeric_limits<int>::max();
+    if (start1 + k / 2 - 1 < n) {
+        mid1 = nums1[start1 + k / 2 - 1];
+    }
+    if (start2 + k / 2 - 1 < m) {
+        mid2 = nums2[start2 + k / 2 - 1];
+    }
+    // Chop half of the array each time
+    if (mid1 < mid2) {
+        return getKth(nums1, start1 + k / 2, nums2, start2, k - k / 2);
+    } else {
+        return getKth(nums1, start1, nums2, start2 + k / 2, k - k / 2);
+    }
+
+}
+
+double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2) {
+    int n = nums1.size(), m = nums2.size();
+    int left = (n + m + 1) / 2, right = (n + m + 2) / 2;
+    return (getKth(nums1, 0, nums2, 0, left) + getKth(nums1, 0, nums2, 0, right)) / 2.0;
+}
+```
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
