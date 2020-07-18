@@ -77,6 +77,10 @@
     - [Search Insert Position](#search-insert-position)
     - [Find First and Last Position of Element in Sorted Array](#find-first-and-last-position-of-element-in-sorted-array)
     - [Time Based Key-Value Store](#time-based-key-value-store)
+    - [Search in Rotated Sorted Array](#search-in-rotated-sorted-array)
+    - [Search in Rotated Sorted Array II](#search-in-rotated-sorted-array-ii)
+    - [Find Minimum in Rotated Sorted Array](#find-minimum-in-rotated-sorted-array)
+    - [Find Minimum in Rotated Sorted Array II](#find-minimum-in-rotated-sorted-array-ii)
     - [H-Index II](#h-index-ii)
   - [Dynamic Programming](#dynamic-programming)
     - [Best Time to Buy and Sell Stock IV](#best-time-to-buy-and-sell-stock-iv)
@@ -4126,6 +4130,151 @@ class TimeMap:
                 l = m + 1
         l -= 1
         return "" if l < 0 else arr[l][1]
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
+Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+
+(i.e., `[0,1,2,4,5,6,7]` might become `[4,5,6,7,0,1,2]`).
+
+You are given a target value to search. If found in the array return its index, otherwise return `-1`.
+
+You may assume *no duplicate* exists in the array.
+
+Your algorithm's runtime complexity must be in the order of `O(log n)`.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        n = len(nums)
+        l, r = 0, n
+        while l < r:
+            m = l + (r - l) // 2
+            if nums[m] == target:
+                return m
+            elif nums[l] < nums[m]:
+                if nums[l] <= target < nums[m]:
+                    r = m
+                else:
+                    l = m + 1
+            else:
+                if nums[m] < target <= nums[r - 1]:
+                    l = m + 1
+                else:
+                    r = m
+        return -1
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/)
+Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+
+(i.e., `[0,1,2,4,5,6,7]` might become `[4,5,6,7,0,1,2]`).
+
+You are given a target value to search. If found in the array return `true`, otherwise return `false`.
+
+The array may contain *duplicates*.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def search(self, nums: List[int], target: int) -> bool:
+        n = len(nums)
+        l, r = 0, n
+        while l < r:
+            m = l + (r - l) // 2
+            if nums[m] == target:
+                return True
+            elif nums[l] < nums[m]:
+                if nums[l] <= target < nums[m]:
+                    r = m
+                else:
+                    l = m + 1
+            elif nums[l] > nums[m]:
+                if nums[m] < target <= nums[r - 1]:
+                    l = m + 1
+                else:
+                    r = m
+            else:
+                l += 1  # jump over duplicates
+        return False
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)
+Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+
+(i.e., `[0,1,2,4,5,6,7]` might become `[4,5,6,7,0,1,2]`).
+
+Find the minimum element.
+
+You may assume *no duplicate* exists in the array.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        l, r = 0, len(nums) - 1
+        while l < r:
+            if nums[l] < nums[r]:
+                return nums[l]
+            m = l + (r - l) // 2
+            if nums[l] <= nums[m]:
+                l = m + 1
+            else:
+                r = m
+        return nums[l]
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Find Minimum in Rotated Sorted Array II](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/)
+Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+
+(i.e., `[0,1,2,4,5,6,7]` might become `[4,5,6,7,0,1,2]`).
+
+Find the minimum element.
+
+The array may contain *duplicates*.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        l, r = 0, len(nums) - 1
+        while l < r:
+            if nums[l] == nums[r]:
+                l += 1
+                continue
+            if nums[l] < nums[r]:
+                return nums[l]
+            m = l + (r - l) // 2
+            if nums[l] <= nums[m]:
+                l = m + 1
+            else:
+                r = m
+        return nums[l]
 ```
 
 [![Back to Front][badge_back_to_front]](#table-of-contents)
