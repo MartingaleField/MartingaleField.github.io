@@ -81,6 +81,10 @@
     - [Find Minimum in Rotated Sorted Array](#find-minimum-in-rotated-sorted-array)
     - [Find Minimum in Rotated Sorted Array II](#find-minimum-in-rotated-sorted-array-ii)
     - [Median of Two Sorted Arrays](#median-of-two-sorted-arrays)
+    - [Find Peak Element](#find-peak-element)
+    - [Peak Index in a Mountain Array](#peak-index-in-a-mountain-array)
+    - [Sqrt(x)](#sqrtx)
+    - [Search a 2D Matrix II](#search-a-2d-matrix-ii)
     - [H-Index II](#h-index-ii)
   - [Dynamic Programming](#dynamic-programming)
     - [Best Time to Buy and Sell Stock IV](#best-time-to-buy-and-sell-stock-iv)
@@ -3807,6 +3811,34 @@ def majorityElement(nums: 'List[int]') -> 'int':
         count += 1 if candidate == num else -1
     return candidate
 ```
+
+#### Solution: Divide and Conquer
+
+Divide the array into half and look for majority element in both sub-arrays. Time complexity `O(n) ~ O(nlogn)`. Space complexity `O(logn)`.
+
+![Python3][python3]
+```python
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+
+        def helper(l, r):
+            if l == r:
+                return [nums[l], 1]
+            m = l + (r - l) // 2
+            ml = helper(l, m)
+            mr = helper(m + 1, r)
+            if ml[0] == mr[0]:
+                return [ml[0], ml[1] + mr[1]]
+            if ml[1] > mr[1]:
+                cnt = len([x for x in nums[m + 1:r + 1] if x == ml[0]])
+                return [ml[0], cnt]
+            else:
+                cnt = len([x for x in nums[l:m + 1] if x == mr[0]])
+                return [mr[0], cnt]
+
+        return helper(0, len(nums) - 1)[0]
+```
+
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
@@ -4282,6 +4314,118 @@ double findMedianSortedArrays(vector<int> &nums1, vector<int> &nums2) {
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
+
+### [Find Peak Element](https://leetcode.com/problems/find-peak-element/)
+A peak element is an element that is greater than its neighbors.
+
+Given an input array `nums`, where `nums[i] ≠ nums[i+1]`, find a peak element and return its index.
+
+The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.
+
+You may imagine that `nums[-1] = nums[n] = -∞`.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        l, r = 0, len(nums) - 1
+        while l < r:
+            m = l + (r - l) // 2
+            if nums[m] < nums[m + 1]:
+                l = m + 1
+            else:
+                r = m
+        return l
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Peak Index in a Mountain Array](https://leetcode.com/problems/peak-index-in-a-mountain-array/)
+
+Let's call an array A a *mountain* if the following properties hold:
+
+- `A.length >= 3`
+
+- There exists some `0 < i < A.length - 1` such that `A[0] < A[1] < ... A[i-1] < A[i] > A[i+1] > ... > A[A.length - 1]`
+
+Given an array that is definitely a mountain, return any `i` such that `A[0] < A[1] < ... A[i-1] < A[i] > A[i+1] > ... > A[A.length - 1]`.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def peakIndexInMountainArray(self, A: List[int]) -> int:
+        l, r = 0, len(A) - 1
+        while l < r:
+            m = l + (r - l) // 2
+            if A[m] < A[m + 1]:
+                l = m + 1
+            else:
+                r = m
+        return l
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Sqrt(x)](https://leetcode.com/problems/sqrtx/)
+
+Implement `int sqrt(int x)`.
+
+Compute and return the square root of `x`, where x is guaranteed to be a non-negative integer.
+
+Since the return type is an integer, the decimal digits are truncated and only the integer part of the result is returned.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        if x == 1:
+            return 1
+        l, r = 1, x
+        while l < r:
+            m = l + (r - l) // 2
+            print(m)
+            if m * m == x:
+                return m
+            if m * m < x:
+                l = m + 1
+            else:
+                r = m
+        return l - 1
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Search a 2D Matrix II](https://leetcode.com/problems/search-a-2d-matrix-ii/)
+
+Write an efficient algorithm that searches for a value in an `m x n` matrix. This matrix has the following properties:
+
+- Integers in each row are sorted in ascending from left to right.
+- Integers in each column are sorted in ascending from top to bottom.
+
+#### Example
+```
+[
+  [1,   4,  7, 11, 15],
+  [2,   5,  8, 12, 19],
+  [3,   6,  9, 16, 22],
+  [10, 13, 14, 17, 24],
+  [18, 21, 23, 26, 30]
+]
+```
+
+#### Solution
 
 ### [H-Index II](https://leetcode.com/problems/h-index-ii/)
 
