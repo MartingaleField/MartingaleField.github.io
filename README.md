@@ -85,6 +85,7 @@
     - [Peak Index in a Mountain Array](#peak-index-in-a-mountain-array)
     - [Sqrt(x)](#sqrtx)
     - [Search a 2D Matrix II](#search-a-2d-matrix-ii)
+    - [Kth Smallest Element in a Sorted Matrix](#kth-smallest-element-in-a-sorted-matrix)
     - [H-Index II](#h-index-ii)
   - [Dynamic Programming](#dynamic-programming)
     - [Best Time to Buy and Sell Stock IV](#best-time-to-buy-and-sell-stock-iv)
@@ -4426,6 +4427,74 @@ Write an efficient algorithm that searches for a value in an `m x n` matrix. Thi
 ```
 
 #### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def searchMatrix(self, matrix, target):
+        n = len(matrix)
+        if n == 0:
+            return False
+        r, c = 0, len(matrix[0]) - 1
+        while c >= 0 and r < n:
+            if matrix[r][c] == target:
+                return True
+            elif matrix[r][c] > target:
+                c -= 1
+            else:
+                r += 1
+        return False
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Kth Smallest Element in a Sorted Matrix](https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/)
+
+Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.
+
+Note that it is the kth smallest element in the sorted order, not the kth distinct element.
+
+#### Example
+```
+matrix = [
+   [ 1,  5,  9],
+   [10, 11, 13],
+   [12, 13, 15]
+],
+k = 8,
+
+return 13.
+```
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def kthSmallest(self, matrix: List[List[int]], k: int) -> int:
+        l, r = matrix[0][0], matrix[-1][-1]
+        while l < r:
+            m = l + (r - l) // 2
+
+            nb_blw_m = 0
+            col = len(matrix[0]) - 1
+            for row in matrix:
+                while col >= 0 and row[col] > m:
+                    col -= 1
+                nb_blw_m += col + 1
+
+            if nb_blw_m < k:
+                l = m + 1
+            else:
+                r = m
+        return l
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 ### [H-Index II](https://leetcode.com/problems/h-index-ii/)
 
