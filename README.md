@@ -25,7 +25,6 @@
     - [Find Missing Positive](#find-missing-positive)
     - [Insert Interval](#insert-interval)
     - [Interval List Intersections](#interval-list-intersections)
-    - [Majority Element](#majority-element)
     - [Majority Element II](#majority-element-ii)
     - [Product of Array Except Self](#product-of-array-except-self)
     - [Missing Number](#missing-number)
@@ -70,6 +69,7 @@
   - [Sorting](#sorting)
     - [Pancake Sorting](#pancake-sorting)
   - [Divide and Conquer](#divide-and-conquer)
+    - [Majority Element](#majority-element)
     - [Kth Largest Element in an Array](#kth-largest-element-in-an-array)
   - [Binary Search](#binary-search)
     - [Binary Search](#binary-search-1)
@@ -755,53 +755,6 @@ def intervalIntersection(self, A: List[List[int]], B: List[List[int]]) -> List[L
 ---
 
 
-
-### [Majority Element](https://leetcode.com/problems/majority-element/)
-
-Given an array of size `n`, find the majority element. The majority element is the element that appears more than `⌊ n/2 ⌋` times.
-
-You may assume that the array is non-empty and the majority element always exist in the array.
-
-Example 1
-```
-Input: [3,2,3]
-Output: 3
-```
-
-Example 2
-```
-Input: [2,2,1,1,1,2,2]
-Output: 2
-```
-
-#### Solution 
-![C++][c++]
-```c++
-int majorityElement(vector<int> &nums) {
-    int candidate = nums[0], count = 0;
-    for (int num : nums) {
-        if (count == 0) {
-            candidate = num;
-        }
-        count += num == candidate ? 1 : -1;
-    }
-    return candidate;
-}
-```
-
-![Python3][python3]
-```python
-def majorityElement(nums: 'List[int]') -> 'int':
-    count = 0
-    for num in nums:
-        if count == 0:
-            candidate = num
-        count += 1 if candidate == num else -1
-    return candidate
-```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
----
 
 
 
@@ -3810,6 +3763,53 @@ class Solution:
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ## Divide and Conquer
+
+### [Majority Element](https://leetcode.com/problems/majority-element/)
+
+Given an array of size `n`, find the majority element. The majority element is the element that appears more than `⌊ n/2 ⌋` times.
+
+You may assume that the array is non-empty and the majority element always exist in the array.
+
+Example 1
+```
+Input: [3,2,3]
+Output: 3
+```
+
+Example 2
+```
+Input: [2,2,1,1,1,2,2]
+Output: 2
+```
+
+#### Solution: Voting
+![C++][c++]
+```c++
+int majorityElement(vector<int> &nums) {
+    int candidate = nums[0], count = 0;
+    for (int num : nums) {
+        if (count == 0) {
+            candidate = num;
+        }
+        count += num == candidate ? 1 : -1;
+    }
+    return candidate;
+}
+```
+
+![Python3][python3]
+```python
+def majorityElement(nums: 'List[int]') -> 'int':
+    count = 0
+    for num in nums:
+        if count == 0:
+            candidate = num
+        count += 1 if candidate == num else -1
+    return candidate
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 
 
