@@ -3769,19 +3769,51 @@ class Solution:
         return nums
 ```
 
+#### Solution: Merge Sort
+
+![Python3][python3]
+```python
+class Solution:
+    def sortArray(self, nums: List[int]) -> List[int]:
+        t = [0] * len(nums)
+
+        def mergeSort(l, r):
+            if l + 1 >= r:
+                return
+            m = l + (r - l) // 2
+            mergeSort(l, m)
+            mergeSort(m, r)
+
+            i1, i2 = l, m
+            index = 0
+            while i1 < m or i2 < r:
+                if i2 == r or (i1 < m and nums[i1] < nums[i2]):
+                    t[index] = nums[i1]
+                    index += 1
+                    i1 += 1
+                else:
+                    t[index] = nums[i2]
+                    index += 1
+                    i2 += 1
+            nums[l:l + index] = t[:index]
+
+        mergeSort(0, len(nums))
+        return nums
+```
+
 ### [Pancake Sorting](https://leetcode.com/problems/pancake-sorting/)
 
 Given an array `A`, we can perform a pancake flip: We choose some positive integer `k <= A.length`, then reverse the order of the first `k` elements of `A`.  We want to perform zero or more pancake flips (doing them one after another in succession) to sort the array `A`.
 
 Return the `k`-values corresponding to a sequence of pancake flips that sort `A`.  Any valid answer that sorts the array within `10 * A.length` flips will be judged as correct.
 
-`A` is a permutation of `[1, 2, ..., A.length]`
+**`A` is a permutation of `[1, 2, ..., A.length]`**
 
 #### Solution
 
 1. Find the index `max_idx` for the next maximum number `i`
 2. Reverse the first `max_idx + 1` numbers, so that `i` is at index `0`
-3. Reverse the first `i + 1` numbers so that `i` is at index `i - 1`
+3. Reverse the first `i - 1` numbers so that `i` is at index `i - 1`
 4. Repeat the process `A.length` times
 
 ![Python3][python3]
@@ -3790,7 +3822,7 @@ class Solution:
     def pancakeSort(self, A):
         ans = []
         for i in range(len(A), 0, -1):
-            max_idx = A.index(i)
+            max_idx = A.index(i)  # search the index of i
             ans.append(max_idx + 1)
             A = A[max_idx::-1] + A[max_idx + 1:]  # flip max to A[0]
             ans.append(i)
