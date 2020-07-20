@@ -67,6 +67,7 @@
     - [Subsets II](#subsets-ii)
 - [Algorithms](#algorithms)
   - [Sorting](#sorting)
+    - [Sort an Array](#sort-an-array)
     - [Pancake Sorting](#pancake-sorting)
   - [Divide and Conquer](#divide-and-conquer)
     - [Majority Element](#majority-element)
@@ -86,6 +87,7 @@
     - [Sqrt(x)](#sqrtx)
     - [Search a 2D Matrix II](#search-a-2d-matrix-ii)
     - [Kth Smallest Element in a Sorted Matrix](#kth-smallest-element-in-a-sorted-matrix)
+    - [Find K-th Smallest Pair Distance](#find-k-th-smallest-pair-distance)
     - [H-Index II](#h-index-ii)
   - [Dynamic Programming](#dynamic-programming)
     - [Best Time to Buy and Sell Stock IV](#best-time-to-buy-and-sell-stock-iv)
@@ -3736,6 +3738,37 @@ def subsetsWithDup(nums):
 
 ## Sorting
 
+### [Sort an Array](https://leetcode.com/problems/sort-an-array/)
+Given an array of integers `nums`, sort the array in ascending order.
+
+#### Solution: Quick Sort
+
+![Python3][python3]
+```python
+class Solution:
+    def sortArray(self, nums: List[int]) -> List[int]:
+
+        def qsort(l, r):
+            if l >= r:
+                return
+            i, j = l, r
+            p = nums[i + (j - i) // 2]
+            while i <= j:
+                while nums[i] < p:
+                    i += 1
+                while nums[j] > p:
+                    j -= 1
+                if i <= j:
+                    nums[i], nums[j] = nums[j], nums[i]
+                    i += 1
+                    j -= 1
+            qsort(l, j)
+            qsort(i, r)
+
+        qsort(0, len(nums) - 1)
+        return nums
+```
+
 ### [Pancake Sorting](https://leetcode.com/problems/pancake-sorting/)
 
 Given an array `A`, we can perform a pancake flip: We choose some positive integer `k <= A.length`, then reverse the order of the first `k` elements of `A`.  We want to perform zero or more pancake flips (doing them one after another in succession) to sort the array `A`.
@@ -4495,6 +4528,35 @@ class Solution:
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
+
+### [Find K-th Smallest Pair Distance](https://leetcode.com/problems/find-k-th-smallest-pair-distance/)
+Given an integer array, return the k-th smallest distance among all the pairs. The distance of a pair (A, B) is defined as the absolute difference between A and B.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def smallestDistancePair(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        n = len(nums)
+        l, r = 0, nums[-1] - nums[0]
+        while l < r:
+            m = l + (r - l) // 2
+
+            nb_blw_m = 0
+            j = 0
+            for i in range(n):
+                while j < n and nums[j] - nums[i] <= m:
+                    j += 1
+                nb_blw_m += j - i - 1
+
+            if nb_blw_m < k:
+                l = m + 1
+            else:
+                r = m
+        return l
+```
 
 ### [H-Index II](https://leetcode.com/problems/h-index-ii/)
 
