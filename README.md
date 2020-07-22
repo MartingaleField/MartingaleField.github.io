@@ -130,6 +130,8 @@ Alternatively, we can implement the hash table with a balanced BST. This gives u
 
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
+---
+
 ### [Degree of an Array](https://leetcode.com/problems/degree-of-an-array/)
 
 Given a non-empty array of non-negative integers `nums`, the **degree** of this array is defined as the maximum frequency of any one of its elements.
@@ -169,6 +171,10 @@ def findShortestSubArray(self, nums: List[int]) -> int:
     return ans
 ```
 
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
 ### [Substring with Concatenation of All Words](https://leetcode.com/problems/substring-with-concatenation-of-all-words/)
 
 You are given a string, `s`, and a list of words, `words`, that are all of the same length. Find all starting indices of substring(s) in `s` that is a concatenation of each word in `words` exactly once and without any intervening characters.
@@ -203,6 +209,9 @@ class Solution:
                 ans.append(i)
         return ans
 ```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 ## Arrays
 
@@ -220,6 +229,8 @@ For an resizable array of size `N`, how many elements are copied at each capacit
 In total, the number of copies to insert `N` elements is roughly `N/2 + N/4 + N/8 + ... + 2 + 1`, which is just less than `N`. Therefore, inserting `N` elements takes `O(N)` work total. Each insertion is `O(1)` on average, even though some insertions take `O(N)` time in the worst case.
 
 [![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 ### [Two Sum](https://leetcode.com/problems/two-sum/)
 
