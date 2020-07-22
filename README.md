@@ -14,8 +14,6 @@
     - [Substring with Concatenation of All Words](#substring-with-concatenation-of-all-words)
   - [Arrays](#arrays)
     - [Two Sum](#two-sum)
-    - [Container With Most Water](#container-with-most-water)
-    - [Trapping Rain Water](#trapping-rain-water)
     - [3Sum](#3sum)
     - [3Sum Closest](#3sum-closest)
     - [4Sum](#4sum)
@@ -66,6 +64,11 @@
     - [Subsets](#subsets)
     - [Subsets II](#subsets-ii)
 - [Algorithms](#algorithms)
+  - [Two Pointers](#two-pointers)
+    - [Container With Most Water](#container-with-most-water)
+    - [Trapping Rain Water](#trapping-rain-water)
+    - [Valid Palindrome](#valid-palindrome)
+    - [Reverse Only Letters](#reverse-only-letters)
   - [Sorting](#sorting)
     - [Sort an Array](#sort-an-array)
     - [Pancake Sorting](#pancake-sorting)
@@ -256,115 +259,7 @@ def twoSum(nums: List[int], target: int) -> List[int]:
 
 ---
 
-### [Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
 
-Given `n` non-negative integers `a1, a2, ..., an` , where each represents a point at coordinate `(i, ai)`. `n` vertical lines are drawn such that the two endpoints of line `i` is at `(i, ai)` and `(i, 0)`. Find two lines, which together with x-axis forms a container, such that the container contains the most water.
-
-![Container With Most Water](./Images/question_11.jpg)
-
-#### Solution: Two Pointers
-
-Pointer `i` points to the first element and `j` to the last. The water volume is `(j - i) * h` where `h = min(height[i], height[j])`.
-* If there exists taller bar on the right of `i` than `h`, move `i` to it and check if we have a better result.
-* If there exists taller bar on the left of `j` than `h`, move `j` to it and check if we have a better result.
-
-![C++][c++]
-```c++
-int maxArea(vector<int> &height) {
-    int water = 0;
-    int i = 0, j = height.size() - 1;
-    while (i < j) {
-        int h = min(height[i], height[j]);
-        water = max(water, (j - i) * h);
-        while (height[i] <= h && i < j) i++;
-        while (height[j] <= h && i < j) j--;
-    }
-    return water;
-}
-```
-
-![Python3][python3]
-```python
-def maxArea(self, height: List[int]) -> int:
-    i, j = 0, len(height) - 1
-    ans = 0
-    while i < j:
-        h = min(height[i], height[j])
-        ans = max(ans, (j - i) * h)
-        while height[i] <= h and i < j:
-            i += 1
-        while height[j] <= h and i < j:
-            j -= 1
-    return ans
-```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
----
-
-
-### [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
-
-Given `n` non-negative integers representing an elevation map where the width of each bar is `1`, compute how much water it is able to trap after raining.
-
-![Trapping Rain Water](./Images/rainwatertrap.png)
-
-#### Solution: DP
-
-![Python3][python3]
-```python
-def trap(self, height: List[int]) -> int:
-    n = len(height)
-    if n == 0:
-        return 0
-
-    water = 0
-    left_max = [0] * n
-    right_max = [0] * n
-
-    left_max[0] = height[0]
-    for i in range(1, n):
-        left_max[i] = max(height[i], left_max[i - 1])
-
-    right_max[-1] = height[-1]
-    for i in range(n - 2, -1, -1):
-        right_max[i] = max(height[i], right_max[i + 1])
-
-    for i in range(1, n - 1):
-        water += min(left_max[i], right_max[i]) - height[i]
-
-    return water
-```
-
-#### Solution: Two Pointers
-
-**NB**: in the loop below, every time we find `height[l] < height[r]`, it is guaranteed that `height[r] >= left_max`. Similarly, every time we find `height[l] >= height[r]`, we must have `height[l] >= right_max`.
-
-
-![Python3][python3]
-```python
-def trap(self, height: List[int]) -> int:
-    n = len(height)
-    if n == 0:
-        return 0
-
-    water = 0
-    left_max, right_max = 0, 0
-    l, r = 0, n - 1
-    while l < r:
-        if height[l] < height[r]:  # right bar is taller so can focus on left pointer area
-            water += max(left_max - height[l], 0)
-            left_max = max(left_max, height[l])
-            l += 1
-        else:  # left bar is taller so can focus on right pointer area
-            water += max(right_max - height[r], 0)
-            right_max = max(right_max, height[r])
-            r -= 1
-    return water
-
-```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
----
 
 
 ### [3Sum](https://leetcode.com/problems/3sum/)
@@ -3735,6 +3630,182 @@ def subsetsWithDup(nums):
 ---
 
 # Algorithms
+
+## Two Pointers
+
+### [Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
+
+Given `n` non-negative integers `a1, a2, ..., an` , where each represents a point at coordinate `(i, ai)`. `n` vertical lines are drawn such that the two endpoints of line `i` is at `(i, ai)` and `(i, 0)`. Find two lines, which together with x-axis forms a container, such that the container contains the most water.
+
+![Container With Most Water](./Images/question_11.jpg)
+
+#### Solution: Two Pointers
+
+Pointer `i` points to the first element and `j` to the last. The water volume is `(j - i) * h` where `h = min(height[i], height[j])`.
+* If there exists taller bar on the right of `i` than `h`, move `i` to it and check if we have a better result.
+* If there exists taller bar on the left of `j` than `h`, move `j` to it and check if we have a better result.
+
+![C++][c++]
+```c++
+int maxArea(vector<int> &height) {
+    int water = 0;
+    int i = 0, j = height.size() - 1;
+    while (i < j) {
+        int h = min(height[i], height[j]);
+        water = max(water, (j - i) * h);
+        while (height[i] <= h && i < j) i++;
+        while (height[j] <= h && i < j) j--;
+    }
+    return water;
+}
+```
+
+![Python3][python3]
+```python
+def maxArea(self, height: List[int]) -> int:
+    i, j = 0, len(height) - 1
+    ans = 0
+    while i < j:
+        h = min(height[i], height[j])
+        ans = max(ans, (j - i) * h)
+        while height[i] <= h and i < j:
+            i += 1
+        while height[j] <= h and i < j:
+            j -= 1
+    return ans
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+
+### [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
+
+Given `n` non-negative integers representing an elevation map where the width of each bar is `1`, compute how much water it is able to trap after raining.
+
+![Trapping Rain Water](./Images/rainwatertrap.png)
+
+#### Solution: DP
+
+![Python3][python3]
+```python
+def trap(self, height: List[int]) -> int:
+    n = len(height)
+    if n == 0:
+        return 0
+
+    water = 0
+    left_max = [0] * n
+    right_max = [0] * n
+
+    left_max[0] = height[0]
+    for i in range(1, n):
+        left_max[i] = max(height[i], left_max[i - 1])
+
+    right_max[-1] = height[-1]
+    for i in range(n - 2, -1, -1):
+        right_max[i] = max(height[i], right_max[i + 1])
+
+    for i in range(1, n - 1):
+        water += min(left_max[i], right_max[i]) - height[i]
+
+    return water
+```
+
+#### Solution: Two Pointers
+
+**NB**: in the loop below, every time we find `height[l] < height[r]`, it is guaranteed that `height[r] >= left_max`. Similarly, every time we find `height[l] >= height[r]`, we must have `height[l] >= right_max`.
+
+
+![Python3][python3]
+```python
+def trap(self, height: List[int]) -> int:
+    n = len(height)
+    if n == 0:
+        return 0
+
+    water = 0
+    left_max, right_max = 0, 0
+    l, r = 0, n - 1
+    while l < r:
+        if height[l] < height[r]:  # right bar is taller so can focus on left pointer area
+            water += max(left_max - height[l], 0)
+            left_max = max(left_max, height[l])
+            l += 1
+        else:  # left bar is taller so can focus on right pointer area
+            water += max(right_max - height[r], 0)
+            right_max = max(right_max, height[r])
+            r -= 1
+    return water
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)
+Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
+
+**Note**: For the purpose of this problem, we define empty string as valid palindrome.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        n = len(s)
+        if n == 0:
+            return True
+
+        l, r = 0, n - 1
+        while l <= r:
+            if not s[l].isalnum():
+                l += 1
+                continue
+            if not s[r].isalnum():
+                r -= 1
+                continue
+            if s[l].lower() != s[r].lower():
+                return False
+            else:
+                l += 1
+                r -= 1
+
+        return True
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Reverse Only Letters](https://leetcode.com/problems/reverse-only-letters/)
+Given a string `S`, return the "reversed" string where all characters that are not a letter stay in the same place, and all letters reverse their positions.
+
+#### Solution
+
+Note that Python does not allow swaping two characters in a string. We need to transform `S` into a list, do the swapping and then transform it back to string.
+
+![Python3][python3]
+```python
+class Solution:
+    def reverseOnlyLetters(self, S: str) -> str:
+        n = len(S)
+        s = list(S)
+        l, r = 0, n - 1
+        while l <= r:
+            if not s[l].isalpha():
+                l += 1
+                continue
+            if not s[r].isalpha():
+                r -= 1
+                continue
+            s[l], s[r] = s[r], s[l]
+            l += 1
+            r -= 1
+        return ''.join(s)
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 ## Sorting
 
