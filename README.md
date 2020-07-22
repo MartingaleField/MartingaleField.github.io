@@ -70,6 +70,7 @@
     - [Valid Palindrome](#valid-palindrome)
     - [Reverse Only Letters](#reverse-only-letters)
     - [Assign Cookies](#assign-cookies)
+    - [Long Pressed Name](#long-pressed-name)
   - [Sorting](#sorting)
     - [Sort an Array](#sort-an-array)
     - [Pancake Sorting](#pancake-sorting)
@@ -3870,6 +3871,48 @@ class Solution:
             l += 1
             r -= 1
         return ''.join(s)
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Long Pressed Name](https://leetcode.com/problems/long-pressed-name/)
+Your friend is typing his `name` into a keyboard.  Sometimes, when typing a character `c`, the key might get *long pressed*, and the character will be typed 1 or more times.
+
+You examine the `typed` characters of the keyboard.  Return `True` if it is possible that it was your friends name, with some characters (possibly none) being long pressed.
+
+#### Example
+```
+Input: name = "leelee", typed = "lleeelee"
+Output: true
+```
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def isLongPressedName(self, name: str, typed: str) -> bool:
+        m, n = len(name), len(typed)
+        if m > n:
+            return False
+
+        i, j = 0, 0
+        while i < m and j < n:
+            if name[i] == typed[j]:
+                i += 1
+                j += 1
+            elif j > 0 and typed[j] == typed[j - 1]:
+                j += 1
+            else:
+                return False
+
+        if i != m:
+            return False
+
+        while j < n and typed[j] == typed[j - 1]:
+            j += 1
+        return j == n
 ```
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
