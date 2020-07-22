@@ -14,8 +14,6 @@
     - [Substring with Concatenation of All Words](#substring-with-concatenation-of-all-words)
   - [Arrays](#arrays)
     - [Two Sum](#two-sum)
-    - [3Sum](#3sum)
-    - [3Sum Closest](#3sum-closest)
     - [4Sum](#4sum)
     - [4Sum II](#4sum-ii)
     - [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array)
@@ -71,8 +69,12 @@
     - [Reverse Only Letters](#reverse-only-letters)
     - [Assign Cookies](#assign-cookies)
     - [Long Pressed Name](#long-pressed-name)
+    - [Boats to Save People](#boats-to-save-people)
+    - [Two Sum II - Input array is sorted](#two-sum-ii---input-array-is-sorted)
   - [Sorting](#sorting)
     - [Sort an Array](#sort-an-array)
+    - [3Sum](#3sum)
+    - [3Sum Closest](#3sum-closest)
     - [Pancake Sorting](#pancake-sorting)
   - [Divide and Conquer](#divide-and-conquer)
     - [Majority Element](#majority-element)
@@ -264,135 +266,7 @@ def twoSum(nums: List[int], target: int) -> List[int]:
 
 
 
-### [3Sum](https://leetcode.com/problems/3sum/)
 
-Given an array nums of n integers, are there elements `a, b, c` in nums such that `a + b + c = 0`? Find all unique triplets in the array which gives the sum of zero.
-
-The solution set must not contain duplicate triplets.
-
-#### Solution 
-
-![C++][c++]
-```c++
-vector<vector<int>> threeSum(vector<int> &nums) {
-    vector<vector<int>> result;
-    sort(nums.begin(), nums.end());
-    int n = nums.size();
-    for (int i = 0; i < n - 2; ++i) {
-        if (i > 0 && nums[i] == nums[i - 1]) continue;
-        int j = i + 1, k = n - 1;
-        while (j < k) {
-            int sum = nums[i] + nums[j] + nums[k];
-            if (sum < 0) {
-                ++j;
-                while (j < k && nums[j] == nums[j - 1]) ++j;
-            } else if (sum > 0) {
-                --k;
-                while (j < k && nums[k] == nums[k + 1]) --k;
-            } else {
-                result.push_back({nums[i], nums[j++], nums[k--]});
-                while (j < k && nums[j] == nums[j - 1] && nums[k] == nums[k + 1])
-                    ++j, --k;
-            }
-        }
-    }
-    return result;
-}
-```
-
-![Python3][python3]
-```python
-def threeSum(nums: 'List[int]') -> 'List[List[int]]':
-    ans = []
-    nums.sort()
-    n = len(nums)
-    for i in range(n - 2):
-        j, k = i + 1, n - 1
-        if i > 0 and nums[i] == nums[i - 1]:
-            continue
-        while j < k:
-            sum = nums[i] + nums[j] + nums[k]
-            if sum < 0:
-                j += 1
-                # skip over duplicates
-                while j < k and nums[j] == nums[j - 1]:
-                    j += 1
-            elif sum > 0:
-                k -= 1
-                # skip over duplicates
-                while j < k and nums[k] == nums[k + 1]:
-                    k -= 1
-            else:
-                ans.append([nums[i], nums[j], nums[k]])
-                j += 1
-                k -= 1
-                # skip over duplicates
-                while j < k and nums[j] == nums[j - 1] and nums[k] == nums[k + 1]:
-                    j += 1
-                    k -= 1
-    return ans
-```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
----
-
-### [3Sum Closest](https://leetcode.com/problems/3sum-closest/)
-
-Given an array nums of `n` integers and an integer target, find three integers in `nums` such that the sum is closest to `target`. Return the sum of the three integers. You may assume that each input would have exactly one solution.
-
-#### Solution 
-
-Note that in this problem we are guaranteed that there is only one solution. Therefore there is no need to handle duplicates like we do in [3Sum](#3sum).
-
-![C++][c++]
-```c++
-int threeSumClosest(vector<int> &nums, int target) {
-    int res = nums[0] + nums[1] + nums[2], n = nums.size();
-    sort(nums.begin(), nums.end());
-    for (int i = 0; i < n; ++i) {
-        int j = i + 1, k = n - 1;
-        while (j < k) {
-            int diff = target - nums[i] - nums[j] - nums[k];
-            if (diff == 0)
-                return target;
-            if (abs(diff) < abs(res - target)) {
-                res = nums[i] + nums[j] + nums[k];
-            } else if (diff < 0) {
-                k--;
-            } else {
-                j++;
-            }
-        }
-    }
-    return res;
-}
-```
-
-![Python3][python3]
-```python
-def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
-    nums.sort()
-    ans = nums[0] + nums[1] + nums[2]
-    n = len(nums)
-    for i in range(n - 2):
-        j, k = i + 1, n - 1
-        while j < k:
-            sum = nums[i] + nums[j] + nums[k]
-            diff = target - sum
-            if diff > 0:
-                j += 1
-            elif diff < 0:
-                k -= 1
-            else:
-                ans = sum
-                break
-            if abs(diff) < abs(target - ans):
-                ans = sum
-    return ans
-```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
----
 
 ### [4Sum](https://leetcode.com/problems/4sum/)
 
@@ -3918,6 +3792,81 @@ class Solution:
 
 ---
 
+### [Boats to Save People](https://leetcode.com/problems/boats-to-save-people/)
+The `i`-th person has weight `people[i]`, and each boat can carry a maximum weight of `limit`.
+
+Each boat carries at most 2 people at the same time, provided the sum of the weight of those people is at most `limit`.
+
+Return the minimum number of boats to carry every given person.  (It is guaranteed each person can be carried by a boat.)
+
+#### Example
+```
+Input: people = [3,2,2,1], limit = 3
+Output: 3
+Explanation: 3 boats (1, 2), (2) and (3)
+```
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def numRescueBoats(self, people: List[int], limit: int) -> int:
+        A = people
+        A.sort()
+        n = len(A)
+
+        l, r = 0, n - 1
+        ans = 0
+        while l <= r:
+            # Carry two people
+            if A[l] + A[r] <= limit:
+                ans += 1
+                l += 1
+                r -= 1
+            # Carry the heavier one
+            else:
+                r -= 1
+                ans += 1
+        return ans
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Two Sum II - Input array is sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+Given an array of integers that is already *sorted in ascending order*, find two numbers such that they add up to a specific target number.
+
+The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2.
+
+**Note**:
+- Your returned answers (both index1 and index2) are not zero-based.
+- You may assume that each input would have exactly one solution and you may not use the same element twice.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        n = len(numbers)
+        i, j = 0, n - 1
+        while i <= j:
+            s = numbers[i] + numbers[j]
+            if s == target:
+                return [i + 1, j + 1]
+            elif s < target:
+                i += 1
+            else:
+                j -= 1
+        return [i + 1, j + 1]
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+
+
 ## Sorting
 
 ### [Sort an Array](https://leetcode.com/problems/sort-an-array/)
@@ -3982,6 +3931,136 @@ class Solution:
         mergeSort(0, len(nums))
         return nums
 ```
+
+### [3Sum](https://leetcode.com/problems/3sum/)
+
+Given an array nums of n integers, are there elements `a, b, c` in nums such that `a + b + c = 0`? Find all unique triplets in the array which gives the sum of zero.
+
+The solution set must not contain duplicate triplets.
+
+#### Solution 
+
+![C++][c++]
+```c++
+vector<vector<int>> threeSum(vector<int> &nums) {
+    vector<vector<int>> result;
+    sort(nums.begin(), nums.end());
+    int n = nums.size();
+    for (int i = 0; i < n - 2; ++i) {
+        if (i > 0 && nums[i] == nums[i - 1]) continue;
+        int j = i + 1, k = n - 1;
+        while (j < k) {
+            int sum = nums[i] + nums[j] + nums[k];
+            if (sum < 0) {
+                ++j;
+                while (j < k && nums[j] == nums[j - 1]) ++j;
+            } else if (sum > 0) {
+                --k;
+                while (j < k && nums[k] == nums[k + 1]) --k;
+            } else {
+                result.push_back({nums[i], nums[j++], nums[k--]});
+                while (j < k && nums[j] == nums[j - 1] && nums[k] == nums[k + 1])
+                    ++j, --k;
+            }
+        }
+    }
+    return result;
+}
+```
+
+![Python3][python3]
+```python
+def threeSum(nums: 'List[int]') -> 'List[List[int]]':
+    ans = []
+    nums.sort()
+    n = len(nums)
+    for i in range(n - 2):
+        j, k = i + 1, n - 1
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
+        while j < k:
+            sum = nums[i] + nums[j] + nums[k]
+            if sum < 0:
+                j += 1
+                # skip over duplicates
+                while j < k and nums[j] == nums[j - 1]:
+                    j += 1
+            elif sum > 0:
+                k -= 1
+                # skip over duplicates
+                while j < k and nums[k] == nums[k + 1]:
+                    k -= 1
+            else:
+                ans.append([nums[i], nums[j], nums[k]])
+                j += 1
+                k -= 1
+                # skip over duplicates
+                while j < k and nums[j] == nums[j - 1] and nums[k] == nums[k + 1]:
+                    j += 1
+                    k -= 1
+    return ans
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [3Sum Closest](https://leetcode.com/problems/3sum-closest/)
+
+Given an array nums of `n` integers and an integer target, find three integers in `nums` such that the sum is closest to `target`. Return the sum of the three integers. You may assume that each input would have exactly one solution.
+
+#### Solution 
+
+Note that in this problem we are guaranteed that there is only one solution. Therefore there is no need to handle duplicates like we do in [3Sum](#3sum).
+
+![C++][c++]
+```c++
+int threeSumClosest(vector<int> &nums, int target) {
+    int res = nums[0] + nums[1] + nums[2], n = nums.size();
+    sort(nums.begin(), nums.end());
+    for (int i = 0; i < n; ++i) {
+        int j = i + 1, k = n - 1;
+        while (j < k) {
+            int diff = target - nums[i] - nums[j] - nums[k];
+            if (diff == 0)
+                return target;
+            if (abs(diff) < abs(res - target)) {
+                res = nums[i] + nums[j] + nums[k];
+            } else if (diff < 0) {
+                k--;
+            } else {
+                j++;
+            }
+        }
+    }
+    return res;
+}
+```
+
+![Python3][python3]
+```python
+def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
+    nums.sort()
+    ans = nums[0] + nums[1] + nums[2]
+    n = len(nums)
+    for i in range(n - 2):
+        j, k = i + 1, n - 1
+        while j < k:
+            sum = nums[i] + nums[j] + nums[k]
+            diff = target - sum
+            if diff > 0:
+                j += 1
+            elif diff < 0:
+                k -= 1
+            else:
+                ans = sum
+                break
+            if abs(diff) < abs(target - ans):
+                ans = sum
+    return ans
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 ### [Pancake Sorting](https://leetcode.com/problems/pancake-sorting/)
 
