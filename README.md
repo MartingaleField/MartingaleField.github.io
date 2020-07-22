@@ -69,6 +69,7 @@
     - [Trapping Rain Water](#trapping-rain-water)
     - [Valid Palindrome](#valid-palindrome)
     - [Reverse Only Letters](#reverse-only-letters)
+    - [Assign Cookies](#assign-cookies)
   - [Sorting](#sorting)
     - [Sort an Array](#sort-an-array)
     - [Pancake Sorting](#pancake-sorting)
@@ -3779,6 +3780,73 @@ class Solution:
 
 ### [Reverse Only Letters](https://leetcode.com/problems/reverse-only-letters/)
 Given a string `S`, return the "reversed" string where all characters that are not a letter stay in the same place, and all letters reverse their positions.
+
+#### Solution
+
+Note that Python does not allow swaping two characters in a string. We need to transform `S` into a list, do the swapping and then transform it back to string.
+
+![Python3][python3]
+```python
+class Solution:
+    def reverseOnlyLetters(self, S: str) -> str:
+        n = len(S)
+        s = list(S)
+        l, r = 0, n - 1
+        while l <= r:
+            if not s[l].isalpha():
+                l += 1
+                continue
+            if not s[r].isalpha():
+                r -= 1
+                continue
+            s[l], s[r] = s[r], s[l]
+            l += 1
+            r -= 1
+        return ''.join(s)
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Assign Cookies](https://leetcode.com/problems/assign-cookies/)
+Assume you are an awesome parent and want to give your children some cookies. But, you should give each child at most one cookie. Each child i has a greed factor gi, which is the minimum size of a cookie that the child will be content with; and each cookie `j` has a size `sj`. If `sj >= gi`, we can assign the cookie j to the child i, and the child i will be content. Your goal is to maximize the number of your content children and output the maximum number.
+
+**Note**:
+You may assume the greed factor is always positive.
+You cannot assign more than one cookie to one child.
+
+#### Solution
+
+Sort both greed factor and cookie arrays. Try each cookie for each kid from small to big and less to more greedy. If the current cookie cannot satisfy the current kid, move on to the next bigger one.
+
+![Python3][python3]
+```python
+class Solution:
+    def findContentChildren(self, g: List[int], s: List[int]) -> int:
+        if len(g) == 0 or len(s) == 0:
+            return 0
+
+        g.sort()
+        s.sort()
+
+        ans = 0
+        j = 0  # j points to each cookie
+
+        # i points to each kid
+        for i in range(len(g)):
+
+            # if cookie j doesn't satisfy kid i, move on to next bigger one until satisfaction
+            while j < len(s) and s[j] < g[i]:
+                j += 1
+
+            # Found one
+            if j < len(s):
+                ans += 1
+                j += 1  # Move on to next cookie
+                continue
+
+        return ans
+```
 
 #### Solution
 
