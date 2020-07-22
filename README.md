@@ -329,9 +329,6 @@ vector<vector<int>> fourSum(vector<int> &nums, int target) {
 ---
 
 
-
-
-
 ### [4Sum II](https://leetcode.com/problems/4sum-ii/)
 
 Given four lists `A, B, C, D` of integer values, compute how many tuples `(i, j, k, l)` there are such that `A[i] + B[j] + C[k] + D[l]` is zero.
