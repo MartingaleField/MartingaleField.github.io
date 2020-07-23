@@ -99,7 +99,8 @@
   - [Dynamic Programming](#dynamic-programming)
     - [Best Time to Buy and Sell Stock IV](#best-time-to-buy-and-sell-stock-iv)
     - [Cherry Pickup](#cherry-pickup)
-    - [](#)
+    - [Longest Palindromic Substring](#longest-palindromic-substring)
+    - [Maximal Rectangle](#maximal-rectangle)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 - [Pandas](#pandas)
@@ -5019,9 +5020,92 @@ def cherryPickup(self, grid: List[List[int]]) -> int:
 
 ---
 
-### 
+### [Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)
+Given a string `s`, find the longest palindromic substring in `s`. You may assume that the maximum length of `s` is `1000`.
 
-![](./Images/WX20180515-110934@2x.png)
+#### Solution
+Let `dp[i][j]` be whether `s[i:j+1]` is palindromic. 
+
+![Python3][python3]
+```python
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
+        n = len(s)
+        dp = [[False] * n for _ in range(n)]
+        for i in range(n):
+            dp[i][i] = True
+        start, mlen = 0, 1
+
+        for i in range(n - 1):
+            dp[i][i + 1] = s[i] == s[i + 1]
+            if dp[i][i + 1]:
+                start, mlen = i, 2
+
+        for i in range(n - 1, -1, -1):
+            for j in range(i + 2, n):
+                dp[i][j] = (s[i] == s[j]) and dp[i + 1][j - 1]
+                if dp[i][j] and j - i + 1 > mlen:
+                    start, mlen = i, j - i + 1
+        return s[start:start + mlen]
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Maximal Rectangle](https://leetcode.com/problems/maximal-rectangle/)
+Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.
+
+#### Example
+```
+Input:
+[
+  ["1","0","1","0","0"],
+  ["1","0","1","1","1"],
+  ["1","1","1","1","1"],
+  ["1","0","0","1","0"]
+]
+Output: 6
+```
+
+#### Solution
+Let `dp[i][j]` be the maximum length of all-one sequence ending at `j` in row `i`.
+
+![Python3][python3]
+```python
+class Solution:
+    def maximalRectangle(self, matrix: List[List[str]]) -> int:
+        m = len(matrix)
+        if m == 0:
+            return 0
+        n = len(matrix[0])
+        
+        # dp[i][j]: max length of all-one seq ending at j in row i
+        dp = [[0] * n for _ in range(m)]
+        
+        for i in range(m):
+            for j in range(n):
+                if j == 0:
+                    dp[i][0] = 1 if matrix[i][0] == '1' else 0
+                else:
+                    dp[i][j] = dp[i][j-1] + 1 if matrix[i][j] == '1' else 0
+        
+        ans = 0
+        for i in range(m):
+            for j in range(n):
+                leng = float('inf')
+                for k in range(i, m):
+                    leng = min(leng, dp[k][j])
+                    if leng == 0:
+                        break
+                    ans = max(ans, leng * (k - i + 1))
+                    
+        return ans
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 # Design
 
