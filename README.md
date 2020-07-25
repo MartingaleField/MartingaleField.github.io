@@ -101,6 +101,7 @@
     - [Cherry Pickup](#cherry-pickup)
     - [Longest Palindromic Substring](#longest-palindromic-substring)
     - [Maximal Rectangle](#maximal-rectangle)
+    - [Count Square Submatrices with All Ones](#count-square-submatrices-with-all-ones)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 - [Pandas](#pandas)
@@ -5106,6 +5107,52 @@ class Solution:
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
+
+### [Count Square Submatrices with All Ones](https://leetcode.com/problems/count-square-submatrices-with-all-ones/)
+Given an `m * n` matrix of ones and zeros, return how many square submatrices have all ones.
+
+#### Example
+```
+Input: matrix =
+[
+  [0,1,1,1],
+  [1,1,1,1],
+  [0,1,1,1]
+]
+Output: 15
+Explanation: 
+There are 10 squares of side 1.
+There are 4 squares of side 2.
+There is  1 square of side 3.
+Total number of squares = 10 + 4 + 1 = 15.
+```
+
+#### Solution
+`dp[i][j]` denotes the length of the side of the largest square with bottom right corner at `i, j`.
+
+![](./Images/1.png)
+
+![Python3][python3]
+```python
+class Solution:
+    def countSquares(self, matrix: List[List[int]]) -> int:
+        m = len(matrix)
+        if m == 0:
+            return 0
+        n = len(matrix[0])
+
+        dp = [[0] * n for _ in range(m)]
+
+        ans = 0
+        for i in range(m):
+            for j in range(n):
+                dp[i][j] = matrix[i][j]
+                if i and j and dp[i][j]:
+                    dp[i][j] = min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1
+                ans += dp[i][j]
+
+        return ans
+```
 
 # Design
 
