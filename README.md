@@ -28,6 +28,7 @@
     - [H-Index](#h-index)
     - [Minimum Size Subarray Sum](#minimum-size-subarray-sum)
     - [Sliding Window Maximum](#sliding-window-maximum)
+    - [Shuffle an Array](#shuffle-an-array)
   - [Strings](#strings)
     - [Rabin-Karp Substring Search](#rabin-karp-substring-search)
   - [Stacks and Queues](#stacks-and-queues)
@@ -68,6 +69,7 @@
     - [Valid Palindrome](#valid-palindrome)
     - [Reverse Only Letters](#reverse-only-letters)
     - [Assign Cookies](#assign-cookies)
+    - [Advantage Shuffle](#advantage-shuffle)
     - [Long Pressed Name](#long-pressed-name)
     - [Boats to Save People](#boats-to-save-people)
     - [Two Sum II - Input array is sorted](#two-sum-ii---input-array-is-sorted)
@@ -1016,6 +1018,7 @@ deque([6])       [3, 3, 5, 5, 6]
 deque([7])       [3, 3, 5, 5, 6, 7]
 ```
 
+![Python3][python3]
 ```python
 from collections import deque
 
@@ -1034,6 +1037,44 @@ def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
     return ans
 ```
 
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Shuffle an Array](https://leetcode.com/problems/shuffle-an-array/)
+Shuffle a set of numbers without duplicates.
+
+#### Solution: Fisher-Yates Algorithm
+
+![Python3][python3]
+```python
+class Solution:
+
+    def __init__(self, nums: List[int]):
+        self.array = nums
+        self.original = nums[:]
+
+    def reset(self) -> List[int]:
+        """
+        Resets the array to its original configuration and return it.
+        """
+        self.array = self.original[:]
+        return self.array
+
+    def shuffle(self) -> List[int]:
+        """
+        Returns a random shuffling of the array.
+        """
+        for i in range(len(self.array)):
+            r = random.randint(i, len(self.array) - 1)
+            self.array[i], self.array[r] = self.array[r], self.array[i]
+        return self.array
+
+# Your Solution object will be instantiated and called as such:
+# obj = Solution(nums)
+# param_1 = obj.reset()
+# param_2 = obj.shuffle()
+```
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
@@ -3757,6 +3798,50 @@ class Solution:
             l += 1
             r -= 1
         return ''.join(s)
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Advantage Shuffle](https://leetcode.com/problems/advantage-shuffle/)
+Given two arrays `A` and `B` of equal size, the advantage of `A` with respect to `B` is the number of indices `i` for which `A[i] > B[i]`.
+
+Return any permutation of `A` that maximizes its advantage with respect to `B`.
+
+#### Solution
+
+Similar to [Assign Cookies](#assign-cookies).
+
+![Python3][python3]
+```python
+from collections import defaultdict
+
+class Solution:
+    def advantageCount(self, A: List[int], B: List[int]) -> List[int]:
+        sA = sorted(A)
+        sB = sorted(B)
+
+        adv_map = defaultdict(list)
+        i, j = 0, 0
+        while i < len(sA) and j < len(sB):
+            if sA[i] > sB[j]:
+                adv_map[sB[j]].append(sA[i])
+                i += 1
+                j += 1
+            else:
+                adv_map[-1].append(sA[i])
+                i += 1
+
+        ans = []
+        idx = defaultdict(int)
+        for nB in B:
+            if nB in adv_map and idx[nB] < len(adv_map[nB]):
+                ans.append(adv_map[nB][idx[nB]])
+                idx[nB] += 1
+            else:
+                ans.append(adv_map[-1][idx[-1]])
+                idx[-1] += 1
+        return ans
 ```
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
