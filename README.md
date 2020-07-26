@@ -108,6 +108,7 @@
     - [House Robber](#house-robber)
     - [House Robber II](#house-robber-ii)
     - [Delete and Earn](#delete-and-earn)
+    - [Domino and Tromino Tiling](#domino-and-tromino-tiling)
     - [Best Time to Buy and Sell Stock with Cooldown](#best-time-to-buy-and-sell-stock-with-cooldown)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
@@ -5391,6 +5392,40 @@ class Solution:
         for num in nums:
             points[num - l] += num
         return rob_1(points)
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Domino and Tromino Tiling](https://leetcode.com/problems/domino-and-tromino-tiling/)
+We have two types of tiles: a 2x1 domino shape, and an "L" tromino shape. These shapes may be rotated.
+```
+XX  <- domino
+
+XX  <- "L" tromino
+X
+```
+Given `N`, how many ways are there to tile a `2 x N` board? Return your answer modulo `10^9 + 7`.
+
+(In a tiling, every square must be covered by a tile. Two tilings are different if and only if there are two 4-directionally adjacent cells on the board such that exactly one of the tilings has both squares occupied by a tile.)
+
+#### Solution
+
+![](Images/2.png)
+
+![Python3][python3]
+```python
+class Solution:
+    def numTilings(self, N: int) -> int:
+        kMod = 1000000007
+        dp = [1] * (N + 1)
+        if N == 0 or N == 1:
+            return dp[N]
+        dp[2] = 2
+        for i in range(3, N + 1):
+            dp[i] = (dp[i - 3] + dp[i - 1] * 2) % kMod
+        return dp[N]
 ```
 
 [![Back to Front][badge_back_to_front]](#table-of-contents)
