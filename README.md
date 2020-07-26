@@ -2427,14 +2427,14 @@ private:
 ![Python3][python3]
 ```python
 def generateParenthesis(n: 'int') -> 'List[str]':
-    def backtrack(s, l, r):
-        if l == 0 and r == 0:
+    def backtrack(s, l_left, r_left):
+        if l_left == 0 and r_left == 0:
             ans.append(s)
             return
-        if l > 0:
-            backtrack(s + '(', l - 1, r)
-        if r > l:
-            backtrack(s + ')', l, r - 1)
+        if l_left > 0:
+            backtrack(s + '(', l_left - 1, r_left)
+        if r_left > l_left:
+            backtrack(s + ')', l_left, r_left - 1)
 
     ans = []
     backtrack("", n, n)
