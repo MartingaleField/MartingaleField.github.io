@@ -105,6 +105,8 @@
     - [Maximal Rectangle](#maximal-rectangle)
     - [Count Square Submatrices with All Ones](#count-square-submatrices-with-all-ones)
     - [Range Sum Query 2D - Immutable](#range-sum-query-2d---immutable)
+    - [House Robber](#house-robber)
+    - [House Robber II](#house-robber-ii)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 - [Pandas](#pandas)
@@ -5272,6 +5274,80 @@ class NumMatrix:
 # obj = NumMatrix(matrix)
 # param_1 = obj.sumRegion(row1,col1,row2,col2)
 ```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [House Robber](https://leetcode.com/problems/house-robber/)
+You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have security system connected and **it will automatically contact the police if two adjacent houses were broken into on the same night**.
+
+Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight **without alerting the police**.
+
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n == 0:
+            return 0
+        if n == 1:
+            return nums[0]
+        dp = [0] * n
+        dp[0] = nums[0]
+        dp[1] = max(nums[0], nums[1])
+        for i in range(2, n):
+            dp[i] = max(dp[i - 2] + nums[i], dp[i - 1])
+        return dp[-1]
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [House Robber II](https://leetcode.com/problems/house-robber/)
+You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed. All houses at this place are **arranged in a circle**. That means the first house is the neighbor of the last one. Meanwhile, adjacent houses have security system connected and **it will automatically contact the police if two adjacent houses were broken into on the same night**.
+
+Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight **without alerting the police**.
+
+
+#### Solution
+If the thief selects house `0`, he cannot select house `n-1`. Similarly, if he selects house `n-1`, he cannot select house `0`. So the final answer is the maximum amount between `0..n-2` and `1..n-1`.
+We can reuse the function in [House Robber](#house-robber) to calculate both values.
+
+![Python3][python3]
+```python
+class Solution:
+
+    def rob(self, nums: List[int]) -> int:
+
+        def rob_1(A: List[int]) -> int:
+            n = len(A)
+            if n == 0:
+                return 0
+            if n == 1:
+                return A[0]
+            dp = [0] * n
+            dp[0] = A[0]
+            dp[1] = max(A[0], A[1])
+            for i in range(2, n):
+                dp[i] = max(dp[i - 2] + A[i], dp[i - 1])
+            return dp[-1]
+
+        n = len(nums)
+        if n == 0:
+            return 0
+        if n == 1:
+            return nums[0]
+        return max(rob_1(nums[0:n - 1]), rob_1(nums[1:n]))
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 # Design
 
