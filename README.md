@@ -102,6 +102,7 @@
     - [Longest Palindromic Substring](#longest-palindromic-substring)
     - [Maximal Rectangle](#maximal-rectangle)
     - [Count Square Submatrices with All Ones](#count-square-submatrices-with-all-ones)
+    - [Range Sum Query 2D - Immutable](#range-sum-query-2d---immutable)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 - [Pandas](#pandas)
@@ -5152,6 +5153,39 @@ class Solution:
                 ans += dp[i][j]
 
         return ans
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Range Sum Query 2D - Immutable](https://leetcode.com/submissions/detail/162339694/)
+Given a 2D matrix matrix, find the sum of the elements inside the rectangle defined by its upper left corner `(row1, col1)` and lower right corner `(row2, col2)`.
+
+
+#### Solution
+
+![Python3][python3]
+```python
+class NumMatrix:
+
+    def __init__(self, matrix: List[List[int]]):
+        self.matrix = matrix
+        m = len(matrix)
+        if m == 0:
+            return
+        n = len(matrix[0])
+        self.dp = [[0] * (n + 1) for _ in range(m + 1)]
+        for i in range(m):
+            for j in range(n):
+                self.dp[i + 1][j + 1] = self.dp[i][j + 1] + self.dp[i + 1][j] - self.dp[i][j] + self.matrix[i][j]
+
+    def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
+        return self.dp[row2 + 1][col2 + 1] - self.dp[row1][col2 + 1] - self.dp[row2 + 1][col1] + self.dp[row1][col1]
+
+# Your NumMatrix object will be instantiated and called as such:
+# obj = NumMatrix(matrix)
+# param_1 = obj.sumRegion(row1,col1,row2,col2)
 ```
 
 # Design
