@@ -107,6 +107,7 @@
     - [Range Sum Query 2D - Immutable](#range-sum-query-2d---immutable)
     - [House Robber](#house-robber)
     - [House Robber II](#house-robber-ii)
+    - [Delete and Earn](#delete-and-earn)
     - [Best Time to Buy and Sell Stock with Cooldown](#best-time-to-buy-and-sell-stock-with-cooldown)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
@@ -5344,6 +5345,52 @@ class Solution:
         if n == 1:
             return nums[0]
         return max(rob_1(nums[0:n - 1]), rob_1(nums[1:n]))
+```
+
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Delete and Earn](https://leetcode.com/problems/delete-and-earn/)
+Given an array nums of integers, you can perform operations on the array.
+
+In each operation, you pick any `nums[i]` and delete it to earn `nums[i]` points. After, you must delete every element equal to `nums[i] - 1` or `nums[i] + 1`.
+
+You start with 0 points. Return the maximum number of points you can earn by applying such operations.
+
+#### Solution
+This problem can be reduced to [House Robber](#house-robber) problem. 
+
+If we take `N` points, we cannot take `N-1` or `N+1`. We can think of point array as houses with money. E.g.
+```
+[2, 2, 3, 3, 3, 4] -> [2*2, 3*3, 4]
+```
+
+![Python3][python3]
+```python
+class Solution:
+    def deleteAndEarn(self, nums: List[int]) -> int:
+
+        def rob_1(A: List[int]) -> int:
+            n = len(A)
+            if n == 0:
+                return 0
+            if n == 1:
+                return A[0]
+            dp = [0] * n
+            dp[0] = A[0]
+            dp[1] = max(A[0], A[1])
+            for i in range(2, n):
+                dp[i] = max(dp[i - 2] + A[i], dp[i - 1])
+            return dp[-1]
+
+        if len(nums) == 0:
+            return 0
+        l, r = min(nums), max(nums)
+        points = [0] * (r - l + 1)
+        for num in nums:
+            points[num - l] += num
+        return rob_1(points)
 ```
 
 [![Back to Front][badge_back_to_front]](#table-of-contents)
