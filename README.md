@@ -107,6 +107,7 @@
     - [Range Sum Query 2D - Immutable](#range-sum-query-2d---immutable)
     - [House Robber](#house-robber)
     - [House Robber II](#house-robber-ii)
+    - [Best Time to Buy and Sell Stock with Cooldown](#best-time-to-buy-and-sell-stock-with-cooldown)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 - [Pandas](#pandas)
@@ -5348,6 +5349,37 @@ class Solution:
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
+
+### [Best Time to Buy and Sell Stock with Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)
+Say you have an array for which the `i`th element is the price of a given stock on day `i`.
+
+Design an algorithm to find the maximum profit. You may complete as many transactions as you like (ie, buy one and sell one share of the stock multiple times) with the following restrictions:
+
+- You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
+- After you sell your stock, you cannot buy stock on next day. (ie, cooldown 1 day)
+
+#### Solution:
+
+- `h[i]`: max profit if we buy stock on day `i`
+- `r[i]`: max profit if we cooldown on day `i`
+- `s[i]`: max profit if we sell on day `i`
+
+![Python3][python3]
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        n = len(prices)
+        if n == 0:
+            return 0
+
+        h, r, s = [0] * n, [0] * n, [0] * n
+        h[0], r[0], s[0] = -prices[0], 0, -float('inf')
+        for i in range(1, n):
+            h[i] = max(h[i - 1], r[i - 1] - prices[i])
+            r[i] = max(r[i - 1], s[i - 1])
+            s[i] = h[i - 1] + prices[i]
+        return max(s[-1], r[-1])
+```
 
 # Design
 
