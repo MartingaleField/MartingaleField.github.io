@@ -3065,7 +3065,7 @@ def permuteUnique(nums: List[int]) -> List[List[int]]:
 
 ### [N-Queens](https://leetcode.com/problems/n-queens/)
 
-The n-queens puzzle is the problem of placing n queens on an n×n chessboard such that no two queens attack each other.
+The n-queens puzzle is the problem of placing n queens on an `n × n` chessboard such that no two queens attack each other.
 
 ![N-Queens](https://assets.leetcode.com/uploads/2018/10/12/8-queens.png)
 
