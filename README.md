@@ -29,6 +29,7 @@
     - [Minimum Size Subarray Sum](#minimum-size-subarray-sum)
     - [Sliding Window Maximum](#sliding-window-maximum)
     - [Shuffle an Array](#shuffle-an-array)
+    - [Count Primes](#count-primes)
   - [Strings](#strings)
     - [Rabin-Karp Substring Search](#rabin-karp-substring-search)
   - [Stacks and Queues](#stacks-and-queues)
@@ -1082,6 +1083,36 @@ class Solution:
 # obj = Solution(nums)
 # param_1 = obj.reset()
 # param_2 = obj.shuffle()
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Count Primes](https://leetcode.com/problems/count-primes/)
+Count the number of prime numbers less than a non-negative number, `n`.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def countPrimes(self, n: int) -> int:
+        if n < 3:
+            return 0
+
+        size = (n - 4) // 2 + 1
+        nb_primes = 1  # nb of nb_primes from 1 to n-1
+        # is_prime[i]: if (2*i+3) is prime or not
+        is_prime = [True] * size
+        for i in range(size):
+            if is_prime[i]:
+                p = i * 2 + 3
+                nb_primes += 1
+                # Sieving from p**2 where p**2 = (4*i**2 + 12*i + 9)
+                # The index in is_prime is (p**2 - 3) // 2 = (2*i**2 + 6*i + 3)
+                for j in range(2 * i ** 2 + 6 * i + 3, size, p):
+                    is_prime[j] = False
+        return nb_primes
 ```
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
