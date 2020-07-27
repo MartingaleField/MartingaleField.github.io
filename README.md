@@ -112,6 +112,7 @@
     - [Delete and Earn](#delete-and-earn)
     - [Domino and Tromino Tiling](#domino-and-tromino-tiling)
     - [Best Time to Buy and Sell Stock with Cooldown](#best-time-to-buy-and-sell-stock-with-cooldown)
+    - [Best Time to Buy and Sell Stock (k Times)](#best-time-to-buy-and-sell-stock-k-times)
     - [Minimum Swaps To Make Sequences Increasing](#minimum-swaps-to-make-sequences-increasing)
     - [Word Break](#word-break)
 - [Design](#design)
@@ -5536,6 +5537,58 @@ class Solution:
             s[i] = h[i - 1] + prices[i]
         return max(s[-1], r[-1])
 ```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Best Time to Buy and Sell Stock (k Times)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/)
+Say you have an array for which the `i`-th element is the price of a given stock on day `i`.
+
+Design an algorithm to find the maximum profit. You may complete at most `k` transactions.
+
+You may not engage in multiple transactions at the same time (ie, you must sell the stock before you buy again).
+
+#### Solution
+
+Define
+- `B[i][j]`: the max profit if you must make `j-1` buy-sell transactions prior to `i` and buy at day `i`.
+- `S[i][j]`: the max profit with `j` buy-sell transactions with the `j`th sell taking place at day `i`.
+  
+Then we have
+```
+S[i][j] =  A[i] + max(B[k][j] for k < i)
+B[i][j] = -A[i] + max(S[k][j] for k < i)
+```
+
+For constant space, we can define
+- `b[j] = max(B[k][j] for k <= i)`
+- `s[j] = max(S[k][j] for k <= i)`
+
+Then we have transition:
+```
+b[j] = max(b[j], -P[j] + (i ? S[i-1] : 0))
+S[j] = max(s[j],  P[j] + b[j])
+```
+![Python3][python3]
+```python
+class Solution:
+    def maxProfit(self, k: int, prices: List[int]) -> int:
+        n = len(prices)
+        if k == 0 or n < 2:
+            return 0
+        elif 2 * k >= n:  # if we can trade unlimited times
+            return sum(max(0, b - a) for a, b in zip(prices[:-1], prices[1:]))
+
+        b, s = [float('-inf')] * k, [0] * k
+        for p in prices:
+            for i in range(k):
+                b[i] = max(b[i], -p + (0 if i == 0 else s[i - 1]))
+                s[i] = max(s[i], p + b[i])
+        return s[-1]
+```
+
+Note that the algorithm also works for [Best Time to Buy and Sell Stock (Twice)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/), which is a special case of this problem.
+
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
 ---
