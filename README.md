@@ -53,6 +53,7 @@
     - [Generate Parentheses](#generate-parentheses)
     - [Sudoku Solver](#sudoku-solver)
     - [Combination Sum](#combination-sum)
+    - [Word Break II](#word-break-ii)
     - [Combination Sum II](#combination-sum-ii)
     - [Combination Sum III](#combination-sum-iii)
     - [Permutations](#permutations)
@@ -110,6 +111,8 @@
     - [Delete and Earn](#delete-and-earn)
     - [Domino and Tromino Tiling](#domino-and-tromino-tiling)
     - [Best Time to Buy and Sell Stock with Cooldown](#best-time-to-buy-and-sell-stock-with-cooldown)
+    - [Minimum Swaps To Make Sequences Increasing](#minimum-swaps-to-make-sequences-increasing)
+    - [Word Break](#word-break)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 - [Pandas](#pandas)
@@ -2679,8 +2682,47 @@ def combinationSum(candidates: 'List[int]', target: 'int') -> 'List[List[int]]':
 
 ---
 
+### [Word Break II](https://leetcode.com/problems/word-break-ii/)
+Given a non-empty string `s` and a dictionary `wordDict` containing a list of non-empty words, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.
 
+Note:
 
+- The same word in the dictionary may be reused multiple times in the segmentation.
+- You may assume the dictionary does not contain duplicate words.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+        wordSet = set(wordDict)
+        n = len(s)
+        dp = [True] + [False] * n
+        for i in range(1, n + 1):
+            for w in wordSet:
+                if i - len(w) >= 0:
+                    if dp[i - len(w)] and s[i - len(w):i] == w:
+                        dp[i] = True
+
+        def dfs(depth):
+            if depth == 0:
+                result.append(' '.join(path[::-1]))
+                return
+            for i in range(depth):
+                if dp[i] and s[i:depth] in wordSet:
+                    path.append(s[i:depth])
+                    dfs(i)
+                    path.pop()
+
+        path = []
+        result = []
+        dfs(n)
+        return result
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 ### [Combination Sum II](https://leetcode.com/problems/combination-sum-ii/)
 
@@ -5462,6 +5504,71 @@ class Solution:
             s[i] = h[i - 1] + prices[i]
         return max(s[-1], r[-1])
 ```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Minimum Swaps To Make Sequences Increasing](https://leetcode.com/problems/minimum-swaps-to-make-sequences-increasing/)
+We have two integer sequences `A` and `B` of the same non-zero length.
+
+We are allowed to swap elements `A[i]` and `B[i]`.  Note that both elements are in the same index position in their respective sequences.
+
+At the end of some number of swaps, `A` and `B` are both strictly increasing.  (A sequence is strictly increasing if and only if `A[0] < A[1] < A[2] < ... < A[A.length - 1]`.)
+
+Given A and B, return the minimum number of swaps to make both sequences strictly increasing.  It is guaranteed that the given input always makes it possible.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def minSwap(self, A: List[int], B: List[int]) -> int:
+        n = len(A)
+        if n == 0:
+            return 0
+
+        keep, swap = [float('inf')] * n, [float('inf')] * n
+        keep[0], swap[0] = 0, 1
+        for i in range(1, n):
+            if A[i - 1] < A[i] and B[i - 1] < B[i]:
+                keep[i] = keep[i - 1]                    # no swap i-1 or i
+                swap[i] = swap[i - 1] + 1                # swap both i-1 and i
+            if A[i - 1] < B[i] and B[i - 1] < A[i]:
+                keep[i] = min(keep[i], swap[i - 1])      # swap i-1
+                swap[i] = min(swap[i], keep[i - 1] + 1)  # swap i
+        return min(keep[-1], swap[-1])
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Word Break](https://leetcode.com/problems/word-break/)
+Given a non-empty string `s` and a dictionary wordDict containing a list of non-empty words, determine if `s` can be segmented into a space-separated sequence of one or more dictionary words.
+
+Note
+
+- The same word in the dictionary may be reused multiple times in the segmentation.
+- You may assume the dictionary does not contain duplicate words.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        n = len(s)
+        dp = [False] * (n + 1)  # dp[i]: s[:i] can be decomposed
+        dp[0] = True
+        for i in range(1, n + 1):
+            for w in wordDict:
+                if i - len(w) >= 0:
+                    if dp[i - len(w)] and s[i - len(w):i] == w:
+                        dp[i] = True
+        return dp[n]
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
 
 # Design
 
