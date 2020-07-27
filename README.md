@@ -14,7 +14,6 @@
     - [Substring with Concatenation of All Words](#substring-with-concatenation-of-all-words)
   - [Arrays](#arrays)
     - [Two Sum](#two-sum)
-    - [4Sum](#4sum)
     - [4Sum II](#4sum-ii)
     - [Remove Duplicates from Sorted Array](#remove-duplicates-from-sorted-array)
     - [Remove Duplicates from Sorted Array II](#remove-duplicates-from-sorted-array-ii)
@@ -78,6 +77,7 @@
     - [Sort an Array](#sort-an-array)
     - [3Sum](#3sum)
     - [3Sum Closest](#3sum-closest)
+    - [4Sum](#4sum)
     - [Pancake Sorting](#pancake-sorting)
   - [Divide and Conquer](#divide-and-conquer)
     - [Majority Element](#majority-element)
@@ -297,54 +297,7 @@ def twoSum(nums: List[int], target: int) -> List[int]:
 
 
 
-### [4Sum](https://leetcode.com/problems/4sum/)
 
-Given an array `nums` of `n` integers and an integer `target`, are there elements `a`, `b`, `c`, and `d` in `nums` such that `a + b + c + d = target`? Find all unique quadruplets in the array which gives the sum of `target`.
-
-The solution set must not contain duplicate quadruplets.
-
-#### Solution 
-![C++][c++]
-```c++
-vector<vector<int>> fourSum(vector<int> &nums, int target) {
-    vector<vector<int>> result;
-    int n = nums.size();
-    if (n < 4) return result;
-    sort(nums.begin(), nums.end());
-    for (int a = 0; a < n - 3; ++a) {
-        // Pruning
-        if (nums[a] + nums[n - 1] + nums[n - 2] + nums[n - 3] < target ||
-            nums[a] + nums[a + 1] + nums[a + 2] + nums[a + 3] > target ||
-            (a > 0 && nums[a] == nums[a - 1]))
-            continue;
-        for (int b = a + 1; b < n - 2; ++b) {
-            if (b > a + 1 && nums[b] == nums[b - 1])
-                continue;
-            int c = b + 1, d = n - 1;
-            while (c < d) {
-                int sum = nums[a] + nums[b] + nums[c] + nums[d];
-                if (sum < target) {
-                    c++;
-                    while (c < d && nums[c] == nums[c - 1])
-                        c++;
-                } else if (sum > target) {
-                    d--;
-                    while (c < d && nums[d] == nums[d + 1])
-                        d--;
-                } else {
-                    result.push_back({nums[a], nums[b], nums[c++], nums[d--]});
-                    while (c < d && nums[c] == nums[c - 1] && nums[d] == nums[d + 1])
-                        c++, d--;
-                }
-            }
-        }
-    }
-    return result;
-}
-```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
----
 
 
 ### [4Sum II](https://leetcode.com/problems/4sum-ii/)
@@ -4196,6 +4149,55 @@ def threeSumClosest(nums: 'List[int]', target: 'int') -> 'int':
             if abs(diff) < abs(target - ans):
                 ans = sum
     return ans
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [4Sum](https://leetcode.com/problems/4sum/)
+
+Given an array `nums` of `n` integers and an integer `target`, are there elements `a`, `b`, `c`, and `d` in `nums` such that `a + b + c + d = target`? Find all unique quadruplets in the array which gives the sum of `target`.
+
+The solution set must not contain duplicate quadruplets.
+
+#### Solution 
+![C++][c++]
+```c++
+vector<vector<int>> fourSum(vector<int> &nums, int target) {
+    vector<vector<int>> result;
+    int n = nums.size();
+    if (n < 4) return result;
+    sort(nums.begin(), nums.end());
+    for (int a = 0; a < n - 3; ++a) {
+        // Pruning
+        if (nums[a] + nums[n - 1] + nums[n - 2] + nums[n - 3] < target ||
+            nums[a] + nums[a + 1] + nums[a + 2] + nums[a + 3] > target ||
+            (a > 0 && nums[a] == nums[a - 1]))
+            continue;
+        for (int b = a + 1; b < n - 2; ++b) {
+            if (b > a + 1 && nums[b] == nums[b - 1])
+                continue;
+            int c = b + 1, d = n - 1;
+            while (c < d) {
+                int sum = nums[a] + nums[b] + nums[c] + nums[d];
+                if (sum < target) {
+                    c++;
+                    while (c < d && nums[c] == nums[c - 1])
+                        c++;
+                } else if (sum > target) {
+                    d--;
+                    while (c < d && nums[d] == nums[d + 1])
+                        d--;
+                } else {
+                    result.push_back({nums[a], nums[b], nums[c++], nums[d--]});
+                    while (c < d && nums[c] == nums[c - 1] && nums[d] == nums[d + 1])
+                        c++, d--;
+                }
+            }
+        }
+    }
+    return result;
+}
 ```
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
