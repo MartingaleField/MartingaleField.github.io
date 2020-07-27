@@ -54,7 +54,6 @@
     - [Generate Parentheses](#generate-parentheses)
     - [Sudoku Solver](#sudoku-solver)
     - [Combination Sum](#combination-sum)
-    - [Word Break II](#word-break-ii)
     - [Combination Sum II](#combination-sum-ii)
     - [Combination Sum III](#combination-sum-iii)
     - [Permutations](#permutations)
@@ -115,6 +114,7 @@
     - [Best Time to Buy and Sell Stock (k Times)](#best-time-to-buy-and-sell-stock-k-times)
     - [Minimum Swaps To Make Sequences Increasing](#minimum-swaps-to-make-sequences-increasing)
     - [Word Break](#word-break)
+    - [Word Break II](#word-break-ii)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 - [Pandas](#pandas)
@@ -2714,47 +2714,7 @@ def combinationSum(candidates: 'List[int]', target: 'int') -> 'List[List[int]]':
 
 ---
 
-### [Word Break II](https://leetcode.com/problems/word-break-ii/)
-Given a non-empty string `s` and a dictionary `wordDict` containing a list of non-empty words, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.
 
-Note:
-
-- The same word in the dictionary may be reused multiple times in the segmentation.
-- You may assume the dictionary does not contain duplicate words.
-
-#### Solution
-
-![Python3][python3]
-```python
-class Solution:
-    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
-        wordSet = set(wordDict)
-        n = len(s)
-        dp = [True] + [False] * n
-        for i in range(1, n + 1):
-            for w in wordSet:
-                if i - len(w) >= 0:
-                    if dp[i - len(w)] and s[i - len(w):i] == w:
-                        dp[i] = True
-
-        def dfs(depth):
-            if depth == 0:
-                result.append(' '.join(path[::-1]))
-                return
-            for i in range(depth):
-                if dp[i] and s[i:depth] in wordSet:
-                    path.append(s[i:depth])
-                    dfs(i)
-                    path.pop()
-
-        path = []
-        result = []
-        dfs(n)
-        return result
-```
-[![Back to Front][badge_back_to_front]](#table-of-contents)
-
----
 
 
 ### [Combination Sum II](https://leetcode.com/problems/combination-sum-ii/)
@@ -5650,6 +5610,48 @@ class Solution:
                     if dp[i - len(w)] and s[i - len(w):i] == w:
                         dp[i] = True
         return dp[n]
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Word Break II](https://leetcode.com/problems/word-break-ii/)
+Given a non-empty string `s` and a dictionary `wordDict` containing a list of non-empty words, add spaces in s to construct a sentence where each word is a valid dictionary word. Return all such possible sentences.
+
+Note:
+
+- The same word in the dictionary may be reused multiple times in the segmentation.
+- You may assume the dictionary does not contain duplicate words.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+        wordSet = set(wordDict)
+        n = len(s)
+        dp = [True] + [False] * n
+        for i in range(1, n + 1):
+            for w in wordSet:
+                if i - len(w) >= 0:
+                    if dp[i - len(w)] and s[i - len(w):i] == w:
+                        dp[i] = True
+
+        def dfs(depth):
+            if depth == 0:
+                result.append(' '.join(path[::-1]))
+                return
+            for i in range(depth):
+                if dp[i] and s[i:depth] in wordSet:
+                    path.append(s[i:depth])
+                    dfs(i)
+                    path.pop()
+
+        path = []
+        result = []
+        dfs(n)
+        return result
 ```
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
