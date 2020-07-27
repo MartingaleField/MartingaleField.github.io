@@ -115,6 +115,8 @@
     - [Minimum Swaps To Make Sequences Increasing](#minimum-swaps-to-make-sequences-increasing)
     - [Word Break](#word-break)
     - [Word Break II](#word-break-ii)
+    - [Longest Increasing Subsequence](#longest-increasing-subsequence)
+    - [Number of Longest Increasing Subsequence](#number-of-longest-increasing-subsequence)
 - [Design](#design)
     - [LRU Cache](#lru-cache)
 - [Pandas](#pandas)
@@ -5652,6 +5654,65 @@ class Solution:
         result = []
         dfs(n)
         return result
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)
+Given an unsorted array of integers, find the length of longest increasing subsequence.
+
+#### Solution
+
+
+![Python3][python3]
+```python
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n == 0:
+            return 0
+        l = [1] * n  # l[i]: length of LIS ending at i
+        for i in range(1, n):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    l[i] = max(l[i], l[j] + 1)
+        return max(l)
+```
+[![Back to Front][badge_back_to_front]](#table-of-contents)
+
+---
+
+### [Number of Longest Increasing Subsequence](https://leetcode.com/problems/number-of-longest-increasing-subsequence/)
+Given an unsorted array of integers, find the number of longest increasing subsequence.
+
+#### Solution
+
+![Python3][python3]
+```python
+class Solution:
+    def findNumberOfLIS(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n == 0:
+            return 0
+        l = [1] * n  # l[i]: length of LIS ending at i
+        c = [1] * n  # c[i]: count of LIS ending at i
+
+        for i in range(1, n):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    if l[j] + 1 > l[i]:
+                        l[i] = l[j] + 1
+                        c[i] = c[j]
+                    elif l[j] + 1 == l[i]:
+                        c[i] += c[j]
+
+        max_len = max(l)
+        ans = 0
+        for i in range(n):
+            if l[i] == max_len:
+                ans += c[i]
+        return ans
 ```
 [![Back to Front][badge_back_to_front]](#table-of-contents)
 
